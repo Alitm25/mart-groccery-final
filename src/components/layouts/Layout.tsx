@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from "@/components/layouts/header/Header";
-import Footer from "@/components/layouts/footer/Footer";
+import {Footer, Header} from "@/components";
 
-export default function Layout({children} : {children: React.ReactNode}) {
+
+export function Layout({children} : {children: React.ReactNode}) {
     return (
        <>
            <Header />
