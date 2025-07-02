@@ -29,6 +29,7 @@ export const popularFruits = [
         weight: 500,
         unit: 'gram',
         price: 3000,
+        sale_price: 200,
     },
     {
         title: "Foster Farms Takeout Crispy Classic Buffalo Wings",

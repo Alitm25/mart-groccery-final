@@ -9,7 +9,6 @@ export const popularProducts = [
         price: 5000,
         sale_price: 200,
         label: 'Hot',
-
     },
     {
         title: "All Natural Italian-Style Chicken Meatballs",
