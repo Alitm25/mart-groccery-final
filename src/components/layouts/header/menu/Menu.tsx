@@ -5,11 +5,24 @@ import {browsCategoriesMock} from "@/mock/browsCategory";
 import {menuMock} from "@/mock/menu";
 import {useQuery} from "@tanstack/react-query";
 import {getMenuApiCall} from "@/api/Menu";
+import {EntityType, MenuItemsType, MenuType, PopulateType} from "@/types";
 
 export function Menu() {
     // TODO Load manu data from api
-    const {data: menuData} = useQuery({queryKey:[getMenuApiCall.name], queryFn: () => {getMenuApiCall}});
-    console.log(menuData);
+    const {data: menuData} = useQuery({queryKey:[getMenuApiCall.name], queryFn: () => getMenuApiCall()});
+
+    let mainMenuItems : null | PopulateType<MenuItemsType> = null;
+
+    if (menuData) {
+        const findMainMenu = menuData.data.filter( (item :EntityType<MenuType>) => item.attributes.position === "main_menu");
+
+        if (findMainMenu.length > 0) {
+            mainMenuItems = findMainMenu[0].attributes.menu_items;
+        }
+    }
+
+
+
     return (
         <>
             <div id="all_categories" className="flex relative cursor-pointer bg-green-200 gap-2.5 text-white px-4 py-3 rounded-[5px] items-center">
@@ -37,13 +50,28 @@ export function Menu() {
             <nav id="main_menu">
                 <ul className="flex flex-col lg:flex-row items-start lg:items-center text-heading6 lg:text-heading-sm 2xl:text-heading6 gap-[32px] mt-[32px] lg:mt-0 lg:gap-3 xl:gap-5 2xl:gap-10">
                     {
-                        menuMock.map( (item, index) => {
+                        mainMenuItems &&
+                        mainMenuItems.data.map( (item, index) => {
                             return (
-                                item.icon ? <IconBox {...item} size={24}/> : <Link href={item.link} className="flex items-center gap-1">{item.title}</Link>
+                                <li key={index}>
+                                    {
+                                        item.attributes.icon_name ? <IconBox icon={item.attributes.icon_name} link={item.attributes.link} title={item.attributes.title} size={24}/>
+                                            : <Link href={item.attributes.link} className="flex items-center gap-1">{item.attributes.title}</Link>
+                                    }
+                                </li>
 
                             )
                         })
                     }
+
+                    {/*{*/}
+                    {/*    menuMock.map( (item, index) => {*/}
+                    {/*        return (*/}
+                    {/*            item.icon ? <IconBox {...item} size={24}/> : <Link href={item.link} className="flex items-center gap-1">{item.title}</Link>*/}
+
+                    {/*        )*/}
+                    {/*    })*/}
+                    {/*}*/}
                 </ul>
             </nav>
         </>
