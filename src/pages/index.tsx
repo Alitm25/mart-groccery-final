@@ -12,8 +12,21 @@ import {popularFruits} from "@/mock/PopularFruits";
 import {BestSellers} from "@/mock/BestSellers";
 import {DealsOfTheDaysMock} from "@/mock/DealsOfTheDays";
 import Link from "next/link";
+import {getAllProductsApiCall} from "@/api/Products";
+import {useQuery} from "@tanstack/react-query";
 
 export default function Home() {
+
+    const {data: popularProductsData} = useQuery(
+        {
+            queryKey: [getAllProductsApiCall.name],
+            queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {is_popular: true}})
+        }
+    )
+
+    console.log('popularProductsData: ', popularProductsData);
+
+
     return (
         <>
             <Section>
