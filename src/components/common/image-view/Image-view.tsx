@@ -1,18 +1,19 @@
 import Image from "next/image";
 
 interface Props {
-    src: string;
+    src?: string | null;
     alt: string;
     width: number;
     height: number;
     className?: string;
 }
 
-export function ImageView({src, alt, width, height, className = ''} :Props) {
-    const isRemote = src.substring(0, 8) === '/uploads';
+export function ImageView({src = '', alt, width, height, className = ''} :Props) {
+
+    const imageSrc = src ? ( src.startsWith('/uploads') ? 'https://nest.navaxcollege.com'+src : src ) : "";
 
     return (
-        <Image src={`${isRemote ? 'https://nest.navaxcollege.com'+src : src}`} width={width} height={height} alt={alt} className={className}/>
+        <Image src={imageSrc} width={width} height={height} alt={alt} className={className}/>
     );
 }
 

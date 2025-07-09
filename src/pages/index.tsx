@@ -14,19 +14,24 @@ import {DealsOfTheDaysMock} from "@/mock/DealsOfTheDays";
 import Link from "next/link";
 import {getAllProductsApiCall} from "@/api/Products";
 import {useQuery} from "@tanstack/react-query";
+import {ApiResponseType} from "@/types";
+import {ProductsType} from "@/types/api/Products";
 
 export default function Home() {
 
-    const {data: popularProductsData} = useQuery(
+    const {data: popularProductsData} = useQuery<ApiResponseType<ProductsType>>(
         {
-            queryKey: [getAllProductsApiCall.name],
+            queryKey: [getAllProductsApiCall.name, 'popularProducts'],
             queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {is_popular: true}})
         }
     )
 
-    console.log('popularProductsData: ', popularProductsData);
-
-
+    const {data: popularFruitsData} = useQuery<ApiResponseType<ProductsType>>(
+        {
+            queryKey: [getAllProductsApiCall.name, 'popularFruits'],
+            queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {is_popular_fruit: true}})
+        }
+    )
     return (
         <>
             <Section>
@@ -49,7 +54,7 @@ export default function Home() {
                         <IconBox icon={'swiper-nav-right icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white'} size={24}/>
                     </div>
                 </div>
-                <SimpleProductSlider sliderData={popularProducts} nextEl={'.swiper-nav-right'} prevEl={'.swiper-nav-left'}/>
+                {popularProductsData && <SimpleProductSlider sliderData={popularProductsData.data} nextEl={'.swiper-nav-right'} prevEl={'.swiper-nav-left'}/>}
             </Section>
 
             <Section>
@@ -60,7 +65,7 @@ export default function Home() {
                         <IconBox icon={'swiper-nav-right2 icon-angle-small-right cursor-pointer bg-gray-100 p-2 rounded-full text-gray-500 hover:bg-green-200 hover:text-white'} size={24}/>
                     </div>
                 </div>
-                <SimpleProductSlider sliderData={popularFruits} nextEl={'.swiper-nav-right2'} prevEl={'.swiper-nav-left2'}/>
+                {popularFruitsData && <SimpleProductSlider sliderData={popularFruitsData.data} nextEl={'.swiper-nav-right2'} prevEl={'.swiper-nav-left2'}/>}
             </Section>
 
             <Section>

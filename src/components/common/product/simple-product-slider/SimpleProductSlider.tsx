@@ -1,9 +1,11 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation} from "swiper/modules";
-import {IconBox, SimpleProductCard} from "@/components";
+import {SimpleProductCard} from "@/components";
+import {EntityType} from "@/types";
+import {ProductsType} from "@/types/api/Products";
 
 interface Props {
-    sliderData: Array<any>;
+    sliderData: Array<EntityType<ProductsType>>;
     nextEl: string;
     prevEl: string;
 };
