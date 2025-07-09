@@ -1,17 +1,53 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
-import {DealsOfTheDaysMock} from "@/mock/DealsOfTheDays";
-import {DealsProductCard, ProductVerticalList} from "@/components";
-import {TopSellingMock} from "@/mock/TopSelling";
-import {TrendingProductsMock} from "@/mock/TrendingProducts";
+import {ProductVerticalList} from "@/components";
 import {RecentlyAddedMock} from "@/mock/RecentlyAdded";
-import {TopRatedMock} from "@/mock/TopRated";
+import {ApiResponseType} from "@/types";
+import {ProductsType} from "@/types/api/Products";
+import {useQuery} from "@tanstack/react-query";
+import {getAllProductsApiCall} from "@/api/Products";
+import {InView} from "react-intersection-observer";
 
-interface Props {
-    
-};
 
-export function BottomSlider({}: Props) {
+export function BottomSlider({}) {
+    // top-selling data API call
+    const {data: topSellingData} = useQuery<ApiResponseType<ProductsType>>(
+        {
+            queryKey: [getAllProductsApiCall.name, 'topSelling'],
+            queryFn: () => getAllProductsApiCall({populate: ['thumbnail'], filters: {is_top_selling: {$eq: true}}})
+        }
+    )
+
+    // trending products API call
+    const {data: trendingProductsData} = useQuery<ApiResponseType<ProductsType>>(
+        {
+            queryKey: [getAllProductsApiCall.name, 'trendingProducts'],
+            queryFn: () => getAllProductsApiCall({populate: ['thumbnail'], filters: {is_trending: {$eq: true}}})
+        }
+    )
+
+    /// top-rated products API call
+    const {data: topRatedData, refetch} = useQuery<ApiResponseType<ProductsType>>(
+        {
+            queryKey: [getAllProductsApiCall.name, 'topRated'],
+            queryFn: () => getAllProductsApiCall(
+                {
+                    populate: ['thumbnail'],
+                    sort: ['rate:desc'],
+                    pagination: {
+                        withCount: false,
+                        // page: 1,
+                        // pageSize: 3
+                        start: 0,
+                        limit: 3
+                    },
+                }
+            ),
+            enabled: false,
+        }
+    )
+
+
     return (
         <Swiper
             spaceBetween={16}
@@ -36,11 +72,15 @@ export function BottomSlider({}: Props) {
             }
         >
             <SwiperSlide>
-                <ProductVerticalList title={'Top Selling'} data={TopSellingMock} />
+                <InView as="div" onChange={(inView, entry) => inView && refetch()}>
+                    {topSellingData && <ProductVerticalList title={'Top Selling'} data={topSellingData.data} />}
+                </InView>
             </SwiperSlide>
 
             <SwiperSlide>
-                <ProductVerticalList title={'Trending Products'} data={TrendingProductsMock} />
+                <InView as="div" onChange={(inView, entry) => inView && refetch()}>
+                    {trendingProductsData && <ProductVerticalList title={'Trending Products'} data={trendingProductsData.data} />}
+                </InView>
             </SwiperSlide>
 
             <SwiperSlide>
@@ -48,7 +88,9 @@ export function BottomSlider({}: Props) {
             </SwiperSlide>
 
             <SwiperSlide>
-                <ProductVerticalList title={'Top Rated'} data={TopRatedMock} />
+                <InView as="div" onChange={(inView, entry) => inView && refetch()}>
+                    {topRatedData && <ProductVerticalList title={'Top Rated'} data={topRatedData.data} />}
+                </InView>
             </SwiperSlide>
         </Swiper>
     );

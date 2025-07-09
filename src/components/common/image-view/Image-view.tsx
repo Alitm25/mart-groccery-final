@@ -8,7 +8,7 @@ interface Props {
     className?: string;
 }
 
-export function ImageView({src = '', alt, width, height, className = ''} :Props) {
+export function ImageView({src = '', alt, width, height, className} :Props) {
 
     const imageSrc = src ? ( src.startsWith('/uploads') ? 'https://nest.navaxcollege.com'+src : src ) : "";
 

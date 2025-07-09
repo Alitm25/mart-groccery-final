@@ -10,10 +10,9 @@ interface Props {
 export function SimpleProductCard({data}: Props) {
     return (
         <div>
-            <div className="group border-[1px] border-gray-200 hover:border-green-150 rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
+            <div className="group border-[1px] border-gray-200 hover:border-green-150 transition-[border] rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
                 {data.attributes && data.attributes.label && <Badge label={data.attributes.label} sale_price={data.attributes.sell_price} price={data.attributes.price}/>}
-                <div
-                    className="mt-8 hidden group-hover:flex rounded-[5px] border-[1px] border-green-200 w-max absolute top-[100px] left-[50%] translate-x-[-50%] bg-white productAction cursor-pointer">
+                <div className="mt-8 hidden group-hover:flex rounded-[5px] border-[1px] border-green-200 w-max absolute top-[100px] left-[50%] translate-x-[-50%] bg-white productAction cursor-pointer">
                     <div className="p-2.5 border-r-[1px] border-r-green-200 hover:bg-green-150">
                         <IconBox icon={'icon-heart text-brand1'} size={15} />
                     </div>
@@ -24,10 +23,10 @@ export function SimpleProductCard({data}: Props) {
                         <IconBox icon={'icon-eye'} size={15} />
                     </div>
                 </div>
-                <ImageView src={data?.attributes?.thumbnail?.data?.attributes.url} className={"m-auto w-full aspect-[3/2] mb-[28px]"} alt={'product-image'} width={210} height={168}/>
-                <div className="flex flex-col gap-2">
+                <ImageView src={data?.attributes?.thumbnail?.data?.attributes.url} className={`m-auto w-full aspect-[3/2] ${data?.attributes?.categories?.data[0] ? 'mb-[28px]' : 'mb-[46px]'}`} alt={'product-image'} width={210} height={168}/>
+                <div className={`flex flex-col gap-2`}>
                     {data?.attributes?.categories?.data[0] && <div className="text-gray-500 text-xsmall">{data?.attributes?.categories?.data[0].attributes.title}</div>}
-                    <Link href={'#'}><h3 className="text-heading-sm text-blue-300 max-h-[50px] overflow-hidden">{data?.attributes?.title}</h3></Link>
+                    <Link href={'#'}><h3 className="line-clamp-2 text-heading-sm text-blue-300 max-h-[50px] overflow-hidden">{data?.attributes?.title}</h3></Link>
                     <div className="flex gap-4">
                         <Rating rate={data?.attributes?.rate}/>
                         <div className="text-xsmall text-gray-500 font-lato">({data?.attributes?.rate})</div>

@@ -19,19 +19,39 @@ import {ProductsType} from "@/types/api/Products";
 
 export default function Home() {
 
+    // popular Products Data API call
     const {data: popularProductsData} = useQuery<ApiResponseType<ProductsType>>(
         {
             queryKey: [getAllProductsApiCall.name, 'popularProducts'],
-            queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {is_popular: true}})
+            queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {is_popular: {$eq: true}}})
         }
     )
 
+    // popular Fruits Data API call
     const {data: popularFruitsData} = useQuery<ApiResponseType<ProductsType>>(
         {
             queryKey: [getAllProductsApiCall.name, 'popularFruits'],
-            queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {is_popular_fruit: true}})
+            queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {is_popular_fruit: {$eq: true}}})
         }
     )
+
+    // best Sellers Data API call
+    const {data: bestSellersData} = useQuery<ApiResponseType<ProductsType>>(
+        {
+            queryKey: [getAllProductsApiCall.name, 'bestSellers'],
+            queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {is_best_seller: {$eq: true}}})
+        }
+    )
+
+    // Deals of the day API call
+    const {data: dealsOfTheDayData} = useQuery<ApiResponseType<ProductsType>>(
+        {
+            queryKey: [getAllProductsApiCall.name, 'dealsOfTheDay'],
+            queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {discount_expire_date: {$notNull: true}}})
+        }
+    )
+
+
     return (
         <>
             <Section>
@@ -82,7 +102,7 @@ export default function Home() {
                             <IconBox icon={'icon-arrow-small-right'} size={24}/>
                         </Link>
                     </div>
-                    <BestSellerSlider sliderData={BestSellers}/>
+                    {bestSellersData && <div className={'flex-grow'}><BestSellerSlider sliderData={bestSellersData.data}/></div>}
                 </div>
             </Section>
 
@@ -92,11 +112,11 @@ export default function Home() {
                         Of The Days</h2>
                     <Link href={'#'} className={'flex items-center'}>All Deals <IconBox icon={'icon-angle-small-right'} size={24}/></Link>
                 </div>
-                <DealsOfTheDaysSlider sliderData={DealsOfTheDaysMock}/>
+                {dealsOfTheDayData && <DealsOfTheDaysSlider sliderData={dealsOfTheDayData.data}/>}
             </Section>
 
             <Section>
-                <BottomSlider />
+                 <BottomSlider />
             </Section>
         </>
     )

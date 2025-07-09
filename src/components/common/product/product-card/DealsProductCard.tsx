@@ -1,18 +1,11 @@
 import {ImageView, Rating} from "@/components";
 import {useEffect, useState} from "react";
 import {timerHelper} from "@/utils/timerHelper";
+import {ProductsType} from "@/types/api/Products";
+import {EntityType} from "@/types";
 
 interface Props {
-    data: {
-        title: string,
-        image: string,
-        rate: number,
-        weight: number,
-        unit: string,
-        price: number,
-        sale_price?: number,
-        dead_line: string
-    }
+    data: EntityType<ProductsType>
 };
 
 export function DealsProductCard({data}: Props) {
@@ -25,7 +18,7 @@ export function DealsProductCard({data}: Props) {
 
     useEffect(() => {
         setInterval(() => {
-            const timerObj = timerHelper(data.dead_line);
+            const timerObj = timerHelper(data.attributes.discount_expire_date);
             setRemainTime(timerObj);
         }, 1000);
     }, []);
@@ -33,7 +26,7 @@ export function DealsProductCard({data}: Props) {
 
     return (
         <div className="relative h-[438px]">
-            <ImageView className={'w-full'} src={data.image} alt={'product'} width={378} height={355} />
+            <ImageView className={'w-full'} src={data.attributes.thumbnail?.data?.attributes.url} alt={'product'} width={378} height={355} />
             <div className="absolute z-[20] left-[50%] translate-x-[-50%] top-[195px]">
                 <div className="timer1 flex items-center gap-3 h-[60px]">
                     <div className="bg-white rounded-[6px] h-full aspect-square text-center">
@@ -54,23 +47,23 @@ export function DealsProductCard({data}: Props) {
                     </div>
                 </div>
                 <div className="bg-white mt-2.5 px-8 pt-6 pb-4 rounded-[10px] shadow-c-xs">
-                    <div className="text-heading-sm text-blue-300">{data.title}
+                    <div className="text-heading-sm text-blue-300">{data.attributes.title}
                     </div>
                     <div className="flex w-[106px] justify-between h-4 items-center mt-1">
                         <div className="flex gap-4">
-                            <Rating rate={data.rate} />
-                            <div className="text-xsmall text-gray-500 font-lato">({data.rate})</div>
+                            <Rating rate={data.attributes.rate} />
+                            <div className="text-xsmall text-gray-500 font-lato">({data.attributes.rate})</div>
                         </div>
                     </div>
-                    <div className="font-lato text-xsmall text-gray-500 mt-1">{data.weight} {data.unit}</div>
+                    <div className="font-lato text-xsmall text-gray-500 mt-1">{data.attributes.weight} {data.attributes.unit}</div>
                     <div className="flex items-center justify-between mt-3">
                         {
-                            data.sale_price ?
+                            data.attributes.sell_price ?
                                 <div>
-                                    <span className="text-heading5 text-green-200">${data.sale_price}</span>
-                                    <span className="text-heading-sm line-through text-gray-500">${data.price}</span>
+                                    <span className="text-heading5 text-green-200">${data.attributes.sell_price}</span>
+                                    <span className="text-heading-sm line-through text-gray-500">${data.attributes.price}</span>
                                 </div>
-                                : <span className="text-heading5 text-green-200">${data.price}</span>
+                                : <span className="text-heading5 text-green-200">${data.attributes.price}</span>
                         }
                         <div className="add-product">
                             <button

@@ -21,7 +21,7 @@ export function Banner({title, subTitle, bgImage, image}: Props) {
                         <input type="email" name="email" placeholder="Your email address"
                                className="pl-2 font-lato text-xsmall grow focus:outline-none bg-transparent"/>
                         <input type="submit" value="subscribe"
-                               className="text-white hover:bg-green-300 bg-green-200 rounded-[30px] px-[18px] py-2 sm:px-[37px] sm:py-[15px] cursor-pointer text-heading6"/>
+                               className="text-white hover:bg-green-300 transition-[background-color] bg-green-200 rounded-[30px] px-[18px] py-2 sm:px-[37px] sm:py-[15px] cursor-pointer text-heading6"/>
                     </form>
                 </div>
                 <ImageView src={image} className="m-w-[50%]" width={717} height={518} alt={'hero-banner'}/>

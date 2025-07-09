@@ -23,12 +23,7 @@ export function Rating({rate}: Props) {
 
 
     return (
-        <ul className="flex gap-1">
-            {/*<li className="flex"><i className="icon-star-full text-[12px]"></i></li>*/}
-            {/*<li className="flex"><i className="icon-star-full text-[12px]"></i></li>*/}
-            {/*<li className="flex"><i className="icon-star-full text-[12px]"></i></li>*/}
-            {/*<li className="flex"><i className="icon-star-full text-[12px]"></i></li>*/}
-            {/*<li className="flex"><i className="icon-star-empty text-[12px]"></i></li>*/}
+        <ul className="flex items-center gap-1">
             {starFill} {starEmpty}
         </ul>
     );
