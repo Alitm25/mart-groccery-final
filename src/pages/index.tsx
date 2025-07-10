@@ -7,15 +7,13 @@ import {
     MiniProductSlider,
     SimpleProductSlider
 } from "@/components";
-import {popularProducts} from "@/mock/PopularProducts";
-import {popularFruits} from "@/mock/PopularFruits";
-import {BestSellers} from "@/mock/BestSellers";
-import {DealsOfTheDaysMock} from "@/mock/DealsOfTheDays";
 import Link from "next/link";
 import {getAllProductsApiCall} from "@/api/Products";
-import {useQuery} from "@tanstack/react-query";
+import {dehydrate, QueryClient, useQuery} from "@tanstack/react-query";
 import {ApiResponseType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
+import {getMenuApiCall} from "@/api/Menu";
+import {getFeaturedCategories} from "@/api/Categories";
 
 export default function Home() {
 
@@ -120,5 +118,55 @@ export default function Home() {
             </Section>
         </>
     )
+}
 
+
+/// SSR for each section
+export async function getStaticProps() {
+    const queryClient = new QueryClient()
+
+    // menu items SSR
+    await queryClient.prefetchQuery({
+        queryKey: [getMenuApiCall.name],
+        queryFn: getMenuApiCall,
+    })
+
+    // // featured categories SSR
+    // await queryClient.prefetchQuery({
+    //     queryKey: [getFeaturedCategories.name],
+    //     queryFn: () => getFeaturedCategories,
+    // })
+
+    // popular products SSR
+    await queryClient.prefetchQuery({
+        queryKey: [getAllProductsApiCall.name, 'popularProducts'],
+        queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {is_popular: {$eq: true}}}),
+    })
+
+    // popular fruits SSR
+    await queryClient.prefetchQuery({
+        queryKey: [getAllProductsApiCall.name, 'popularFruits'],
+        queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {is_popular_fruit: {$eq: true}}}),
+    })
+
+    // best sellers SSR
+    await queryClient.prefetchQuery({
+        queryKey: [getAllProductsApiCall.name, 'bestSellers'],
+        queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {is_best_seller: {$eq: true}}}),
+    })
+
+    // deals of the day SSR
+    await queryClient.prefetchQuery({
+        queryKey: [getAllProductsApiCall.name, 'dealsOfTheDay'],
+        queryFn: () => getAllProductsApiCall({populate: ['thumbnail', 'categories'], filters: {discount_expire_date: {$notNull: true}}}),
+    })
+
+
+
+
+    return {
+        props: {
+            dehydratedState: dehydrate(queryClient),
+        },
+    }
 }

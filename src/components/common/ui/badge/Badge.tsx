@@ -1,5 +1,5 @@
 interface Props {
-    label: string | null;
+    label: string;
     price: number;
     sale_price?: number;
 };
