@@ -68,7 +68,7 @@ export function DealsProductCard({data}: Props) {
                         }
                         <div className="add-product">
                             <button
-                                className="flex items-center justify-center text-heading-sm text-green-200 border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">Adds
+                                className="flex items-center justify-center text-heading-sm text-green-200 hover:bg-[#FDC04033] hover:text-[#FDC040] transition-[background-color] border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">Adds
                                 +
                             </button>
                             <div
