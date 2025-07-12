@@ -9,7 +9,7 @@ interface Props {
 export function MiniProductCard({data}: Props) {
     return (
         <div className="flex gap-3 lg:gap-5">
-            <ImageView src={data?.attributes?.thumbnail?.data?.attributes.url} width={120} height={120} alt={'mini-product'}/>
+            <ImageView src={data?.attributes?.thumbnail?.data?.attributes.url} width={120} height={120} alt={'mini-product'} className={'max-h-[87.5px]'}/>
             <div className="flex flex-col justify-between">
                 <div>
                     <div className="text-heading6 text-blue-300 mb-1 line-clamp-2 min-h-10">{data?.attributes?.title}
