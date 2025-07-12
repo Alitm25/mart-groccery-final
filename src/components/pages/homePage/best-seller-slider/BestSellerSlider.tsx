@@ -32,7 +32,7 @@ export function BestSellerSlider({sliderData}: Props) {
                 sliderData.map( (slideData, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <SimpleProductCard data={slideData}/>
+                            <div className="flex-grow-1 w-full"><SimpleProductCard data={slideData}/></div>
                         </SwiperSlide>
                     )
                 })

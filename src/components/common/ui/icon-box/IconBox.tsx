@@ -26,8 +26,8 @@ export function IconBox({icon, size = 22, link, title, hideTitleOnMobile = false
             <Link className={`flex items-center cursor-pointer ${linkClassName}`} href={link ?? '#'}>
                 {
                     badge ?
-                        <div className="relative">
-                            <span className="absolute -top-[10px] -right-[10px] w-[20px] h-[20px] bg-green-200 rounded-full flex justify-center items-center text-white text-xsmall">{badge}</span>
+                        <div className="relative flex items-center">
+                            <span className="absolute -top-[10px] -right-[10px] w-[20px] h-[20px] bg-green-200 rounded-full flex justify-center items-center text-white text-small">{badge}</span>
                             <i style={{fontSize: `${size}px`}} className={`${icon}`}>{span}</i>
                         </div> :
                         <i style={{fontSize: `${size}px`}} className={`${icon}`}>{span}</i>

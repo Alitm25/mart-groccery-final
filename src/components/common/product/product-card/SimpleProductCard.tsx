@@ -26,7 +26,7 @@ export function SimpleProductCard({data}: Props) {
                 <ImageView src={data?.attributes?.thumbnail?.data?.attributes.url} className={`m-auto w-full aspect-[3/2] ${data?.attributes?.categories?.data[0] ? 'mb-[28px]' : 'mb-[55px]'}`} alt={'product-image'} width={210} height={168}/>
                 <div className={`flex flex-col gap-2`}>
                     {data?.attributes?.categories?.data[0] && <div className="text-gray-500 text-xsmall">{data?.attributes?.categories?.data[0].attributes.title}</div>}
-                    <Link href={'#'}><h3 className="line-clamp-2 text-heading-sm text-blue-300 max-h-[50px] overflow-hidden">{data?.attributes?.title}</h3></Link>
+                    <Link href={'#'}><h3 className="line-clamp-2 text-heading-sm text-blue-300 max-h-[50px] min-h-8 overflow-hidden">{data?.attributes?.title}</h3></Link>
                     <div className="flex gap-4">
                         <Rating rate={data?.attributes?.rate}/>
                         <div className="text-xsmall text-gray-500 font-lato">({data?.attributes?.rate})</div>
@@ -53,7 +53,7 @@ export function SimpleProductCard({data}: Props) {
                             <div className="mt-2.5 font-lato text-blue-300 text-xsmall">Sold: {data?.attributes?.sold}/{data?.attributes?.total}</div>
                             <div className="mt-[23px]">
                                 <button
-                                    className="flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 px-2 py-2 lg:py-[14px]">
+                                    className="flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 transition-[background-color] px-2 py-2 lg:py-[14px]">
                                     <i className="icon-shopping-cart text-[22px]"></i>
                                     <span className="text-heading-sm">Add To Card</span>
                                 </button>
