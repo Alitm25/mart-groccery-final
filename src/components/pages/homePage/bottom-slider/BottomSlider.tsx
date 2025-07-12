@@ -47,6 +47,28 @@ export function BottomSlider({}) {
         }
     )
 
+    /// recently added products API call
+    const {data: recentlyAddedData} = useQuery<ApiResponseType<ProductsType>>(
+        {
+            queryKey: [getAllProductsApiCall.name, 'recentlyAdded'],
+            queryFn: () => getAllProductsApiCall(
+                {
+                    populate: ['thumbnail'],
+                    sort: ['id:desc'],
+                    pagination: {
+                        withCount: false,
+                        // page: 1,
+                        // pageSize: 3
+                        start: 0,
+                        limit: 3
+                    },
+                }
+            ),
+        }
+    )
+
+    console.log('recentlyAdded: ', recentlyAddedData)
+
 
     return (
         <Swiper
