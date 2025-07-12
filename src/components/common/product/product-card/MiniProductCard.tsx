@@ -12,7 +12,7 @@ export function MiniProductCard({data}: Props) {
             <ImageView src={data?.attributes?.thumbnail?.data?.attributes.url} width={120} height={120} alt={'mini-product'}/>
             <div className="flex flex-col justify-between">
                 <div>
-                    <div className="text-heading6 text-blue-300 mb-1 line-clamp-2">{data?.attributes?.title}
+                    <div className="text-heading6 text-blue-300 mb-1 line-clamp-2 min-h-10">{data?.attributes?.title}
                     </div>
                     <div className="flex gap-4">
                         <Rating rate={data?.attributes?.rate} />

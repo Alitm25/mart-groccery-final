@@ -106,7 +106,7 @@ export function BottomSlider({}) {
             </SwiperSlide>
 
             <SwiperSlide>
-                <ProductVerticalList title={'Recently added'} data={RecentlyAddedMock} />
+                {recentlyAddedData && <ProductVerticalList title={'Recently added'} data={recentlyAddedData.data} />}
             </SwiperSlide>
 
             <SwiperSlide>
