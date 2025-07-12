@@ -108,7 +108,7 @@ export default function Home() {
                                 <IconBox icon={'icon-arrow-small-right'} size={24}/>
                             </Link>
                         </div>
-                        {bestSellersData && <BestSellerSlider sliderData={bestSellersData.data}/>}
+                        {bestSellersData && <div className={'w-full'}><BestSellerSlider sliderData={bestSellersData.data}/></div>}
                     </div>
                 </Section>
 
