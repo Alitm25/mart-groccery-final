@@ -36,7 +36,7 @@ export function DealsOfTheDaysSlider({sliderData}: Props) {
                 sliderData.map( (slideData, index) => {
                     return (
                         <SwiperSlide key={index}>
-                                <DealsProductCard data={slideData}/>
+                            <DealsProductCard data={slideData}/>
                         </SwiperSlide>
                     )
                 })
