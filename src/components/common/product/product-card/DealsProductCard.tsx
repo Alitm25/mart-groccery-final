@@ -17,10 +17,11 @@ export function DealsProductCard({data}: Props) {
     });
 
     useEffect(() => {
-        setInterval(() => {
+        const interval = setInterval(() => {
             const timerObj = timerHelper(data.attributes.discount_expire_date);
             setRemainTime(timerObj);
         }, 1000);
+        return () => clearInterval(interval);
     }, []);
 
 
