@@ -14,7 +14,7 @@ export function SimpleProductCard({data}: Props) {
                 {data.attributes && data.attributes.label && <Badge label={data.attributes.label} sale_price={data.attributes.sell_price} price={data.attributes.price}/>}
                 <div className="mt-8 hidden group-hover:flex rounded-[5px] border-[1px] border-green-200 w-max absolute top-[100px] left-[50%] translate-x-[-50%] bg-white productAction cursor-pointer">
                     <div className="p-2.5 border-r-[1px] border-r-green-200 hover:bg-green-150">
-                        <IconBox icon={'icon-heart text-brand1'} size={15} />
+                        <IconBox icon={'icon-heart-green text-brand1'} size={15} />
                     </div>
                     <div className="p-2.5 border-r-[1px] border-r-green-200 hover:bg-green-150">
                         <IconBox icon={'icon-shuffle'} size={15} />
