@@ -5,7 +5,7 @@ import {ProductsType} from "@/types/api/Products";
 
 interface Props {
     data: EntityType<ProductsType>
-};
+}
 
 export function SimpleProductCard({data}: Props) {
     return (
@@ -90,4 +90,4 @@ export function SimpleProductCard({data}: Props) {
 
         </div>
     );
-};
+}

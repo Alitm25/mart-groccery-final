@@ -4,7 +4,7 @@ import {ProductsType} from "@/types/api/Products";
 
 interface Props {
     data: EntityType<ProductsType>;
-};
+}
 
 export function MiniProductCard({data}: Props) {
     return (
@@ -30,4 +30,4 @@ export function MiniProductCard({data}: Props) {
             </div>
         </div>
     );
-};
+}

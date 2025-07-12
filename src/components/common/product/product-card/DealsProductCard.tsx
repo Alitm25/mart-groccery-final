@@ -6,7 +6,7 @@ import {EntityType} from "@/types";
 
 interface Props {
     data: EntityType<ProductsType>
-};
+}
 
 export function DealsProductCard({data}: Props) {
     const [remainTime, setRemainTime] = useState({
@@ -85,4 +85,4 @@ export function DealsProductCard({data}: Props) {
             </div>
         </div>
     );
-};
+}

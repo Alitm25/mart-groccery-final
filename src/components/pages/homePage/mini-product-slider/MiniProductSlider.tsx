@@ -6,7 +6,7 @@ import {Autoplay} from "swiper/modules";
 
 interface Props {
     
-};
+}
 
 export function MiniProductSlider({}: Props) {
     return (
@@ -47,4 +47,4 @@ export function MiniProductSlider({}: Props) {
             }
         </Swiper>
     );
-};
+}

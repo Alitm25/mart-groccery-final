@@ -6,7 +6,7 @@ import {ProductsType} from "@/types/api/Products";
 
 interface Props {
     sliderData: Array<EntityType<ProductsType>>;
-};
+}
 
 export function DealsOfTheDaysSlider({sliderData}: Props) {
     return (
@@ -43,4 +43,4 @@ export function DealsOfTheDaysSlider({sliderData}: Props) {
             }
         </Swiper>
     );
-};
+}

@@ -1,7 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
 import {ProductVerticalList} from "@/components";
-import {RecentlyAddedMock} from "@/mock/RecentlyAdded";
 import {ApiResponseType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 import {useQuery} from "@tanstack/react-query";
@@ -94,13 +93,13 @@ export function BottomSlider({}) {
             }
         >
             <SwiperSlide>
-                <InView as="div" onChange={(inView, entry) => inView && refetch()}>
+                <InView as="div" onChange={(inView) => inView && refetch()}>
                     {topSellingData && <ProductVerticalList title={'Top Selling'} data={topSellingData.data} />}
                 </InView>
             </SwiperSlide>
 
             <SwiperSlide>
-                <InView as="div" onChange={(inView, entry) => inView && refetch()}>
+                <InView as="div" onChange={(inView) => inView && refetch()}>
                     {trendingProductsData && <ProductVerticalList title={'Trending Products'} data={trendingProductsData.data} />}
                 </InView>
             </SwiperSlide>
@@ -110,10 +109,10 @@ export function BottomSlider({}) {
             </SwiperSlide>
 
             <SwiperSlide>
-                <InView as="div" onChange={(inView, entry) => inView && refetch()}>
+                <InView as="div" onChange={(inView) => inView && refetch()}>
                     {topRatedData && <ProductVerticalList title={'Top Rated'} data={topRatedData.data} />}
                 </InView>
             </SwiperSlide>
         </Swiper>
     );
-};
+}

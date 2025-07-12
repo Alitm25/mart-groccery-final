@@ -13,7 +13,7 @@ import {dehydrate, QueryClient, useQuery} from "@tanstack/react-query";
 import {ApiResponseType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 import {getMenuApiCall} from "@/api/Menu";
-import {getFeaturedCategories} from "@/api/Categories";
+
 
 export default function Home() {
 
