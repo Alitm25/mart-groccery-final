@@ -20,6 +20,8 @@ interface FilterData {
     }
 }
 
+
+
 export function SearchForm({inputClassName = ''} :Props) {
     // TODO must developed some interactions
     const [resultData, setResultData] = useState<Array<EntityType<ProductsType>>>()
