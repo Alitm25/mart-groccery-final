@@ -66,8 +66,6 @@ export function BottomSlider({}) {
         }
     )
 
-    console.log('recentlyAdded: ', recentlyAddedData)
-
 
     return (
         <Swiper
