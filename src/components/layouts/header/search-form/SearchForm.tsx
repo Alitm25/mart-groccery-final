@@ -5,6 +5,7 @@ import {useMutation} from "@tanstack/react-query";
 import {getAllProductsApiCall} from "@/api/Products";
 import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
+import {useDebounce} from "@/hooks/useDebounce";
 
 interface Props {
     inputClassName?: string;
@@ -23,22 +24,28 @@ interface FilterData {
 
 
 export function SearchForm({inputClassName = ''} :Props) {
-    // TODO must developed some interactions
+
     const [resultData, setResultData] = useState<Array<EntityType<ProductsType>>>()
     const {register, handleSubmit, watch} = useForm<FromInput>();
     const inputMutationData = useMutation({mutationFn: (data :FilterData) => getAllProductsApiCall( {filters: data} ) })
 
     const searchText = watch('search_text');
 
+
     useEffect(() => {
-        if (searchText && searchText.length > 1) {
-            handleSubmit(onSubmit)();
+        if (searchText) {
+            delay();
         } else {
             setResultData([]);
         }
     }, [searchText]);
 
+
     const onSubmit = (data :FromInput) => {
+        if (data.search_text.length <= 1) {
+            return;
+        }
+
         inputMutationData.mutate(
             {
                 title: {
@@ -52,6 +59,9 @@ export function SearchForm({inputClassName = ''} :Props) {
             }
         )
     }
+
+    const delay = useDebounce(handleSubmit(onSubmit), 1000);
+
 
     return (
         <div className={'relative'}>
@@ -72,7 +82,6 @@ export function SearchForm({inputClassName = ''} :Props) {
                             })
                         }
                     </ul>
-
                 </div>
             }
         </div>
