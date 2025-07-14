@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {IconBox} from "@/components";
 import {useForm} from "react-hook-form";
 import {useMutation} from "@tanstack/react-query";
@@ -25,9 +25,18 @@ interface FilterData {
 export function SearchForm({inputClassName = ''} :Props) {
     // TODO must developed some interactions
     const [resultData, setResultData] = useState<Array<EntityType<ProductsType>>>()
-    const {register, handleSubmit} = useForm<FromInput>();
-
+    const {register, handleSubmit, watch} = useForm<FromInput>();
     const inputMutationData = useMutation({mutationFn: (data :FilterData) => getAllProductsApiCall( {filters: data} ) })
+
+    const searchText = watch('search_text');
+
+    useEffect(() => {
+        if (searchText && searchText.length > 1) {
+            handleSubmit(onSubmit)();
+        } else {
+            setResultData([]);
+        }
+    }, [searchText]);
 
     const onSubmit = (data :FromInput) => {
         inputMutationData.mutate(
