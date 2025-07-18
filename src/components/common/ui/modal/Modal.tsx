@@ -1,4 +1,5 @@
 import React from "react";
+import {Portal} from "@/components";
 
 interface Props {
     children: React.ReactNode;
@@ -8,18 +9,20 @@ interface Props {
 
 export function Modal({closeModal, children, title}: Props) {
     return (
-        <div className={'absolute z-10 translate-y-2/4 -translate-x-2/4 left-[50%] top-[50%] min-w-[50vw] max-w-[100vw] min-h-[50vh] max-h-[100vh] overflow-y-hidden bg-gray-200'}>
-            <div className={'flex justify-between rounded bg-white p-8 text-[22px]'}>
-                <div onClick={closeModal} className={'cursor-pointer'}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 30 30">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="#0F1729"/>
-                    </svg>
+        <Portal>
+            <div className={'absolute z-10 translate-y-2/4 -translate-x-2/4 left-[50%] top-[50%] min-w-[50vw] max-w-[100vw] min-h-[50vh] max-h-[100vh] overflow-y-hidden bg-gray-200'}>
+                <div className={'flex justify-between rounded bg-white p-8 text-[22px]'}>
+                    <div onClick={closeModal} className={'cursor-pointer'}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 30 30">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" fill="#0F1729"/>
+                        </svg>
+                    </div>
+                    {title}
                 </div>
-                {title}
+                <div className={'p-8 text-[18px]'}>
+                    {children}
+                </div>
             </div>
-            <div className={'p-8 text-[18px]'}>
-                {children}
-            </div>
-        </div>
+        </Portal>
     );
 };

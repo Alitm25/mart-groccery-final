@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {IconBox, ImageView, Logo} from "@/components";
+import {IconBox, ImageView, LoginModal, Logo} from "@/components";
 import Link from "next/link";
-import {LoginModal} from "@/components/auth/LoginModal";
+
 
 export function Footer() {
     const [showModal, setShowModal] = useState<boolean>(false);
