@@ -49,6 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <QueryClientProvider client={queryClient}>
                 <HydrationBoundary state={pageProps.dehydratedState}>
                     <Layout>
+                        <div id={'modal-portal'}></div>
                         <Component {...pageProps} />
                         <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false} theme={"light"} position={"top-right"}/>
                     </Layout>
