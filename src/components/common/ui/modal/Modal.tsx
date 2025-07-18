@@ -9,7 +9,7 @@ interface Props {
 
 export function Modal({closeModal, children, title}: Props) {
     return (
-        <Portal>
+        <Portal onClose={closeModal}>
             <div className={'absolute z-10 translate-y-2/4 -translate-x-2/4 left-[50%] top-[50%] min-w-[50vw] max-w-[100vw] min-h-[50vh] max-h-[100vh] overflow-y-hidden bg-gray-200'}>
                 <div className={'flex justify-between rounded bg-white p-8 text-[22px]'}>
                     <div onClick={closeModal} className={'cursor-pointer'}>
