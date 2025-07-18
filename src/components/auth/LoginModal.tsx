@@ -3,13 +3,13 @@ import React from "react";
 import {createPortal} from "react-dom";
 
 interface Props {
-
+    onClose: () => void;
 };
 
-export function LoginModal({}: Props) {
+export function LoginModal({onClose}: Props) {
 
     return createPortal(
-            <Modal closeModal={() :void => {}} title={'Login'}>
+            <Modal closeModal={onClose} title={'Login'}>
                 <form>
 
                 </form>

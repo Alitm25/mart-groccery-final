@@ -6,10 +6,13 @@ import Link from "next/link";
 export function Footer() {
     const [showModal, setShowModal] = useState<boolean>(false);
 
+    const onCloseHandler = () => {
+        setShowModal(false);
+    }
     return (
         // TODO fix mobile menu
         <footer className="container mb-[68px] relative">
-            {showModal && <LoginModal />}
+            {showModal && <LoginModal onClose={onCloseHandler}/>}
             <div className="mb-[68px]">
                 <div onClick={() => { setShowModal(true) }} className="rounded-[6px] md:rounded-[14px] lg:rounded-[30px] bg-hero-pattern bg-[rgba(59,128,126,.2)] bg-opacity-20 bg-cover bg-top bg-no-repeat flex justify-between items-center mt-[38px] relative">
                     <div
