@@ -13,6 +13,7 @@ export function LoginModal({onClose}: Props) {
                 <form>
 
                 </form>
+                <span className={'cursor-pointer'}>Have not sign in yet? Sign up here !</span>
             </Modal>,
             document.getElementById('modal-portal')!
         );
