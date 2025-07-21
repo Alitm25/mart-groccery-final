@@ -1,16 +1,22 @@
-import React, {useEffect, useState, MouseEvent} from 'react';
-import {IconBox, Logo, Menu, Modal, SearchForm} from "@/components";
+import React, {useState, MouseEvent} from 'react';
+import {IconBox, LoginModal, Logo, Menu, RegisterModal, SearchForm} from "@/components";
 import Link from "next/link";
 import useOverlay from "@/hooks/useOverlay";
 
 export function Header() {
-    // handling show mobile menu
+
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<"Login" | "Register" | null>(null);
+
+    const onCloseHandler = () => {
+        setShowModal(null);
+    }
 
     const mobileMenuBtnHandler = (e :MouseEvent) => {
         e.stopPropagation();
         setShowMobileMenu((prevState) => !prevState);
     }
+
 
     const mobileMenuBodyHandler = (e :MouseEvent) => {
         e.stopPropagation();
@@ -27,13 +33,15 @@ export function Header() {
 
     return (
         <header className="mb-[33px]">
+            {showModal === 'Login' && <LoginModal onClose={onCloseHandler} setShowModal={setShowModal}/>}
+            {showModal === 'Register' && <RegisterModal onClose={onCloseHandler} />}
             <div className="container flex items-center justify-between py-4 md:py-6 xl:py-8">
                 <Logo />
                 <div className="border-2 border-green-150 rounded-[5px] max-w-[700px] w-full mx-[15px] px-[15px] hidden lg:inline-block">
                     <SearchForm inputClassName={'py-[15px]'}/>
                 </div>
                 <ul className="hidden lg:flex gap-5">
-                    <li className="flex gap-2 cursor-pointer">
+                    <li className="flex gap-2 cursor-pointer" onClick={ () => setShowModal('Login') }>
                         <IconBox icon={'icon-user'} size={24} link={'#'} title={'Account'} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                     </li>
                     <li className="flex gap-2 cursor-pointer">
