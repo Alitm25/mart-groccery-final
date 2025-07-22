@@ -1,20 +1,21 @@
 import {Modal} from "@/components";
-import React, {Dispatch, SetStateAction} from "react";
+import React from "react";
 import {createPortal} from "react-dom";
+import {useModal} from "@/stores/ModalContext";
 
 interface Props {
     onClose: () => void;
-    setShowModal: Dispatch<SetStateAction<'Login' | 'Register' | null>>
 };
 
-export function LoginModal({onClose, setShowModal}: Props) {
+export function LoginModal({onClose}: Props) {
+    const {openModal} = useModal()
 
     return createPortal(
             <Modal closeModal={onClose} title={'Login'}>
                 <form>
 
                 </form>
-                <span className={'cursor-pointer'} onClick={ () => setShowModal('Register')}>Have not sign in yet? Sign up here !</span>
+                <span className={'cursor-pointer'} onClick={ () => openModal('Register') }>Have not sign in yet? Sign up here !</span>
             </Modal>,
             document.getElementById('modal-portal')!
         );
