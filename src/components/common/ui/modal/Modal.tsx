@@ -10,7 +10,7 @@ interface Props {
 export function Modal({closeModal, children, title}: Props) {
     return (
         <Portal onClose={closeModal}>
-            <div className={'z-10 min-w-[100vw] md:min-w-[50vw] min-h-[100vh] md:min-h-[50vh] overflow-y-scroll rounded-xl bg-gray-100'}>
+            <div className={'z-10 min-w-[100vw] md:min-w-[50vw] min-h-[100vh] md:min-h-[50vh] overflow-y-auto rounded-xl bg-gray-100'}>
                 <div className={'flex justify-between rounded bg-white p-8 text-[22px]'}>
                     {title}
                     <div onClick={closeModal} className={'cursor-pointer'}>
