@@ -19,7 +19,7 @@ export function Modal({closeModal, children, title}: Props) {
                         </svg>
                     </div>
                 </div>
-                <div className={'p-8 text-[18px]'}>
+                <div className={'py-8 px-40 text-[18px]'}>
                     {children}
                 </div>
             </div>

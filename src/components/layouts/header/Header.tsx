@@ -72,7 +72,7 @@ export function Header() {
                         <SearchForm />
                     </div>
                     <ul className="flex gap-5">
-                        <li className="flex gap-2 cursor-pointer">
+                        <li className="flex gap-2 cursor-pointer" onClick={() => openModal('Login')}>
                             <IconBox icon={'icon-user'} size={24} link={'#'} title={'Account'} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                         </li>
                         <li className="flex gap-2 cursor-pointer">
