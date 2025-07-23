@@ -1,10 +1,10 @@
 import React, {useId} from "react";
-import {UseFormRegister} from "react-hook-form";
+import {UseFormRegister, UseFormRegisterReturn} from "react-hook-form";
 
 interface Props {
     type?: 'text' | 'password' | 'email' | 'tel' | 'number';
     placeholder?: string;
-    register: UseFormRegister<any>;
+    register: UseFormRegisterReturn<any>;
     label?: string;
     labelClassName?: string;
 };
