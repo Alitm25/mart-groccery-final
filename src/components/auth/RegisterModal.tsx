@@ -5,6 +5,8 @@ import {useForm} from "react-hook-form";
 import {useMutation} from "@tanstack/react-query";
 import {registerApiCall} from "@/api/Register";
 import {useAuth} from "@/stores/AuthContext";
+import {toast} from "react-toastify";
+import {useModal} from "@/stores/ModalContext";
 
 interface Props {
     onClose: () => void;
@@ -20,13 +22,15 @@ export function RegisterModal({onClose}: Props) {
     const {register, handleSubmit, formState: {errors}} = useForm<formData>();
     const mutate = useMutation({mutationFn: registerApiCall});
     const {login, isLogin} = useAuth();
-    console.log(isLogin);
+    const {closeModal} = useModal();
 
     const onSubmit = (data :formData) => {
         mutate.mutate(data, {
             onSuccess: (response) => {
+                console.log(data);
                 login(response.jwt, response.user);
-
+                toast.success(`You have been successfully registered!`);
+                closeModal();
             }
         })
     }
