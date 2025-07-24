@@ -3,10 +3,12 @@ import {IconBox, LoginModal, Logo, Menu, RegisterModal, SearchForm} from "@/comp
 import Link from "next/link";
 import useOverlay from "@/hooks/useOverlay";
 import {useModal} from "@/stores/ModalContext";
+import {useAuth} from "@/stores/AuthContext";
 
 export function Header() {
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
     const {currentModal, openModal, closeModal} = useModal();
+    const {isLogin} = useAuth();
 
 
     const mobileMenuBtnHandler = (e :MouseEvent) => {
@@ -39,7 +41,7 @@ export function Header() {
                 </div>
                 <ul className="hidden lg:flex gap-5">
                     <li className="flex gap-2 cursor-pointer" onClick={ () => openModal('Login')}>
-                        <IconBox icon={'icon-user'} size={24} link={'#'} title={'Account'} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
+                        <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? 'Logout' : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                     </li>
                     <li className="flex gap-2 cursor-pointer">
                         <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}  hideTitleOnMobile={true} badge={4} titleClassName={'text-medium text-gray-500 font-lato'}/>
@@ -73,7 +75,7 @@ export function Header() {
                     </div>
                     <ul className="flex gap-5">
                         <li className="flex gap-2 cursor-pointer" onClick={() => openModal('Login')}>
-                            <IconBox icon={'icon-user'} size={24} link={'#'} title={'Account'} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
+                            <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? 'Logout' : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                         </li>
                         <li className="flex gap-2 cursor-pointer">
                             <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}  hideTitleOnMobile={true} badge={4} titleClassName={'text-medium text-gray-500 font-lato'}/>
