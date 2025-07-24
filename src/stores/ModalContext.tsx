@@ -10,7 +10,7 @@ interface contextType {
     closeModal: () => void;
 }
 
-type modalNameType = "Login" | "Register" | null;
+type modalNameType = "Login" | "Register" | 'ConfirmLogout' | null;
 
 const ModalContext = createContext<contextType>( {currentModal: null, openModal: ()=>{}, closeModal: ()=>{}} );
 export const useModal = () => useContext(ModalContext);
