@@ -7,6 +7,6 @@ interface Data {
     email: string;
 }
 
-export function RegisterApiCall(data :Data) :Promise<RegisterApiResponse> {
-    return apiClient.post( '/api/auth/local/register', data)
+export function registerApiCall(data :Data) :Promise<RegisterApiResponse> {
+    return apiClient.post( 'auth/local/register', data)
 }

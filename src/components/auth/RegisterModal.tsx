@@ -2,6 +2,8 @@ import {Input, Modal} from "@/components";
 import React from "react";
 import {createPortal} from "react-dom";
 import {useForm} from "react-hook-form";
+import {useMutation} from "@tanstack/react-query";
+import {registerApiCall} from "@/api/Register";
 
 interface Props {
     onClose: () => void;
@@ -15,9 +17,15 @@ interface formData {
 
 export function RegisterModal({onClose}: Props) {
     const {register, handleSubmit, formState: {errors}} = useForm<formData>();
+    const mutate = useMutation({mutationFn: registerApiCall});
+
 
     const onSubmit = (data :formData) => {
-        console.log(data);
+        mutate.mutate(data, {
+            onSuccess: (response) => {
+                console.log('response: ', response)
+            }
+        })
     }
 
 
