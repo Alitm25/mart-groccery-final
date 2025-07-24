@@ -25,9 +25,9 @@ export function RegisterModal({onClose}: Props) {
         <Modal closeModal={onClose} title={'Register'}>
             <form onSubmit={handleSubmit(onSubmit)} className={'flex items-center justify-center flex-col gap-y-6'}>
 
-                <Input register={ register('username', {required: 'This field is required. Please enter your username.', maxLength: 20}) } type={'text'} placeholder='Username' />
-                <Input register={ register('email', {required: 'This field is required. Please enter your Email.', maxLength: 20, minLength: 6}) } type={'email'} placeholder='Email' />
-                <Input register={ register('password', {required: 'This field is required. Please enter your password.', maxLength: 20, minLength: 6}) } type={'password'} placeholder='Password' />
+                <Input errors={errors} register={ register('username', {required: 'This field is required. Please enter your username.', maxLength: 20}) } type={'text'} placeholder='Username' />
+                <Input errors={errors} register={ register('email', {required: 'This field is required. Please enter your Email.', maxLength: 20, minLength: 6}) } type={'email'} placeholder='Email' />
+                <Input errors={errors} register={ register('password', {required: 'This field is required. Please enter your password.', maxLength: 20, minLength: 6}) } type={'password'} placeholder='Password' />
 
                 <button className={'rounded-xl border-2 bg-[#253D4E] text-white font-quicksand font-bold text-base py-[22px] px-[45px] md:py-4 md:px-7 hover:bg-white hover:border-[#253D4E] hover:text-[#253D4E] transition-all'}>
                     Submit & Register
