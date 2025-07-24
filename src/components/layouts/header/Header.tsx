@@ -4,11 +4,12 @@ import Link from "next/link";
 import useOverlay from "@/hooks/useOverlay";
 import {useModal} from "@/stores/ModalContext";
 import {useAuth} from "@/stores/AuthContext";
+import {toast} from "react-toastify";
 
 export function Header() {
     const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
     const {currentModal, openModal, closeModal} = useModal();
-    const {isLogin} = useAuth();
+    const {isLogin, logout} = useAuth();
 
 
     const mobileMenuBtnHandler = (e :MouseEvent) => {
@@ -18,6 +19,15 @@ export function Header() {
 
     const mobileMenuBodyHandler = (e :MouseEvent) => {
         e.stopPropagation();
+    }
+
+    const accountHandler = () => {
+        if (isLogin) {
+            logout();
+            toast.success('You have successfully logged out.');
+        } else {
+            openModal('Login')
+        }
     }
 
 
@@ -40,7 +50,7 @@ export function Header() {
                     <SearchForm inputClassName={'py-[15px]'}/>
                 </div>
                 <ul className="hidden lg:flex gap-5">
-                    <li className="flex gap-2 cursor-pointer" onClick={ () => openModal('Login')}>
+                    <li className="flex gap-2 cursor-pointer" onClick={accountHandler}>
                         <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? 'Logout' : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                     </li>
                     <li className="flex gap-2 cursor-pointer">
@@ -74,7 +84,7 @@ export function Header() {
                         <SearchForm />
                     </div>
                     <ul className="flex gap-5">
-                        <li className="flex gap-2 cursor-pointer" onClick={() => openModal('Login')}>
+                        <li className="flex gap-2 cursor-pointer" onClick={accountHandler}>
                             <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? 'Logout' : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                         </li>
                         <li className="flex gap-2 cursor-pointer">
