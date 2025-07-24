@@ -4,6 +4,7 @@ import {createPortal} from "react-dom";
 import {useForm} from "react-hook-form";
 import {useMutation} from "@tanstack/react-query";
 import {registerApiCall} from "@/api/Register";
+import {useAuth} from "@/stores/AuthContext";
 
 interface Props {
     onClose: () => void;
@@ -18,12 +19,14 @@ interface formData {
 export function RegisterModal({onClose}: Props) {
     const {register, handleSubmit, formState: {errors}} = useForm<formData>();
     const mutate = useMutation({mutationFn: registerApiCall});
-
+    const {login, isLogin} = useAuth();
+    console.log(isLogin);
 
     const onSubmit = (data :formData) => {
         mutate.mutate(data, {
             onSuccess: (response) => {
-                console.log('response: ', response)
+                login(response.jwt, response.user);
+
             }
         })
     }

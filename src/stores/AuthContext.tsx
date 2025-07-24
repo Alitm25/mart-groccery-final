@@ -1,4 +1,4 @@
-import React, {createContext, useState} from "react";
+import React, {createContext, useContext, useEffect, useState} from "react";
 import {UserType} from "@/types/api/Auth";
 
 interface Props {
@@ -11,10 +11,17 @@ interface authContextType{
 }
 
 const AuthContext = createContext<authContextType>({isLogin: false, login: () => {} })
+export const useAuth = () => useContext(AuthContext)
 
 
-export function AuthContextProvicer({children} :Props) {
+export function AuthContextProvider({children} :Props) {
     const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        if (window.localStorage.getItem('token')) {
+            setIsLogin(true);
+        }
+    }, []);
 
     const loginHandler = (jwt :string, user :UserType) => {
         window.localStorage.setItem('token', jwt);
