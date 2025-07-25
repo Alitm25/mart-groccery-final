@@ -49,10 +49,20 @@ export function BasketContextProvider({children}: Props) {
     }
 
     const deleteItemHandler = (productID: number) => {
-
+        const basketProduct = basketItem.filter( (item) => item.id != productID);
+        setBasketItem(basketProduct);
     }
 
     const incrementItemHandler = (productID: number) => {
+
+        const newBasket = basketItem.map( (item) => {
+            if (item.id == productID) {
+                return { ...item, quantity: item.quantity++ }
+            } else {
+                return item;
+            }
+        })
+        setBasketItem(newBasket);
 
     }
 
