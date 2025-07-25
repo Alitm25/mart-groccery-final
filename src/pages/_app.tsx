@@ -14,6 +14,7 @@ import {ToastContainer} from "react-toastify";
 import {useState} from "react";
 import {ModalContextProvider} from "@/stores/ModalContext";
 import {AuthContextProvider} from "@/stores/AuthContext";
+import {BasketContextProvider} from "@/stores/basketContext";
 
 
 
@@ -50,15 +51,17 @@ export default function App({ Component, pageProps }: AppProps) {
             `}</style>
             <QueryClientProvider client={queryClient}>
                 <HydrationBoundary state={pageProps.dehydratedState}>
-                    <AuthContextProvider>
-                        <ModalContextProvider>
-                            <div id={'modal-portal'}></div>
-                            <Layout>
-                                <Component {...pageProps} />
-                                <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false} theme={"light"} position={"top-right"}/>
-                            </Layout>
-                        </ModalContextProvider>
-                    </AuthContextProvider>
+                    <BasketContextProvider>
+                        <AuthContextProvider>
+                            <ModalContextProvider>
+                                <div id={'modal-portal'}></div>
+                                <Layout>
+                                    <Component {...pageProps} />
+                                    <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false} theme={"light"} position={"top-right"}/>
+                                </Layout>
+                            </ModalContextProvider>
+                        </AuthContextProvider>
+                    </BasketContextProvider>
                 </HydrationBoundary>
             </QueryClientProvider>
           </>
