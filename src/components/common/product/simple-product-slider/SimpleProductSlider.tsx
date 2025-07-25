@@ -6,8 +6,8 @@ import {ProductsType} from "@/types/api/Products";
 
 interface Props {
     sliderData: Array<EntityType<ProductsType>>;
-    nextEl: string;
-    prevEl: string;
+    nextEl:     string;
+    prevEl:     string;
 };
 
 export function SimpleProductSlider({sliderData, nextEl, prevEl}: Props) {

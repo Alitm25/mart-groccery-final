@@ -4,13 +4,14 @@ import Link from "next/link";
 import useOverlay from "@/hooks/useOverlay";
 import {useModal} from "@/stores/ModalContext";
 import {useAuth} from "@/stores/AuthContext";
-import {toast} from "react-toastify";
 import {ConfirmLogoutModal} from "@/components/auth/ConfirmLogoutModal";
 
+
+
 export function Header() {
-    const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
+    const [showMobileMenu, setShowMobileMenu]   = useState<boolean>(false);
     const {currentModal, openModal, closeModal} = useModal();
-    const {isLogin, logout} = useAuth();
+    const {isLogin, logout}                     = useAuth();
 
 
     const mobileMenuBtnHandler = (e :MouseEvent) => {
@@ -42,9 +43,11 @@ export function Header() {
 
     return (
         <header className="mb-[33px]">
+
             {currentModal === 'Login' && <LoginModal onClose={closeModal}/>}
             {currentModal === 'Register' && <RegisterModal onClose={closeModal} />}
             {currentModal === 'ConfirmLogout' && <ConfirmLogoutModal />}
+
             <div className="container flex items-center justify-between py-4 md:py-6 xl:py-8">
                 <Logo />
                 <div className="border-2 border-green-150 rounded-[5px] max-w-[700px] w-full mx-[15px] px-[15px] hidden lg:inline-block">

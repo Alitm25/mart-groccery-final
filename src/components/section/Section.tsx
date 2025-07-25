@@ -1,8 +1,8 @@
 import { twMerge } from 'tailwind-merge'
 
 interface Props {
-    sectionClassName?: string;
-    children: React.ReactNode;
+    sectionClassName?:  string;
+    children:           React.ReactNode;
 };
 
 export function Section({ sectionClassName, children}: Props) {

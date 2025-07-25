@@ -2,9 +2,9 @@ import React from "react";
 import {Portal} from "@/components";
 
 interface Props {
-    children: React.ReactNode;
-    closeModal: () => void;
-    title: string;
+    children:       React.ReactNode;
+    closeModal:     () => void;
+    title:          string;
 };
 
 export function Modal({closeModal, children, title}: Props) {

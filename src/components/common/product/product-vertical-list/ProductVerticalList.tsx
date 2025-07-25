@@ -3,8 +3,8 @@ import {ProductsType} from "@/types/api/Products";
 import {EntityType} from "@/types";
 
 interface Props {
-    title: string;
-    data: Array<EntityType<ProductsType>>;
+    title:  string;
+    data:   Array<EntityType<ProductsType>>;
 };
 
 export function ProductVerticalList({title, data}: Props) {

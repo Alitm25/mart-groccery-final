@@ -4,15 +4,15 @@ import {ProductsType} from "@/types/api/Products";
 
 
 interface Props {
-    populate?: Array<'thumbnail' | 'categories' | 'gallery'>;
-    filters?: {}
-    sort?: Array<string>
+    populate?:  Array<'thumbnail' | 'categories' | 'gallery'>;
+    filters?:   {}
+    sort?:      Array<string>
     pagination?: {
         withCount?: boolean,
-        page?: number,
-        pageSize?: number,
-        start?: number,
-        limit?: number
+        page?:      number,
+        pageSize?:  number,
+        start?:     number,
+        limit?:     number
     }
 }
 

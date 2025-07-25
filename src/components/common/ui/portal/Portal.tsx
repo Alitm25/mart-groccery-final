@@ -3,8 +3,8 @@ import React, {useEffect} from "react";
 
 
 interface Props {
-    children: React.ReactNode;
-    onClose: () => void;
+    children:   React.ReactNode;
+    onClose:    () => void;
 };
 
 export function Portal({children, onClose}: Props) {

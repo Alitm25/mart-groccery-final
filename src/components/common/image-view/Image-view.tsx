@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 interface Props {
-    src?: string | null;
-    alt: string;
-    width: number;
-    height: number;
+    src?:       string | null;
+    alt:        string;
+    width:      number;
+    height:     number;
     className?: string;
 }
 

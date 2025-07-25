@@ -3,12 +3,12 @@ import {FieldErrors, UseFormRegisterReturn} from "react-hook-form";
 import {ErrorMessage} from "@/components/common/ui/form/ErrorMessage";
 
 interface Props extends React.HTMLAttributes<HTMLInputElement> {
-    type?: 'text' | 'password' | 'email' | 'tel' | 'number';
-    placeholder?: string;
-    register: UseFormRegisterReturn<any>;
-    label?: string;
-    labelClassName?: string;
-    errors: FieldErrors<any>;
+    type?:              'text' | 'password' | 'email' | 'tel' | 'number';
+    placeholder?:       string;
+    register:           UseFormRegisterReturn<any>;
+    label?:             string;
+    labelClassName?:    string;
+    errors:             FieldErrors<any>;
 };
 
 export function Input({type = 'text', placeholder, register, label, labelClassName, errors, ...rest}: Props) {

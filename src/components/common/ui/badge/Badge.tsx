@@ -1,7 +1,7 @@
 interface Props {
-    label: string;
-    price: number;
-    sale_price?: number;
+    label:          string;
+    price:          number;
+    sale_price?:    number;
 };
 
 export function Badge({label = '', price, sale_price}: Props) {

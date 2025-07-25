@@ -4,11 +4,9 @@ import {IconBox} from "@/components";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";
 
-interface Props {
-    
-}
 
-export function MiniProductSlider({}: Props) {
+
+export function MiniProductSlider({}) {
     return (
         <Swiper
             spaceBetween={50}

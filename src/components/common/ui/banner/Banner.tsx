@@ -1,10 +1,10 @@
 import {IconBox, ImageView} from "@/components";
 
 interface Props {
-    title: string,
-    subTitle: string,
-    bgImage: string,
-    image: string
+    title:      string,
+    subTitle:   string,
+    bgImage:    string,
+    image:      string
 };
 
 export function Banner({title, subTitle, bgImage, image}: Props) {

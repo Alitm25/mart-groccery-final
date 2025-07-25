@@ -2,15 +2,15 @@ import Link from "next/link";
 import React from "react";
 
 interface Props {
-    icon: string;
-    size?: number;
-    link?: string;
-    title?: string;
+    icon:               string;
+    size?:              number;
+    link?:              string;
+    title?:             string;
     hideTitleOnMobile?: boolean;
-    badge?: number;
-    titleClassName?: string;
-    path?: number;
-    linkClassName?: string;
+    badge?:             number;
+    titleClassName?:    string;
+    path?:              number;
+    linkClassName?:     string;
 }
 
 
