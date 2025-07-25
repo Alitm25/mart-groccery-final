@@ -26,6 +26,7 @@ export function MiniProductSlider({}) {
                 }
             }
         >
+
             {
                 miniProductSlider.map( (item, index) => {
                     return (
@@ -43,6 +44,7 @@ export function MiniProductSlider({}) {
                     )
                 })
             }
+
         </Swiper>
     );
 }

@@ -1,4 +1,6 @@
 import React, {createContext, useState} from "react";
+import {EntityType} from "@/types";
+import {ProductsType} from "@/types/api/Products";
 
 interface Props {
     children: React.ReactNode;
@@ -8,21 +10,21 @@ interface ProductItem {
     id:         number;
     title:      string;
     price:      number;
-    image:      string;
+    image?:      string;
     quantity:   number;
 }
 
 export const BasketContext = createContext<{
     // Types
     basketItem:     Array<ProductItem>,
-    addItem:        (product: ProductItem) => void
+    addItem:        (product: EntityType<ProductsType>) => void
     deleteItem:     (productID :number) => void;
     incrementItem:  (productID :number) => void;
     decrementItem:  (productID :number) => void;
 }>({
     // Values
     basketItem: [],
-    addItem:        (product :ProductItem) => {},
+    addItem:        (product :EntityType<ProductsType>) => {},
     deleteItem:     (productID :number) => {},
     incrementItem:  (productID :number) => {},
     decrementItem:  (productID :number) => {},
@@ -32,8 +34,18 @@ export function BasketContextProvider({children}: Props) {
     const [basketItem, setBasketItem] = useState<Array<ProductItem>>([]);
 
 
-    const addItemHandler = (product: ProductItem) => {
-
+    const addItemHandler = (product: EntityType<ProductsType>) => {
+        const newProduct :ProductItem = {
+            id: product.id,
+            title: product.attributes.title,
+            price: product.attributes.price,
+            image: product.attributes.thumbnail?.data?.attributes.url,
+            quantity: 1
+        }
+        setBasketItem(prevState => [
+            ...prevState,
+            newProduct
+        ])
     }
 
     const deleteItemHandler = (productID: number) => {
