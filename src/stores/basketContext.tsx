@@ -36,6 +36,52 @@ const BasketContext = createContext<{
 });
 export const useBasket = () => useContext(BasketContext);
 
+const basketReducer = (currentState :ProductItem[], action :Action) => {
+    switch (action.type) {
+        case 'ADD_ITEM':
+            return [
+                ...currentState,
+                {
+                    id:         action.product.id,
+                    title:      action.product.attributes.title,
+                    price:      action.product.attributes.price,
+                    image:      action.product.attributes.thumbnail?.data?.attributes.url,
+                    quantity:   1
+                }
+            ]
+
+        case 'DELETE_ITEM':
+            return currentState.filter( (item) => item.id !== action.productID);
+
+        case 'INCREMENT_ITEM':
+            return currentState.map( (item) => {
+                if (item.id === action.productID) {
+                    return { ...item, quantity: item.quantity = item.quantity + 1 }
+                } else {
+                    return item;
+                }
+            })
+
+        case 'DECREMENT_ITEM':
+            const currentProduct = currentState.find( (item) => item.id === action.productID);
+
+            if (currentProduct && currentProduct.quantity === 1) {
+                return currentState.filter( (item) => item.id !== action.productID);
+            } else {
+                return currentState.map( (item) => {
+                    if (item.id === action.productID) {
+                        return { ...item, quantity: item.quantity = item.quantity - 1 }
+                    } else {
+                        return item;
+                    }
+                })
+            }
+
+        default:
+            return currentState;
+    }
+}
+
 export function BasketContextProvider({children}: Props) {
     const [basketItem, setBasketItem] = useState<Array<ProductItem>>([]);
 
