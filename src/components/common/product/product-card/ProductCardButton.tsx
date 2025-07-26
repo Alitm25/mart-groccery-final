@@ -1,3 +1,4 @@
+import React from "react";
 import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 import {IconBox} from "@/components";
@@ -8,11 +9,11 @@ interface Props {
 };
 
 
-export function ProductCardButton({productData}: Props) {
+function ProductCardButton({productData}: Props) {
     const {addItem, getItem, incrementItem, decrementItem} = useBasket();
 
     const currentProductInBasket = getItem(productData.id);
-
+    console.log('qq');
     return (
         <div className="add-product">
             {
@@ -28,8 +29,8 @@ export function ProductCardButton({productData}: Props) {
                     <button onClick={() => addItem(productData)} className="flex items-center justify-center text-heading-sm text-green-200 hover:bg-[#FDC04033] hover:text-[#FDC040] transition-[background-color] border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">Adds +
                     </button>
             }
-
-
         </div>
     );
 };
+
+export default React.memo(ProductCardButton);

@@ -2,8 +2,8 @@ import {Badge, IconBox, ImageView, Rating} from "@/components";
 import Link from "next/link";
 import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
-import {ProductCardButton} from "@/components/common/product/product-card/ProductCardButton";
 import {useBasket} from "@/stores/basketContext";
+import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
 
 interface Props {
     data: EntityType<ProductsType>

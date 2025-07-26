@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {timerHelper} from "@/utils/timerHelper";
 import {ProductsType} from "@/types/api/Products";
 import {EntityType} from "@/types";
-import {ProductCardButton} from "@/components/common/product/product-card/ProductCardButton";
+import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
 
 interface Props {
     data: EntityType<ProductsType>
