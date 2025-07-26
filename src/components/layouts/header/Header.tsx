@@ -1,5 +1,5 @@
 import React, {useState, MouseEvent} from 'react';
-import {IconBox, LoginModal, Logo, Menu, RegisterModal, SearchForm} from "@/components";
+import {IconBox, LoginModal, Logo, Menu, MiniShoppingCard, RegisterModal, SearchForm} from "@/components";
 import Link from "next/link";
 import useOverlay from "@/hooks/useOverlay";
 import {useModal} from "@/stores/ModalContext";
@@ -50,7 +50,7 @@ export function Header() {
             {currentModal === 'Register' && <RegisterModal onClose={closeModal} />}
             {currentModal === 'ConfirmLogout' && <ConfirmLogoutModal />}
 
-            <div className="container flex items-center justify-between py-4 md:py-6 xl:py-8">
+            <div className="container flex items-center justify-between py-4 md:py-6 xl:py-8 relative">
                 <Logo />
                 <div className="border-2 border-green-150 rounded-[5px] max-w-[700px] w-full mx-[15px] px-[15px] hidden lg:inline-block">
                     <SearchForm inputClassName={'py-[15px]'}/>
@@ -59,9 +59,15 @@ export function Header() {
                     <li className="flex gap-2 cursor-pointer" onClick={accountHandler}>
                         <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? 'Logout' : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                     </li>
-                    <li className="flex gap-2 cursor-pointer">
-                        <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}  hideTitleOnMobile={true} badge={basketItem.length} titleClassName={'text-medium text-gray-500 font-lato'}/>
-                    </li>
+                    <div className={'group'}>
+                        <li className={`flex gap-2 cursor-pointer`}>
+                            <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}  hideTitleOnMobile={true} badge={basketItem.length} titleClassName={'text-medium text-gray-500 font-lato'}/>
+                        </li>
+                        <div className={'hidden group-hover:block'}>
+                            <MiniShoppingCard />
+                        </div>
+                    </div>
+
                 </ul>
                 <button onClick={mobileMenuBtnHandler} className="flex flex-col justify-between py-[4px] lg:hidden w-[24px] h-[24px]">
                     <span className="w-full h-[1.5px] bg-black inline-block rounded"></span>
