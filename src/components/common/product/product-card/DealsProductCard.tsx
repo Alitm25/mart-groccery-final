@@ -4,6 +4,7 @@ import {timerHelper} from "@/utils/timerHelper";
 import {ProductsType} from "@/types/api/Products";
 import {EntityType} from "@/types";
 import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
+import {useBasket} from "@/stores/basketContext";
 
 interface Props {
     data: EntityType<ProductsType>
@@ -24,6 +25,9 @@ export function DealsProductCard({data}: Props) {
         }, 1000);
         return () => clearInterval(interval);
     }, []);
+
+    const {getItem} = useBasket();
+    const currentProductInBasket = getItem(data.id);
 
 
     return (
@@ -57,7 +61,7 @@ export function DealsProductCard({data}: Props) {
                         </div>
                     </div>
                     <div className="font-lato text-xsmall text-gray-500 mt-1">{data.attributes.weight} {data.attributes.unit}</div>
-                    <div className="flex items-center justify-between mt-3">
+                    <div className={`flex items-center justify-between ${currentProductInBasket ? 'mt-0' : 'mt-3'}`}>
                         {
                             data.attributes.sell_price ?
                                 <div>
