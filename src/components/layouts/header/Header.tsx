@@ -12,7 +12,7 @@ import {useBasket} from "@/stores/basketContext";
 export function Header() {
     const [showMobileMenu, setShowMobileMenu]   = useState<boolean>(false);
     const {currentModal, openModal, closeModal} = useModal();
-    const {isLogin}                     = useAuth();
+    const {isLogin}                             = useAuth();
     const {basketItem}                          = useBasket();
 
 

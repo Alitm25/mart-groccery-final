@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState} from "react";
+import React, {createContext, useContext, useReducer, useState} from "react";
 import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 
@@ -15,6 +15,10 @@ interface ProductItem {
     quantity:   number;
 }
 
+type Action =   {type: 'ADD_ITEM',       product: EntityType<ProductsType>}
+            |   {type: 'DELETE_ITEM',    productID :number}
+            |   {type: 'INCREMENT_ITEM', productID :number}
+            |   {type: 'DECREMENT_ITEM', productID :number}
 
 const BasketContext = createContext<{
     // Types
@@ -27,11 +31,11 @@ const BasketContext = createContext<{
 }>({
     // Values
     basketItem: [],
-    addItem:        (product :EntityType<ProductsType>) => {},
-    deleteItem:     (productID :number) => {},
-    incrementItem:  (productID :number) => {},
-    decrementItem:  (productID :number) => {},
-    getItem:        (ProductID :number) => undefined
+    addItem:        (product    :EntityType<ProductsType>) => {},
+    deleteItem:     (productID  :number) => {},
+    incrementItem:  (productID  :number) => {},
+    decrementItem:  (productID  :number) => {},
+    getItem:        (ProductID  :number) => undefined
 
 });
 export const useBasket = () => useContext(BasketContext);
@@ -106,6 +110,7 @@ export function BasketContextProvider({children}: Props) {
     const getItemHandler = (productID :number) => {
         return basketItem.find( (item) => item.id === productID);
     }
+
 
     return (
         <BasketContext.Provider value={{basketItem: basketItem, addItem: addItemHandler, deleteItem: deleteItemHandler, incrementItem: incrementItemHandler, decrementItem: decrementItemHandler, getItem: getItemHandler}}>
