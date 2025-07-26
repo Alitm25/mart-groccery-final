@@ -3,12 +3,16 @@ import Link from "next/link";
 import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 import {ProductCardButton} from "@/components/common/product/product-card/ProductCardButton";
+import {useBasket} from "@/stores/basketContext";
 
 interface Props {
     data: EntityType<ProductsType>
 }
 
 export function SimpleProductCard({data}: Props) {
+    const {getItem} = useBasket();
+    const currentProductInBasket = getItem(data.id);
+
     return (
         <div className={'w-full'}>
             <div className="group border-[1px] border-gray-200 hover:border-green-150 transition-[border] rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
@@ -60,7 +64,7 @@ export function SimpleProductCard({data}: Props) {
                                 </button>
                             </div>
                         </> :
-                        <div className="flex items-center justify-between mt-3">
+                        <div className={`flex items-center justify-between ${currentProductInBasket ? 'mt-0' : 'mt-3'}`}>
                             {
                                 data?.attributes?.sell_price ?
                                     <div>
