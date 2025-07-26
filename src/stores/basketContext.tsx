@@ -60,20 +60,17 @@ export function BasketContextProvider({children}: Props) {
     }
 
     const incrementItemHandler = (productID: number) => {
-
         const newBasket = basketItem.map( (item) => {
             if (item.id === productID) {
-                return { ...item, quantity: item.quantity++ }
+                return { ...item, quantity: item.quantity = item.quantity + 1 }
             } else {
                 return item;
             }
         })
         setBasketItem(newBasket);
-
     }
 
     const decrementItemHandler = (productID: number) => {
-
         const currentProduct = basketItem.find( (item) => item.id === productID);
 
         if (currentProduct && currentProduct.quantity === 1) {
@@ -81,14 +78,13 @@ export function BasketContextProvider({children}: Props) {
         } else {
             const newBasket = basketItem.map( (item) => {
                 if (item.id === productID) {
-                    return { ...item, quantity: item.quantity++ }
+                    return { ...item, quantity: item.quantity = item.quantity - 1 }
                 } else {
                     return item;
                 }
             })
             setBasketItem(newBasket);
         }
-
     }
 
     const getItemHandler = (productID :number) => {
