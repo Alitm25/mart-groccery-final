@@ -96,15 +96,7 @@ export function BasketContextProvider({children}: Props) {
     }
 
     const incrementItemHandler = (productID: number) => {
-        const newBasket = basketItem.map( (item) => {
-            if (item.id === productID) {
-                return { ...item, quantity: item.quantity = item.quantity + 1 }
-            } else {
-                return item;
-            }
-        })
-        setBasketItem(newBasket);
-        localStorage.setItem('basketItem', JSON.stringify(basketItem));
+        dispatch({type: "INCREMENT_ITEM", productID: productID});
     }
 
     const decrementItemHandler = (productID: number) => {
