@@ -88,18 +88,7 @@ export function BasketContextProvider({children}: Props) {
 
 
     const addItemHandler = (product: EntityType<ProductsType>) => {
-        const newProduct :ProductItem = {
-            id: product.id,
-            title: product.attributes.title,
-            price: product.attributes.price,
-            image: product.attributes.thumbnail?.data?.attributes.url,
-            quantity: 1
-        }
-        setBasketItem(prevState => [
-            ...prevState,
-            newProduct
-        ])
-        localStorage.setItem('basketItem', JSON.stringify(basketItem));
+        dispatch({type: "ADD_ITEM", product: product});
     }
 
     const deleteItemHandler = (productID: number) => {
