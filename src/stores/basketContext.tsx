@@ -100,21 +100,7 @@ export function BasketContextProvider({children}: Props) {
     }
 
     const decrementItemHandler = (productID: number) => {
-        const currentProduct = basketItem.find( (item) => item.id === productID);
-
-        if (currentProduct && currentProduct.quantity === 1) {
-            deleteItemHandler(productID);
-        } else {
-            const newBasket = basketItem.map( (item) => {
-                if (item.id === productID) {
-                    return { ...item, quantity: item.quantity = item.quantity - 1 }
-                } else {
-                    return item;
-                }
-            })
-            setBasketItem(newBasket);
-            localStorage.setItem('basketItem', JSON.stringify(basketItem));
-        }
+        dispatch({type: "DECREMENT_ITEM", productID: productID});
     }
 
     const getItemHandler = (productID :number) => {
