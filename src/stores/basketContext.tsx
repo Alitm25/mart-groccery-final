@@ -52,11 +52,13 @@ export function BasketContextProvider({children}: Props) {
             ...prevState,
             newProduct
         ])
+        localStorage.setItem('basketItem', JSON.stringify(basketItem));
     }
 
     const deleteItemHandler = (productID: number) => {
         const basketProduct = basketItem.filter( (item) => item.id !== productID);
         setBasketItem(basketProduct);
+        localStorage.removeItem('basketItem');
     }
 
     const incrementItemHandler = (productID: number) => {
@@ -68,6 +70,7 @@ export function BasketContextProvider({children}: Props) {
             }
         })
         setBasketItem(newBasket);
+        localStorage.setItem('basketItem', JSON.stringify(basketItem));
     }
 
     const decrementItemHandler = (productID: number) => {
@@ -84,6 +87,7 @@ export function BasketContextProvider({children}: Props) {
                 }
             })
             setBasketItem(newBasket);
+            localStorage.setItem('basketItem', JSON.stringify(basketItem));
         }
     }
 
