@@ -1,4 +1,5 @@
-export const timerHelper = (end: string) => {
+export const timerHelper = (end: string | undefined) => {
+    // @ts-ignore
     const endDate = new Date(end).getTime();
     const currentDate = new Date().getTime();
 

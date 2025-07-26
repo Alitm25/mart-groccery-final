@@ -2,6 +2,7 @@ import React, {createContext, useState} from "react";
 import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 
+
 interface Props {
     children: React.ReactNode;
 };
@@ -10,9 +11,10 @@ interface ProductItem {
     id:         number;
     title:      string;
     price:      number;
-    image?:      string;
+    image?:     string;
     quantity:   number;
 }
+
 
 export const BasketContext = createContext<{
     // Types
@@ -29,6 +31,7 @@ export const BasketContext = createContext<{
     incrementItem:  (productID :number) => {},
     decrementItem:  (productID :number) => {},
 });
+
 
 export function BasketContextProvider({children}: Props) {
     const [basketItem, setBasketItem] = useState<Array<ProductItem>>([]);
