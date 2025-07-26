@@ -1,6 +1,7 @@
 import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 import {IconBox} from "@/components";
+import {useBasket} from "@/stores/basketContext";
 
 interface Props {
     productData: EntityType<ProductsType>
@@ -8,9 +9,11 @@ interface Props {
 
 
 export function ProductCardButton({productData}: Props) {
+    const {addItem} = useBasket();
+
     return (
         <div className="add-product">
-            <button className="flex items-center justify-center text-heading-sm text-green-200 hover:bg-[#FDC04033] hover:text-[#FDC040] transition-[background-color] border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">Adds
+            <button onClick={() => addItem(productData)} className="flex items-center justify-center text-heading-sm text-green-200 hover:bg-[#FDC04033] hover:text-[#FDC040] transition-[background-color] border-[1px] rounded-[4px] bg-green-150 px-[10px] py-[5px]">Adds
                 +
             </button>
             <div
