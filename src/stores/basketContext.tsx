@@ -52,14 +52,14 @@ export function BasketContextProvider({children}: Props) {
     }
 
     const deleteItemHandler = (productID: number) => {
-        const basketProduct = basketItem.filter( (item) => item.id != productID);
+        const basketProduct = basketItem.filter( (item) => item.id !== productID);
         setBasketItem(basketProduct);
     }
 
     const incrementItemHandler = (productID: number) => {
 
         const newBasket = basketItem.map( (item) => {
-            if (item.id == productID) {
+            if (item.id === productID) {
                 return { ...item, quantity: item.quantity++ }
             } else {
                 return item;
@@ -71,13 +71,13 @@ export function BasketContextProvider({children}: Props) {
 
     const decrementItemHandler = (productID: number) => {
 
-        const currentProduct = basketItem.find( (item) => item.id == productID);
+        const currentProduct = basketItem.find( (item) => item.id === productID);
 
         if (currentProduct && currentProduct.quantity === 1) {
             deleteItemHandler(productID);
         } else {
             const newBasket = basketItem.map( (item) => {
-                if (item.id == productID) {
+                if (item.id === productID) {
                     return { ...item, quantity: item.quantity++ }
                 } else {
                     return item;
