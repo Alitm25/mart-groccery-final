@@ -5,6 +5,7 @@ import useOverlay from "@/hooks/useOverlay";
 import {useModal} from "@/stores/ModalContext";
 import {useAuth} from "@/stores/AuthContext";
 import {ConfirmLogoutModal} from "@/components/auth/ConfirmLogoutModal";
+import {useBasket} from "@/stores/basketContext";
 
 
 
@@ -12,6 +13,7 @@ export function Header() {
     const [showMobileMenu, setShowMobileMenu]   = useState<boolean>(false);
     const {currentModal, openModal, closeModal} = useModal();
     const {isLogin, logout}                     = useAuth();
+    const {basketItem}                          = useBasket();
 
 
     const mobileMenuBtnHandler = (e :MouseEvent) => {
@@ -58,7 +60,7 @@ export function Header() {
                         <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? 'Logout' : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                     </li>
                     <li className="flex gap-2 cursor-pointer">
-                        <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}  hideTitleOnMobile={true} badge={4} titleClassName={'text-medium text-gray-500 font-lato'}/>
+                        <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}  hideTitleOnMobile={true} badge={basketItem.length} titleClassName={'text-medium text-gray-500 font-lato'}/>
                     </li>
                 </ul>
                 <button onClick={mobileMenuBtnHandler} className="flex flex-col justify-between py-[4px] lg:hidden w-[24px] h-[24px]">
