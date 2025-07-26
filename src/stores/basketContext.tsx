@@ -50,6 +50,7 @@ const basketReducer = (currentState :ProductItem[], action :Action) => {
                     title:      action.product.attributes.title,
                     price:      action.product.attributes.price,
                     image:      action.product.attributes.thumbnail?.data?.attributes.url,
+                    total:      action.product.attributes.total,
                     quantity:   1
                 }
             ]
@@ -59,11 +60,21 @@ const basketReducer = (currentState :ProductItem[], action :Action) => {
 
         case 'INCREMENT_ITEM':
             return currentState.map( (item) => {
+                // if (item.id === action.productID) {
+                //     if (item.quantity <= item.total) {
+                //         return { ...item, quantity: item.quantity + 1 }
+                //     } else {
+                //         toast.error('There is not enough product inventory.')
+                //         return item;                    }
+                // } else {
+                //     return item;
+                // }
                 if (item.id === action.productID) {
-                    return { ...item, quantity: item.quantity = item.quantity + 1 }
+                    return { ...item, quantity: item.quantity + 1 }
                 } else {
                     return item;
                 }
+
             })
 
         case 'DECREMENT_ITEM':
@@ -74,7 +85,7 @@ const basketReducer = (currentState :ProductItem[], action :Action) => {
             } else {
                 return currentState.map( (item) => {
                     if (item.id === action.productID) {
-                        return { ...item, quantity: item.quantity = item.quantity - 1 }
+                        return { ...item, quantity: item.quantity - 1 }
                     } else {
                         return item;
                     }
@@ -92,7 +103,7 @@ export function BasketContextProvider({children}: Props) {
 
 
     const addItemHandler = (product: EntityType<ProductsType>) => {
-        dispatch({type: "ADD_ITEM", product: product});
+            dispatch({type: "ADD_ITEM", product: product});
     }
 
     const deleteItemHandler = (productID: number) => {
