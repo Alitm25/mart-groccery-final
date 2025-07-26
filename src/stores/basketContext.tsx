@@ -92,9 +92,7 @@ export function BasketContextProvider({children}: Props) {
     }
 
     const deleteItemHandler = (productID: number) => {
-        const basketProduct = basketItem.filter( (item) => item.id !== productID);
-        setBasketItem(basketProduct);
-        localStorage.removeItem('basketItem');
+        dispatch({type: "DELETE_ITEM", productID: productID});
     }
 
     const incrementItemHandler = (productID: number) => {
