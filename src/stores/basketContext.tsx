@@ -83,7 +83,8 @@ const basketReducer = (currentState :ProductItem[], action :Action) => {
 }
 
 export function BasketContextProvider({children}: Props) {
-    const [basketItem, setBasketItem] = useState<Array<ProductItem>>([]);
+    // const [basketItem, setBasketItem] = useState<Array<ProductItem>>([]);
+    const [basketItem, dispatch] = useReducer(basketReducer, [])
 
 
     const addItemHandler = (product: EntityType<ProductsType>) => {
