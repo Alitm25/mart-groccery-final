@@ -10,7 +10,7 @@ export function MiniShoppingCard({}: Props) {
      const {basketItem, incrementItem, decrementItem} = useBasket();
 
     return (
-               <div className={'absolute z-20 bg-white right-8 top-20 w-[500px] rounded-[5px] lg:border-[1px] border-green-300 p-[30px]'}>
+               <div className={'absolute z-20 bg-white max-h-[70vh] right-8 top-18 w-[500px] rounded-[5px] lg:border-[1px] border-green-300 p-[30px] overflow-y-auto'}>
                    {
                            <div className={'flex flex-col items-center justify-center w-full mb-3'}>
                                {
@@ -20,9 +20,9 @@ export function MiniShoppingCard({}: Props) {
                                                basketItem.map( (item) => {
                                                    return (
                                                        <div>
-                                                           <div className={'flex flex-row items-start justify-center gap-x-11 mb-6'}>
+                                                           <div className={'flex flex-row items-start justify-between gap-x-11 mb-6'}>
                                                                <ImageView alt={'product-img'} width={120} height={120} src={item.image}/>
-                                                               <div className={'flex flex-col'}>
+                                                               <div className={'flex flex-col w-full'}>
                                                                    <div className={'text-heading-sm text-blue-300 min-h-8 line-clamp-2'}>{item.title}</div>
                                                                    <div className={'flex items-center justify-between'}>
                                                                        {
