@@ -12,46 +12,46 @@ export function MiniShoppingCard({}: Props) {
     return (
                <div className={'absolute z-20 bg-white max-h-[70vh] right-8 top-18 w-[500px] rounded-[5px] lg:border-[1px] border-green-300 p-[30px] overflow-y-auto'}>
                    {
-                           <div className={'flex flex-col items-center justify-center w-full mb-3'}>
-                               {
-                                   basketItem.length > 0 ?
-                                       <div className={''}>
-                                           {
-                                               basketItem.map( (item) => {
-                                                   return (
-                                                       <div>
-                                                           <div className={'flex flex-row items-start justify-between gap-x-11 mb-6'}>
-                                                               <ImageView alt={'product-img'} width={120} height={120} src={item.image}/>
-                                                               <div className={'flex flex-col w-full'}>
-                                                                   <div className={'text-heading-sm text-blue-300 min-h-8 line-clamp-2'}>{item.title}</div>
-                                                                   <div className={'flex items-center justify-between'}>
-                                                                       {
-                                                                           item.sell_price ?
-                                                                               <div>
-                                                                                   <span className="text-heading5 text-green-200">${item.sell_price}</span>
-                                                                                   <span className="text-heading-sm line-through text-gray-500">${item.price}</span>
-                                                                               </div>
-                                                                               : <span className="text-heading5 text-green-200">${item.price}</span>
-                                                                       }
-                                                                       <div className="input-product__container border-[1px] font-quicksand font-bold rounded-[4px] border-green-300 text-green-300 h-full p-[3px] w-16 md:w-20 flex justify-evenly items-center">
-                                                                           <div className="flex flex-col justify-between items-center">
-                                                                               <IconBox icon={'up icon-angle-small-up'} size={10} onClick={ () => incrementItem(item.id)}/>
-                                                                               <IconBox icon={'down icon-angle-small-down'} size={10} onClick={ () => decrementItem(item.id)}/>
+                       <div className={'flex flex-col items-center justify-center w-full mb-3'}>
+                           {
+                               basketItem.length > 0 ?
+                                   <div className={''}>
+                                       {
+                                           basketItem.map( (item) => {
+                                               return (
+                                                   <div>
+                                                       <div className={'flex flex-row items-start justify-between gap-x-11 mb-6'}>
+                                                           <ImageView alt={'product-img'} width={120} height={120} src={item.image}/>
+                                                           <div className={'flex flex-col w-full'}>
+                                                               <div className={'text-heading-sm text-blue-300 min-h-8 line-clamp-2'}>{item.title}</div>
+                                                               <div className={'flex items-center justify-between'}>
+                                                                   {
+                                                                       item.sell_price ?
+                                                                           <div>
+                                                                               <span className="text-heading5 text-green-200">${item.quantity > 1 ? (item.sell_price * item.quantity) : item.sell_price}</span>
+                                                                               <span className="text-heading-sm line-through text-gray-500">${item.price}</span>
                                                                            </div>
-                                                                           {item.quantity}
+                                                                           : <span className="text-heading5 text-green-200">${item.price}</span>
+                                                                   }
+                                                                   <div className="input-product__container border-[1px] font-quicksand font-bold rounded-[4px] border-green-300 text-green-300 h-full p-[3px] w-16 md:w-20 flex justify-evenly items-center">
+                                                                       <div className="flex flex-col justify-between items-center">
+                                                                           <IconBox icon={'up icon-angle-small-up'} size={10} onClick={ () => incrementItem(item.id)}/>
+                                                                           <IconBox icon={'down icon-angle-small-down'} size={10} onClick={ () => decrementItem(item.id)}/>
                                                                        </div>
+                                                                       {item.quantity}
                                                                    </div>
                                                                </div>
                                                            </div>
-                                                           <div className={'border w-full mb-2'}></div>
                                                        </div>
-                                                   )
-                                               })
-                                           }
-                                       </div>
-                                   : <div>Your card is empty</div>
-                               }
-                           </div>
+                                                       <div className={'border w-full mb-2'}></div>
+                                                   </div>
+                                               )
+                                           })
+                                       }
+                                   </div>
+                               : <div>Your card is empty</div>
+                           }
+                       </div>
                    }
                    {
                        basketItem.length > 0 &&
