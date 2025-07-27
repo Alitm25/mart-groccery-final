@@ -1,11 +1,70 @@
+import {useBasket} from "@/stores/basketContext";
+import {IconBox, ImageView} from "@/components";
+import React from "react";
+
 interface Props {
 
 };
 
 export function MiniShoppingCard({}: Props) {
+     const {basketItem, incrementItem, decrementItem} = useBasket();
+
     return (
-            <div className={'absolute z-20 bg-white right-0 top-32 w-[500px] rounded-[5px] lg:border-[1px] border-green-300 p-[30px]'}>
-                This is Mini Shopping card
-            </div>
+               <div className={'absolute z-20 bg-white right-8 top-20 w-[500px] rounded-[5px] lg:border-[1px] border-green-300 p-[30px]'}>
+                   {
+                           <div className={'flex flex-col items-center justify-center w-full mb-3'}>
+                               {
+                                   basketItem.length > 0 ?
+                                       <div className={''}>
+                                           {
+                                               basketItem.map( (item) => {
+                                                   return (
+                                                       <div>
+                                                           <div className={'flex flex-row items-start justify-center gap-x-11 mb-6'}>
+                                                               <ImageView alt={'product-img'} width={120} height={120} src={item.image}/>
+                                                               <div className={'flex flex-col'}>
+                                                                   <div className={'text-heading-sm text-blue-300 min-h-8 line-clamp-2'}>{item.title}</div>
+                                                                   <div className={'flex items-center justify-between'}>
+                                                                       {
+                                                                           item.sell_price ?
+                                                                               <div>
+                                                                                   <span className="text-heading5 text-green-200">${item.sell_price}</span>
+                                                                                   <span className="text-heading-sm line-through text-gray-500">${item.price}</span>
+                                                                               </div>
+                                                                               : <span className="text-heading5 text-green-200">${item.price}</span>
+                                                                       }
+                                                                       <div className="input-product__container border-[1px] font-quicksand font-bold rounded-[4px] border-green-300 text-green-300 h-full p-[3px] w-16 md:w-20 flex justify-evenly items-center">
+                                                                           <div className="flex flex-col justify-between items-center">
+                                                                               <IconBox icon={'up icon-angle-small-up'} size={10} onClick={ () => incrementItem(item.id)}/>
+                                                                               <IconBox icon={'down icon-angle-small-down'} size={10} onClick={ () => decrementItem(item.id)}/>
+                                                                           </div>
+                                                                           {item.quantity}
+                                                                       </div>
+                                                                   </div>
+                                                               </div>
+                                                           </div>
+                                                           <div className={'border w-full mb-2'}></div>
+                                                       </div>
+                                                   )
+                                               })
+                                           }
+                                       </div>
+                                   : <div>Your card is empty</div>
+                               }
+                           </div>
+                   }
+                   {
+                       basketItem.length > 0 &&
+                       <div>
+                           <button className={'flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 transition-[background-color] px-2 py-2 lg:py-[14px]'}>
+                               Complete the purchase process
+                               <IconBox icon={'icon-arrow-small-right'} size={24}/>
+                           </button>
+                       </div>
+
+                   }
+
+               </div>
+
     );
 };

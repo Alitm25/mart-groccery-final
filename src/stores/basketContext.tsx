@@ -11,6 +11,7 @@ interface ProductItem {
     id:         number;
     title:      string;
     price:      number;
+    sell_price?: number;
     image?:     string;
     quantity:   number;
 }
@@ -49,6 +50,7 @@ const basketReducer = (currentState :ProductItem[], action :Action) => {
                     id:         action.product.id,
                     title:      action.product.attributes.title,
                     price:      action.product.attributes.price,
+                    sell_price: action.product.attributes.sell_price,
                     image:      action.product.attributes.thumbnail?.data?.attributes.url,
                     total:      action.product.attributes.total,
                     quantity:   1

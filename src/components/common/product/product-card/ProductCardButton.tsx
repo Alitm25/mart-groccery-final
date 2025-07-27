@@ -13,7 +13,7 @@ function ProductCardButton({productData}: Props) {
     const {addItem, getItem, incrementItem, decrementItem} = useBasket();
 
     const currentProductInBasket = getItem(productData.id);
-    console.log('qq');
+
     return (
         <div className="add-product">
             {
