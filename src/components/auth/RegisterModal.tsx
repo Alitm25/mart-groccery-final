@@ -22,7 +22,7 @@ export function RegisterModal({onClose}: Props) {
     const {register, handleSubmit, formState: {errors}} = useForm<formData>();
     const mutate = useMutation({mutationFn: registerApiCall});
     const {login, isLogin} = useAuth();
-    const {closeModal} = useModal();
+    const {closeModal, openModal} = useModal();
 
     const onSubmit = (data :formData) => {
         mutate.mutate(data, {
@@ -44,9 +44,15 @@ export function RegisterModal({onClose}: Props) {
                 <Input errors={errors} register={ register('email', {required: 'This field is required. Please enter your Email.', maxLength: 20, minLength: 6}) } type={'email'} placeholder='Email' />
                 <Input errors={errors} register={ register('password', {required: 'This field is required. Please enter your password.', maxLength: 20, minLength: 6}) } type={'password'} placeholder='Password' />
 
-                <button className={'rounded-xl border-2 bg-[#253D4E] text-white font-quicksand font-bold text-base py-[22px] px-[45px] md:py-4 md:px-7 hover:bg-white hover:border-[#253D4E] hover:text-[#253D4E] transition-all'}>
-                    Submit & Register
-                </button>
+                <div className={'flex items-center justify-between w-full gap-x-2'}>
+                    <button className={'rounded-xl border-2 bg-[#253D4E] text-white font-quicksand font-bold text-base py-[22px] px-[45px] md:py-4 md:px-7 hover:bg-white hover:border-[#253D4E] hover:text-[#253D4E] transition-all'}>
+                        Submit & Register
+                    </button>
+                    <div className={'flex flex-col gap-y-1 font-quicksand font-bold break-words'}>
+                        <span className={'text-base lg:text-lg'}>Do you have an account?</span>
+                        <span onClick={ () => openModal('Login') } className={'cursor-pointer text-green-300 text-base lg:text-lg'}>click to Login</span>
+                    </div>
+                </div>
             </form>
         </Modal>,
 
