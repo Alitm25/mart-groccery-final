@@ -1,6 +1,7 @@
 import React, {createContext, useContext, useReducer, useState} from "react";
 import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
+import {toast} from "react-toastify";
 
 
 interface Props {
@@ -8,12 +9,13 @@ interface Props {
 };
 
 interface ProductItem {
-    id:         number;
-    title:      string;
-    price:      number;
+    id:          number;
+    title:       string;
+    price:       number;
+    total:       number | null;
     sell_price?: number;
-    image?:     string;
-    quantity:   number;
+    image?:      string;
+    quantity:    number;
 }
 
 type Action =   {type: 'ADD_ITEM',       product: EntityType<ProductsType>}
@@ -62,17 +64,13 @@ const basketReducer = (currentState :ProductItem[], action :Action) => {
 
         case 'INCREMENT_ITEM':
             return currentState.map( (item) => {
-                // if (item.id === action.productID) {
-                //     if (item.quantity <= item.total) {
-                //         return { ...item, quantity: item.quantity + 1 }
-                //     } else {
-                //         toast.error('There is not enough product inventory.')
-                //         return item;                    }
-                // } else {
-                //     return item;
-                // }
                 if (item.id === action.productID) {
-                    return { ...item, quantity: item.quantity + 1 }
+                    if (item.total === null || item.quantity <= item.total) {
+                        return { ...item, quantity: item.quantity + 1 }
+                    } else {
+                        toast.error('The desired product is out of stock.')
+                        return item;
+                    }
                 } else {
                     return item;
                 }
