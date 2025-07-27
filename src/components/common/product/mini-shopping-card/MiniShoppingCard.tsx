@@ -20,11 +20,11 @@ export function MiniShoppingCard({}: Props) {
                                            basketItem.map( (item) => {
                                                return (
                                                    <div>
-                                                       <div className={'flex flex-row items-start justify-between gap-x-11 mb-6'}>
+                                                       <div className={'flex flex-row items-start justify-between gap-x-11 mb-6 w-full'}>
                                                            <ImageView alt={'product-img'} width={120} height={120} src={item.image}/>
-                                                           <div className={'flex flex-col w-full'}>
+                                                           <div className={'flex flex-col items-start w-full'}>
                                                                <div className={'text-heading-sm text-blue-300 min-h-8 line-clamp-2'}>{item.title}</div>
-                                                               <div className={'flex items-center justify-between'}>
+                                                               <div className={'flex items-center justify-between w-full'}>
                                                                    {
                                                                        item.sell_price ?
                                                                            <div>
