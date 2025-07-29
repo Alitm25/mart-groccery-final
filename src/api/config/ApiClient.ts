@@ -7,10 +7,10 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use(function (request) {
-    const token = window.localStorage.getItem('login-token')
+    const token = window.localStorage.getItem('loginToken')
 
     if (token) {
-        request.headers.Authorization = `Bearer ${token}`;
+        request.headers.Authorization = 'Bearer ' + token;
     }
 
 
