@@ -1,7 +1,7 @@
 import {useBasket} from "@/stores/basketContext";
 import {IconBox, ImageView} from "@/components";
 import React from "react";
-import {useBasketData} from "@/hooks/useBasket";
+import {useBasketData} from "@/hooks/useBasketData";
 
 interface Props {
 

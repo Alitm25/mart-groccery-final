@@ -1,9 +1,11 @@
-import {useMutation, useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {basketApiCall, updateBasketApiCall} from "@/api/Basket";
 import {updateBasket} from "@/types/api/Basket";
 
 
 export function useBasketData() {
+    const queryClient = useQueryClient();
+
     const {data: basketData} = useQuery({queryKey: ['get-basket'], queryFn: basketApiCall})
     const mutate = useMutation({mutationFn: updateBasketApiCall})
 
@@ -22,7 +24,7 @@ export function useBasketData() {
 
         mutate.mutate(updateBasketData, {
             onSuccess: (response) => {
-                console.log(response);
+                queryClient.invalidateQueries({queryKey: ['get-basket']});
             }
         })
     }

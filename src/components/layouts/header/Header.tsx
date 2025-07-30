@@ -6,7 +6,7 @@ import {useModal} from "@/stores/ModalContext";
 import {useAuth} from "@/stores/AuthContext";
 import {ConfirmLogoutModal} from "@/components/auth/ConfirmLogoutModal";
 import {useBasket} from "@/stores/basketContext";
-import {useBasketData} from "@/hooks/useBasket";
+import {useBasketData} from "@/hooks/useBasketData";
 
 
 
