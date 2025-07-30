@@ -13,13 +13,23 @@ export function useBasketData() {
     const basketItems = basketData?.data.attributes.basket_items ?? [];
 
     const addItemHandler = (productID :number) => {
-        const updateBasketData :updateBasket = {
-            basket_items: [{
+        const preparedUpdateData = basketItems.map( (item) => {
+            return {
                 product: {
-                    connect: [{id: productID}]
+                    connect: [{id: item.product.data.id}]
                 },
-                quantity: 1
-            }]
+                quantity: item.quantity
+            }
+        })
+        preparedUpdateData.push({
+            product: {
+                connect: [{id: productID}]
+            },
+            quantity: 1
+        })
+
+        const updateBasketData :updateBasket = {
+            basket_items: preparedUpdateData
         }
 
         mutate.mutate(updateBasketData, {

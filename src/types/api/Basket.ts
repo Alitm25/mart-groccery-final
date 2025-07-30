@@ -1,6 +1,9 @@
+import {EntityType} from "@/types";
+import {ProductsType} from "@/types/api/Products";
+
 export interface BasketItemsType {
     uuid: any
-    basket_items: any[]
+    basket_items: Array<basketItems>
 }
 
 export interface updateBasket {
@@ -12,5 +15,13 @@ export interface updateBasket {
         },
         quantity: number
     }>
+}
+
+interface basketItems {
+    id: number;
+    quantity: number;
+    product: {
+        data: EntityType<ProductsType>
+    }
 }
 
