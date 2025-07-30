@@ -3,3 +3,14 @@ export interface BasketItemsType {
     basket_items: any[]
 }
 
+export interface updateBasket {
+    basket_items: Array<{
+        product: {
+            connect: Array<{
+                id: number
+            }>
+        },
+        quantity: number
+    }>
+}
+
