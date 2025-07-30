@@ -17,7 +17,7 @@ export interface updateBasket {
     }>
 }
 
-interface basketItems {
+export interface basketItems {
     id: number;
     quantity: number;
     product: {

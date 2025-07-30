@@ -1,6 +1,6 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {basketApiCall, updateBasketApiCall} from "@/api/Basket";
-import {updateBasket} from "@/types/api/Basket";
+import {basketItems, updateBasket} from "@/types/api/Basket";
 
 
 export function useBasketData() {
@@ -73,6 +73,9 @@ export function useBasketData() {
         })
     }
 
+    const getItemHandler = (productID :number) :basketItems | undefined => {
+        return basketItems.find( (item) => item.product.data.id === productID);
+    }
 
 
     return {basketItems: basketItems, addItem: addItemHandler, updateProduct: updateProductHandler, getItem: getItemHandler}
