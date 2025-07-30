@@ -74,5 +74,6 @@ export function useBasketData() {
     }
 
 
-    return {basketItems: basketItems, addItem: addItemHandler, updateProduct: updateProductHandler}
+
+    return {basketItems: basketItems, addItem: addItemHandler, updateProduct: updateProductHandler, getItem: getItemHandler}
 }
