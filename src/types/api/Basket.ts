@@ -1,4 +1,4 @@
-export interface BasketType {
+export interface BasketItemsType {
     uuid: any
     basket_items: any[]
 }
