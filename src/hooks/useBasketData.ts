@@ -9,9 +9,10 @@ export function useBasketData() {
     const {data: basketData} = useQuery({queryKey: ['get-basket'], queryFn: basketApiCall})
     const mutate = useMutation({mutationFn: updateBasketApiCall})
 
-
     const basketItems = basketData?.data.attributes.basket_items ?? [];
 
+
+    // Products managing functions
     const addItemHandler = (productID :number) => {
         const preparedUpdateData = basketItems.map( (item) => {
             return {
@@ -39,5 +40,39 @@ export function useBasketData() {
         })
     }
 
-    return {basketItems: basketItems, addItem: addItemHandler}
+    const updateProductHandler = (productID :number, type :'increase' | 'decrease') => {
+        let preparedUpdateData = basketItems.map( (item) => {
+            return {
+                product: {
+                    connect: [{id: item.product.data.id}]
+                },
+                quantity: item.quantity
+            }
+        })
+
+        preparedUpdateData = preparedUpdateData.map( (item) => {
+            if (item.product.connect[0].id === productID) {
+                if (type === 'increase') {
+                    item.quantity = item.quantity + 1
+                } else {
+                    item.quantity = item.quantity - 1
+                }
+            }
+            return item;
+        })
+
+
+        const updateBasketData :updateBasket = {
+            basket_items: preparedUpdateData
+        }
+
+        mutate.mutate(updateBasketData, {
+            onSuccess: (response) => {
+                queryClient.invalidateQueries({queryKey: ['get-basket']});
+            }
+        })
+    }
+
+
+    return {basketItems: basketItems, addItem: addItemHandler, updateProduct: updateProductHandler}
 }
