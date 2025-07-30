@@ -1,23 +1,25 @@
 import {useBasket} from "@/stores/basketContext";
 import {IconBox, ImageView} from "@/components";
 import React from "react";
+import {useBasketData} from "@/hooks/useBasket";
 
 interface Props {
 
 };
 
 export function MiniShoppingCard({}: Props) {
-     const {basketItem, incrementItem, decrementItem} = useBasket();
+     const {incrementItem, decrementItem} = useBasket();
+     const {basketItems} = useBasketData();
 
     return (
                <div className={'absolute z-20 bg-white max-h-[70vh] right-8 top-18 w-[500px] rounded-[5px] lg:border-[1px] border-green-300 p-[30px] overflow-y-auto'}>
                    {
                        <div className={'flex flex-col items-center justify-center w-full mb-3'}>
                            {
-                               basketItem.length > 0 ?
+                               basketItems.length > 0 ?
                                    <div className={''}>
                                        {
-                                           basketItem.map( (item) => {
+                                           basketItems.map( (item) => {
                                                return (
                                                    <div>
                                                        <div className={'flex flex-row items-start justify-between gap-x-11 mb-6 w-full'}>
@@ -54,7 +56,7 @@ export function MiniShoppingCard({}: Props) {
                        </div>
                    }
                    {
-                       basketItem.length > 0 &&
+                       basketItems.length > 0 &&
                        <div>
                            <button className={'flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 transition-[background-color] px-2 py-2 lg:py-[14px]'}>
                                Complete the purchase process
