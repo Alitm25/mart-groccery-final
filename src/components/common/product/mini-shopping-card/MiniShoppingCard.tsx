@@ -23,22 +23,22 @@ export function MiniShoppingCard({}: Props) {
                                                return (
                                                    <div>
                                                        <div className={'flex flex-row items-start justify-between gap-x-11 mb-6 w-full'}>
-                                                           <ImageView alt={'product-img'} width={120} height={120} src={item.image}/>
+                                                           <ImageView alt={'product-img'} width={120} height={120} src={item.product.data.attributes.thumbnail?.data?.attributes.url}/>
                                                            <div className={'flex flex-col items-start w-full'}>
-                                                               <div className={'text-heading-sm text-blue-300 min-h-8 line-clamp-2'}>{item.title}</div>
+                                                               <div className={'text-heading-sm text-blue-300 min-h-8 line-clamp-2'}>{item.product.data.attributes.title}</div>
                                                                <div className={'flex items-center justify-between w-full'}>
                                                                    {
-                                                                       item.sell_price ?
+                                                                       item.product.data.attributes.sell_price ?
                                                                            <div>
-                                                                               <span className="text-heading5 text-green-200">${item.quantity > 1 ? (item.sell_price * item.quantity) : item.sell_price}</span>
-                                                                               <span className="text-heading-sm line-through text-gray-500">${item.price}</span>
+                                                                               <span className="text-heading5 text-green-200">${(item.product.data.attributes.sell_price * item.quantity)}</span>
+                                                                               <span className="text-heading-sm line-through text-gray-500">${item.product.data.attributes.price}</span>
                                                                            </div>
-                                                                           : <span className="text-heading5 text-green-200">${item.price}</span>
+                                                                           : <span className="text-heading5 text-green-200">${item.product.data.attributes.price * item.quantity}</span>
                                                                    }
                                                                    <div className="input-product__container border-[1px] font-quicksand font-bold rounded-[4px] border-green-300 text-green-300 h-full p-[3px] w-16 md:w-20 flex justify-evenly items-center">
                                                                        <div className="flex flex-col justify-between items-center">
-                                                                           <IconBox icon={'up icon-angle-small-up'} size={10} onClick={ () => incrementItem(item.id)}/>
-                                                                           <IconBox icon={'down icon-angle-small-down'} size={10} onClick={ () => decrementItem(item.id)}/>
+                                                                           <IconBox icon={'up icon-angle-small-up cursor-pointer'} size={10} onClick={ () => incrementItem(item.id)}/>
+                                                                           <IconBox icon={'down icon-angle-small-down cursor-pointer'} size={10} onClick={ () => decrementItem(item.id)}/>
                                                                        </div>
                                                                        {item.quantity}
                                                                    </div>
