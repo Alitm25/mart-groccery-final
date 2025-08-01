@@ -2,8 +2,7 @@ import {useBasket} from "@/stores/basketContext";
 import {IconBox, ImageView} from "@/components";
 import React from "react";
 import {useBasketData} from "@/hooks/useBasketData";
-import {ApiResponseSingleType} from "@/types";
-import {BasketItemsType} from "@/types/api/Basket";
+
 
 
 export function MiniShoppingCard() {
