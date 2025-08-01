@@ -2,14 +2,13 @@ import {useBasket} from "@/stores/basketContext";
 import {IconBox, ImageView} from "@/components";
 import React from "react";
 import {useBasketData} from "@/hooks/useBasketData";
+import {ApiResponseSingleType} from "@/types";
+import {BasketItemsType} from "@/types/api/Basket";
 
-interface Props {
 
-};
-
-export function MiniShoppingCard({}: Props) {
-     const {incrementItem, decrementItem} = useBasket();
-     const {basketItems} = useBasketData();
+export function MiniShoppingCard() {
+     // const {incrementItem, decrementItem} = useBasket();
+     const {updateProduct, basketItems} = useBasketData();
 
     return (
                <div className={'absolute z-20 bg-white max-h-[70vh] right-8 top-18 w-[500px] rounded-[5px] lg:border-[1px] border-green-300 p-[30px] overflow-y-auto'}>
@@ -37,8 +36,8 @@ export function MiniShoppingCard({}: Props) {
                                                                    }
                                                                    <div className="input-product__container border-[1px] font-quicksand font-bold rounded-[4px] border-green-300 text-green-300 h-full p-[3px] w-16 md:w-20 flex justify-evenly items-center">
                                                                        <div className="flex flex-col justify-between items-center">
-                                                                           <IconBox icon={'up icon-angle-small-up cursor-pointer'} size={10} onClick={ () => incrementItem(item.id)}/>
-                                                                           <IconBox icon={'down icon-angle-small-down cursor-pointer'} size={10} onClick={ () => decrementItem(item.id)}/>
+                                                                           <IconBox icon={'up icon-angle-small-up cursor-pointer'} size={10} onClick={ () => updateProduct(item.product.data.id, 'increase')}/>
+                                                                           <IconBox icon={'down icon-angle-small-down cursor-pointer'} size={10} onClick={ () => updateProduct(item.product.data.id, 'decrease')}/>
                                                                        </div>
                                                                        {item.quantity}
                                                                    </div>
@@ -54,7 +53,7 @@ export function MiniShoppingCard({}: Props) {
                                : <div>Your card is empty</div>
                            }
                        </div>
-                   }
+                   } 
                    {
                        basketItems.length > 0 &&
                        <div>
@@ -67,6 +66,5 @@ export function MiniShoppingCard({}: Props) {
                    }
 
                </div>
-
     );
 };

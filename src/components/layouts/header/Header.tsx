@@ -5,7 +5,6 @@ import useOverlay from "@/hooks/useOverlay";
 import {useModal} from "@/stores/ModalContext";
 import {useAuth} from "@/stores/AuthContext";
 import {ConfirmLogoutModal} from "@/components/auth/ConfirmLogoutModal";
-import {useBasket} from "@/stores/basketContext";
 import {useBasketData} from "@/hooks/useBasketData";
 
 
@@ -16,8 +15,6 @@ export function Header() {
     const {currentModal, openModal, closeModal} = useModal();
     const {isLogin}                             = useAuth();
     // const {basketItem}                          = useBasket();
-
-    console.log(basketItems);
 
     const mobileMenuBtnHandler = (e :MouseEvent) => {
         e.stopPropagation();
