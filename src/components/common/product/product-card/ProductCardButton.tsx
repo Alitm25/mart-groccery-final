@@ -2,7 +2,6 @@ import React from "react";
 import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 import {IconBox} from "@/components";
-import {useBasket} from "@/stores/basketContext";
 import {useBasketData} from "@/hooks/useBasketData";
 
 interface Props {

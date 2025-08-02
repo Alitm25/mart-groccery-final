@@ -14,7 +14,7 @@ export function SimpleProductCard({data}: Props) {
 
     return (
         <div className={'w-full'}>
-            <div className="group border-[1px] border-gray-200 hover:border-green-150 transition-[border] rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full">
+            <div className="group border-[1px] border-gray-200 hover:border-green-150 transition-[border] rounded-[10px] hover:shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] relative p-3 md:p-4 xl:px-5 xl:pb-5 lg:pt-[65px] h-full transition-all">
                 {data.attributes && data.attributes.label && <Badge label={data.attributes.label} sale_price={data.attributes.sell_price} price={data.attributes.price}/>}
                 <div className="mt-8 hidden group-hover:flex rounded-[5px] border-[1px] border-green-200 w-max absolute top-[100px] left-[50%] translate-x-[-50%] bg-white productAction cursor-pointer">
                     <div className="p-2.5 border-r-[1px] border-r-green-200 hover:bg-green-150">
@@ -63,7 +63,7 @@ export function SimpleProductCard({data}: Props) {
                                 </button>
                             </div>
                         </> :
-                        <div className={`flex items-center justify-between ${basketItems ? 'mt-0' : 'mt-3'}`}>
+                        <div className={`flex items-center justify-between ${basketItems ? 'mt-0' : 'mt-3'} h-[34px]`}>
                             {
                                 data?.attributes?.sell_price ?
                                     <div>

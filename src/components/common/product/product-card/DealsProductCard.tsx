@@ -60,7 +60,7 @@ export function DealsProductCard({data}: Props) {
                         </div>
                     </div>
                     <div className="font-lato text-xsmall text-gray-500 mt-1">{data.attributes.weight} {data.attributes.unit}</div>
-                    <div className={`flex items-center justify-between ${basketItems ? 'mt-0' : 'mt-3'}`}>
+                    <div className={`flex items-center justify-between ${basketItems ? 'mt-0' : 'mt-3'} h-10`}>
                         {
                             data.attributes.sell_price ?
                                 <div>
