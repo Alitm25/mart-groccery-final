@@ -7,6 +7,7 @@ import {registerApiCall} from "@/api/Register";
 import {useAuth} from "@/stores/AuthContext";
 import {toast} from "react-toastify";
 import {useModal} from "@/stores/ModalContext";
+import {useBasketData} from "@/hooks/useBasketData";
 
 interface Props {
     onClose: () => void;
@@ -23,6 +24,8 @@ export function RegisterModal({onClose}: Props) {
     const mutate = useMutation({mutationFn: registerApiCall});
     const {login, isLogin} = useAuth();
     const {closeModal, openModal} = useModal();
+    const {uuid2User} = useBasketData();
+
 
     const onSubmit = (data :formData) => {
         mutate.mutate(data, {
@@ -31,6 +34,7 @@ export function RegisterModal({onClose}: Props) {
                 login(response.jwt, response.user);
                 toast.success(`You have been successfully registered!`);
                 closeModal();
+                uuid2User();
             }
         })
     }

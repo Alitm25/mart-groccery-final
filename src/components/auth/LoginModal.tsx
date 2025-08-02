@@ -7,6 +7,7 @@ import {useMutation} from "@tanstack/react-query";
 import {loginApiCall, registerApiCall} from "@/api/Register";
 import {useAuth} from "@/stores/AuthContext";
 import {toast} from "react-toastify";
+import {useBasketData} from "@/hooks/useBasketData";
 
 interface Props {
     onClose: () => void;
@@ -22,6 +23,7 @@ export function LoginModal({onClose}: Props) {
     const {register, handleSubmit, formState: {errors}} = useForm<formData>();
     const mutate = useMutation({mutationFn: loginApiCall});
     const {login} = useAuth();
+    const {uuid2User} = useBasketData();
 
 
     const onSubmit = (data :formData) => {
@@ -30,6 +32,7 @@ export function LoginModal({onClose}: Props) {
                 login(response.jwt, response.user);
                 toast.success(`Welcome back ${data.identifier}`);
                 closeModal();
+                uuid2User();
             }
         })
     }
