@@ -27,6 +27,18 @@ export async function basketApiCall() :Promise<ApiResponseSingleType<BasketItems
 }
 
 export async function updateBasketApiCall(data :updateBasket): Promise<ApiResponseSingleType<BasketItemsType>> {
+    const uuid = window.localStorage.getItem('uuid');
+
+    if (uuid) {
+        return await apiClient.put('my-basket', {
+            data: data,
+        }, {
+            params: {
+                uuid
+            }
+        });
+    }
+
     return await apiClient.put('my-basket', {
         data: data,
     });
