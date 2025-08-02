@@ -7,6 +7,7 @@ export async function basketApiCall() :Promise<ApiResponseSingleType<BasketItems
     const token = window.localStorage.getItem('loginToken');
     const uuid = window.localStorage.getItem('uuid');
 
+    // API for users without both uuid & loginToken
     if (!token && !uuid) {
         const response :ApiResponseSingleType<BasketItemsType> = await apiClient.post('my-basket');
         window.localStorage.setItem('uuid', response.data.attributes.uuid);
@@ -14,6 +15,14 @@ export async function basketApiCall() :Promise<ApiResponseSingleType<BasketItems
         return response;
     }
 
+    // API for users with just uuid
+    if (uuid) {
+        return await apiClient.get('my-basket', {
+            params: {
+                uuid
+            }
+        });
+    }
     return await apiClient.get('my-basket');
 }
 
