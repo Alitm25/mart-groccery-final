@@ -1,4 +1,3 @@
-import {useBasket} from "@/stores/basketContext";
 import {IconBox, ImageView} from "@/components";
 import React from "react";
 import {useBasketData} from "@/hooks/useBasketData";
@@ -6,6 +5,8 @@ import {useBasketData} from "@/hooks/useBasketData";
 
 
 export function MiniShoppingCard() {
+    // TODO fix the image loading problem
+
      // const {incrementItem, decrementItem} = useBasket();
      const {updateProduct, basketItems} = useBasketData();
 

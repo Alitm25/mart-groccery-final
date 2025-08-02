@@ -1,9 +1,11 @@
 import React from 'react';
-import {IconBox, ImageView, LoginModal, Logo} from "@/components";
+import {IconBox, ImageView, Logo} from "@/components";
 import Link from "next/link";
 
 
 export function Footer() {
+    // TODO fix the menus in responsive
+    // TODO fix the banner responsive problem
 
     return (
         <footer className="container mb-[68px] relative">
