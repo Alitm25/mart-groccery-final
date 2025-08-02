@@ -19,19 +19,19 @@ export function AuthContextProvider({children} :Props) {
     const [isLogin, setIsLogin] = useState(false);
 
     useEffect(() => {
-        if (window.localStorage.getItem('token')) {
+        if (window.localStorage.getItem('loginToken')) {
             setIsLogin(true);
         }
     }, []);
 
     const loginHandler = (jwt :string, user :UserType) => {
-        window.localStorage.setItem('token', jwt);
+        window.localStorage.setItem('loginToken', jwt);
         window.localStorage.setItem('user', JSON.stringify(user));
         setIsLogin(true);
     }
 
     const logOutHandler = () => {
-        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('loginToken');
         window.localStorage.removeItem('user');
         setIsLogin(false);
     }
