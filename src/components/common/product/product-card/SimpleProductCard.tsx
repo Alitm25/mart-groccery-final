@@ -2,16 +2,15 @@ import {Badge, IconBox, ImageView, Rating} from "@/components";
 import Link from "next/link";
 import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
-import {useBasket} from "@/stores/basketContext";
 import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
+import {useBasketData} from "@/hooks/useBasketData";
 
 interface Props {
     data: EntityType<ProductsType>
 }
 
 export function SimpleProductCard({data}: Props) {
-    const {getItem} = useBasket();
-    const currentProductInBasket = getItem(data.id);
+    const {basketItems} = useBasketData();
 
     return (
         <div className={'w-full'}>
@@ -64,7 +63,7 @@ export function SimpleProductCard({data}: Props) {
                                 </button>
                             </div>
                         </> :
-                        <div className={`flex items-center justify-between ${currentProductInBasket ? 'mt-0' : 'mt-3'}`}>
+                        <div className={`flex items-center justify-between ${basketItems ? 'mt-0' : 'mt-3'}`}>
                             {
                                 data?.attributes?.sell_price ?
                                     <div>

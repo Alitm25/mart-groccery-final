@@ -2,9 +2,11 @@ import {Modal} from "@/components";
 import {useModal} from "@/stores/ModalContext";
 import {useAuth} from "@/stores/AuthContext";
 import {toast} from "react-toastify";
+import {useQueryClient} from "@tanstack/react-query";
 
 
 export function ConfirmLogoutModal({}) {
+    const queryClient = useQueryClient();
     const {closeModal} = useModal();
     const {logout} = useAuth();
 
@@ -12,6 +14,7 @@ export function ConfirmLogoutModal({}) {
         logout();
         toast.success('You have successfully logged out.');
         closeModal();
+        queryClient.invalidateQueries({queryKey: ['get-basket']});
     }
 
     return (
