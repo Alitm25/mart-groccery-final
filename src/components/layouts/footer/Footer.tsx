@@ -53,30 +53,29 @@ export function Footer() {
                         </div>
                     </div>
                 </div>
+                {/*<div className="pt-4 md:pt-0">*/}
+                {/*    <div className="flex text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading4 text-blue-300 toggle items-center">*/}
+                {/*        Company*/}
+                {/*        <IconBox icon={'icon-down-dark inline-block sm:hidden'} size={24}/>*/}
+                {/*    </div>*/}
+                {/*    <ul className="hidden md:flex flex-col gap-2.5">*/}
+                {/*        <li className="font-lato text-medium text-blue-300 mt-4 lg:mt-6"><Link href="#">About Us</Link></li>*/}
+                {/*        <li className="font-lato text-medium text-blue-300"><Link href="#">Delivery Information</Link></li>*/}
+                {/*        <li className="font-lato text-medium text-blue-300"><Link href="#">Privacy Policy</Link></li>*/}
+                {/*        <li className="font-lato text-medium text-blue-300"><Link href="#">Terms & Conditions</Link></li>*/}
+                {/*        <li className="font-lato text-medium text-blue-300"><Link href="#">Contact Us</Link></li>*/}
+                {/*        <li className="font-lato text-medium text-blue-300"><Link href="#">Support Center</Link></li>*/}
+                {/*        <li className="font-lato text-medium text-blue-300"><Link href="#">Careers</Link></li>*/}
+                {/*    </ul>*/}
+                {/*</div>*/}
+
                 <div className="pt-4 md:pt-0">
-                    <div className="flex text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading4 text-blue-300 toggle">
-                        Company
-                        <IconBox icon={'icon-down-dark inline-block sm:hidden'} size={24}/>
-                    </div>
-                    <ul className="hidden md:flex flex-col gap-2.5">
-                        <li className="font-lato text-medium text-blue-300 mt-4 lg:mt-6"><Link href="#">About Us</Link></li>
-                        <li className="font-lato text-medium text-blue-300"><Link href="#">Delivery Information</Link></li>
-                        <li className="font-lato text-medium text-blue-300"><Link href="#">Privacy Policy</Link></li>
-                        <li className="font-lato text-medium text-blue-300"><Link href="#">Terms & Conditions</Link></li>
-                        <li className="font-lato text-medium text-blue-300"><Link href="#">Contact Us</Link></li>
-                        <li className="font-lato text-medium text-blue-300"><Link href="#">Support Center</Link></li>
-                        <li className="font-lato text-medium text-blue-300"><Link href="#">Careers</Link></li>
-                    </ul>
-                </div>
-                <div className="pt-4 md:pt-0">
-                    <div
-                        className="flex text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading4 text-blue-300 toggle">
+                    <div className="flex text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading4 text-blue-300 toggle items-center">
                         Information
                         <IconBox icon={'icon-down-dark inline-block sm:hidden'} size={24}/>
                     </div>
                     <ul className="hidden md:flex flex-col gap-2.5">
-                        <li className="font-lato text-medium text-blue-300 mt-4 lg:mt-6"><Link href="#">Search Terms</Link>
-                        </li>
+                        <li className="font-lato text-medium text-blue-300 mt-4 lg:mt-6"><Link href="#">Search Terms</Link></li>
                         <li className="font-lato text-medium text-blue-300"><Link href="#">Advanced Search</Link></li>
                         <li className="font-lato text-medium text-blue-300"><Link href="#">Help & FAQ's</Link></li>
                         <li className="font-lato text-medium text-blue-300"><Link href="#">Store Location</Link></li>

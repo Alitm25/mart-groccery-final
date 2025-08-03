@@ -56,8 +56,7 @@ export function SimpleProductCard({data}: Props) {
                             </div>
                             <div className="mt-2.5 font-lato text-blue-300 text-xsmall">Sold: {data?.attributes?.sold}/{data?.attributes?.total}</div>
                             <div className="mt-[23px]">
-                                <button
-                                    className="flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 transition-[background-color] px-2 py-2 lg:py-[14px]">
+                                <button className="flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 transition-[background-color] px-2 py-2 lg:py-[14px]">
                                     <i className="icon-shopping-cart text-[22px]"></i>
                                     <span className="text-heading-sm">Add To Card</span>
                                 </button>
