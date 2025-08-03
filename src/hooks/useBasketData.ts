@@ -7,7 +7,7 @@ export function useBasketData() {
     const queryClient = useQueryClient();
 
     const {data: basketData} = useQuery({queryKey: ['get-basket'], queryFn: basketApiCall})
-    const mutate = useMutation({mutationFn: updateBasketApiCall})
+    const mutateUpdate = useMutation({mutationFn: updateBasketApiCall})
     const mutateUuid2User = useMutation({mutationFn: UUID2UserApiCall, onSuccess: (response) => {
             console.log('response: ', response);
             window.localStorage.removeItem('uuid');
