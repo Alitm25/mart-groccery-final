@@ -16,11 +16,11 @@ export function FooterItem({title, item}: Props) {
 
     return (
         <div className="pt-4 md:pt-0">
-            <div onClick={toggleHandler} className="flex text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading4 text-blue-300 toggle items-center">
+            <div onClick={toggleHandler} className="flex text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading4 text-blue-300 toggle items-center mb-4 lg:mb-6">
                 {title}
                 <IconBox icon={`${isOpen ? 'icon-angle-small-up' : 'icon-down-dark'} inline-block sm:hidden`} size={24}/>
             </div>
-            <ul className="hidden md:flex flex-col gap-2.5 mb-4 lg:mb-6">
+            <ul className={`${isOpen ? 'flex' : 'hidden'} md:flex flex-col gap-2.5`}>
                 {
                     item.map( (title :string, index :number) => {
                         return <li key={index} className="font-lato text-medium text-blue-300"><Link href="#">{title}</Link></li>
