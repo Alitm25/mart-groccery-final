@@ -5,7 +5,6 @@ import {FooterItem} from "@/components/common/ui/footer-menu/FooterItem";
 
 
 export function Footer() {
-    // TODO fix the banner responsive problem
     const companyMenu = [
         {
           title: 'About Us', link: '#'
@@ -64,7 +63,12 @@ export function Footer() {
                             Your Daily Sopping with Nest Mart
                         </div>
                     </div>
-                    <ImageView src={'/assets/images/Screenshot (76).png'} alt={'banner'} width={587} height={331} />
+                    <div className={'hidden md:block'}>
+                        <ImageView src={'/assets/images/Screenshot (76).png'} alt={'banner'} width={587} height={331} />
+                    </div>
+                    <div className={'block md:hidden'}>
+                        <ImageView src={'/assets/images/footer-banner-mobile.png'} alt={'banner'} width={387} height={231} />
+                    </div>
                 </div>
             </div>
             <div
