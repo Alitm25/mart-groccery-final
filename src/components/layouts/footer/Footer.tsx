@@ -7,22 +7,48 @@ import {FooterItem} from "@/components/common/ui/footer-menu/FooterItem";
 export function Footer() {
     // TODO fix the banner responsive problem
     const companyMenu = [
-        'About Us',
-        'Delivery Information',
-        'Privacy Policy',
-        'Terms & Conditions',
-        'Contact Us',
-        'Support Center',
-        'Careers',
+        {
+          title: 'About Us', link: '#'
+        },
+        {
+          title: 'Delivery Information', link: '#'
+        },
+        {
+            title: 'Privacy Policy', link: '#'
+        },
+        {
+            title: 'Terms & Conditions', link: '#'
+        },
+        {
+            title: 'Contact Us', link: '#'
+        },
+        {
+            title: 'Support Center', link: '#'
+        },
+        {
+            title: 'Careers', link: '#'
+        },
     ]
 
     const informationMenu = [
-        'Search Terms',
-        'Advanced Search',
-        "Help & FAQ's",
-        'Store Location',
-        'Orders & Returns',
-        'Feedback for us'
+        {
+            title: 'Search Terms', link: '#'
+        },
+        {
+            title: 'Advanced Search', link: '#'
+        },
+        {
+            title: "Help & FAQ's", link: '#'
+        },
+        {
+            title: 'Store Location', link: '#'
+        },
+        {
+            title: 'Orders & Returns', link: '#'
+        },
+        {
+            title: 'Feedback for us', link: '#'
+        },
     ]
 
 

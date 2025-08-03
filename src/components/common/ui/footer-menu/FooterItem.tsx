@@ -4,7 +4,10 @@ import {IconBox} from "@/components";
 
 interface Props {
     title: string;
-    item: Array<string>;
+    item: Array<{
+        title: string;
+        link: string;
+    }>;
 };
 
 export function FooterItem({title, item}: Props) {
@@ -22,8 +25,8 @@ export function FooterItem({title, item}: Props) {
             </div>
             <ul className={`${isOpen ? 'flex' : 'hidden'} md:flex flex-col gap-2.5`}>
                 {
-                    item.map( (title :string, index :number) => {
-                        return <li key={index} className="font-lato text-medium text-blue-300"><Link href="#">{title}</Link></li>
+                    item.map( (item, index) => {
+                        return <li key={index} className="font-lato text-medium text-blue-300"><Link href={item.link}>{item.title}</Link></li>
 
                     })
                 }
