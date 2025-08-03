@@ -38,7 +38,7 @@ export function useBasketData() {
             basket_items: preparedUpdateData
         }
 
-        mutate.mutate(updateBasketData, {
+        mutateUpdate.mutate(updateBasketData, {
             onSuccess: () => {
                 queryClient.invalidateQueries({queryKey: ['get-basket']});
             }
@@ -71,7 +71,7 @@ export function useBasketData() {
             basket_items: preparedUpdateData
         }
 
-        mutate.mutate(updateBasketData, {
+        mutateUpdate.mutate(updateBasketData, {
             onSuccess: (response) => {
                 queryClient.invalidateQueries({queryKey: ['get-basket']});
             }
