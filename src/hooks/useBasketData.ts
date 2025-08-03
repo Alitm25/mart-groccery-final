@@ -1,18 +1,19 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {basketApiCall, updateBasketApiCall, UUID2UserApiCall} from "@/api/Basket";
+import {basketApiCall, getBasketProductDataApiCall, updateBasketApiCall, UUID2UserApiCall} from "@/api/Basket";
 import {basketItems, updateBasket} from "@/types/api/Basket";
 
 
 export function useBasketData() {
     const queryClient = useQueryClient();
 
-    const {data: basketData} = useQuery({queryKey: ['get-basket'], queryFn: basketApiCall})
-    const mutateUpdate = useMutation({mutationFn: updateBasketApiCall})
+    const {data: basketData} = useQuery({queryKey: ['get-basket'], queryFn: basketApiCall});
+    const mutateUpdate = useMutation({mutationFn: updateBasketApiCall});
     const mutateUuid2User = useMutation({mutationFn: UUID2UserApiCall, onSuccess: (response) => {
-            console.log('response: ', response);
             window.localStorage.removeItem('uuid');
             queryClient.invalidateQueries({queryKey: ['get-basket']});
-        }})
+    }});
+    const mutateBasketProduct = useMutation({mutationFn: getBasketProductDataApiCall, onSuccess: (response) => {
+            console.log(response)}})
 
     const basketItems = basketData?.data.attributes.basket_items ?? [];
 
@@ -43,6 +44,8 @@ export function useBasketData() {
                 queryClient.invalidateQueries({queryKey: ['get-basket']});
             }
         })
+
+        mutateBasketProduct.mutate(productID);
     }
 
     const updateProductHandler = (productID :number, type :'increase' | 'decrease') => {
