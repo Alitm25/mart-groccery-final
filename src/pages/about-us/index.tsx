@@ -29,7 +29,7 @@ export default function Index({}: Props) {
             </Section>
             <Section>
                 <div className={'flex flex-col items-center mb-16'}>
-                    <h2 className={'text-heading1 font-quicksand text-[#253D4E] '}>What We Provide?</h2>
+                    <h2 className={'text-heading3 md:text-heading1 font-quicksand text-[#253D4E] '}>What We Provide?</h2>
                     <svg width="150" height="15" viewBox="0 0 150 15" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 7.5
            C12.5 0, 37.5 15, 50 7.5
