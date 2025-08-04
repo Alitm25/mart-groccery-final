@@ -7,7 +7,7 @@ import {FooterItem} from "@/components/common/ui/footer-menu/FooterItem";
 export function Footer() {
     const companyMenu = [
         {
-          title: 'About Us', link: '#'
+          title: 'About Us', link: '/about-us'
         },
         {
           title: 'Delivery Information', link: '#'
