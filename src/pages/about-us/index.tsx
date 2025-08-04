@@ -4,7 +4,7 @@ interface Props {
 
 export default function Index({}: Props) {
     return (
-        <div>
+        <div className={'container'}>
             This is about us page
         </div>
     );
