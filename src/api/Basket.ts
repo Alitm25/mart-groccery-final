@@ -1,5 +1,5 @@
 import apiClient from "@/api/config/ApiClient";
-import {ApiResponseSingleType, ApiResponseType} from "@/types";
+import {ApiResponseSingleType, ApiResponseType, EntityType} from "@/types";
 import {BasketItemsType, updateBasket} from "@/types/api/Basket";
 import {ProductsType} from "@/types/api/Products";
 
@@ -45,18 +45,6 @@ export async function updateBasketApiCall(data :updateBasket) :Promise<ApiRespon
     });
 }
 
-export async function getBasketProductDataApiCall(productID :number) :Promise<ApiResponseType<ProductsType>> {
-    return await apiClient.get('products', {
-        params: {
-            populate: 'thumbnail',
-            filters: {
-                id: {
-                    $eq: productID
-                }
-            }
-        }
-    })
-}
 
 export async function UUID2UserApiCall(uuid :string) {
     return await apiClient.put('basket2User/' + uuid)
