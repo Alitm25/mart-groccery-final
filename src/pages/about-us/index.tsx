@@ -4,6 +4,7 @@ import {IconBox, ImageView} from "@/components";
 import {useState} from "react";
 import {Section} from "@/components/section/Section";
 import {ProvideCard} from "@/components/pages/aboutUsPage";
+import {InfoBlock} from "@/components/common/ui/info-block";
 
 interface Props {
 
@@ -55,7 +56,7 @@ export default function Index({}: Props) {
                     <div>
                         <ImageView alt={'about-body'} width={325} height={438} src={'/assets/images/about-us/Rectangle-30.png'} className={'rounded-lg object-contain'}/>
                     </div>
-                    <div>
+                    <div className={'mb-7'}>
                         <ImageView alt={'about-body'} width={426} height={575} src={'/assets/images/about-us/Rectangle-31.png'} className={'rounded-lg'}/>
                     </div>
                     <div className={'flex flex-col items-center justify-center lg:items-start lg:justify-evenly h-full text-start lg:text-start w-full lg:w-4/12'}>
@@ -67,8 +68,10 @@ export default function Index({}: Props) {
                 </div>
             </Section>
             <Section>
-                <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'}>
-
+                <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12'}>
+                    <InfoBlock title={'Who we are'} description={'Volutpat diam ut venenatis tellus in metus. Nec dui nunc mattis enim ut tellus eros donec ac odio orci ultrices in. ellus eros donec ac odio orci ultrices in.'} />
+                    <InfoBlock title={'Our history'} description={'Volutpat diam ut venenatis tellus in metus. Nec dui nunc mattis enim ut tellus eros donec ac odio orci ultrices in. ellus eros donec ac odio orci ultrices in.'} />
+                    <InfoBlock title={'Our mission'} description={'Volutpat diam ut venenatis tellus in metus. Nec dui nunc mattis enim ut tellus eros donec ac odio orci ultrices in. ellus eros donec ac odio orci ultrices in.'} />
                 </div>
             </Section>
         </>
