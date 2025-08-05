@@ -10,13 +10,13 @@ interface Props {
 };
 
 export default function Index({}: Props) {
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    const sliderImages = [
-        '/assets/images/about-us/about-3.jpg',
-        '/assets/images/about-us/about-2.jpg',
-        '/assets/images/about-us/about-1.jpg',
-        '/assets/images/about-us/about-4.jpg'
-    ]
+    // const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    // const sliderImages = [
+    //     '/assets/images/about-us/about-3.jpg',
+    //     '/assets/images/about-us/about-2.jpg',
+    //     '/assets/images/about-us/about-1.jpg',
+    //     '/assets/images/about-us/about-4.jpg'
+    // ]
     // @ts-ignore
     return (
         <>
@@ -48,6 +48,22 @@ export default function Index({}: Props) {
                     <ProvideCard icon={'/assets/images/about-us/provide-card-images/003-exchange.png'}  title={'Easy Returns'}           description={'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form'} />
                     <ProvideCard icon={'/assets/images/about-us/provide-card-images/Group(2).png'}      title={'100% Satisfaction'}      description={'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form'} />
                     <ProvideCard icon={'/assets/images/about-us/provide-card-images/surface1.png'}      title={'Great Daily Deal'}       description={'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form'} />
+                </div>
+            </Section>
+            <Section>
+                <div className={'flex flex-col lg:flex-row items-center justify-center gap-6'}>
+                    <div>
+                        <ImageView alt={'about-body'} width={325} height={438} src={'/assets/images/about-us/Rectangle-30.png'} className={'rounded-lg object-contain'}/>
+                    </div>
+                    <div>
+                        <ImageView alt={'about-body'} width={426} height={575} src={'/assets/images/about-us/Rectangle-31.png'} className={'rounded-lg'}/>
+                    </div>
+                    <div className={'flex flex-col items-center justify-center lg:items-start lg:justify-evenly h-full text-start lg:text-start w-full lg:w-4/12'}>
+                        <p className={'text-heading5 xl:text-heading4 font-quicksand text-[#7E7E7E] mb-[19px]'}>Our performance</p>
+                        <h2 className={'text-heading3 lg:text-heading2 xl:text-heading1 font-quicksand text-[#253D4E] mb-10'}>Your Partner for e-commerce grocery solution</h2>
+                        <p className={'font-lato text-sm lg:text-base text-[#7E7E7E] font-normal mb-4'}>Ed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia</p>
+                        <p className={'font-lato text-sm lg:text-base text-[#7E7E7E] font-normal'}>Pitatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia</p>
+                    </div>
                 </div>
             </Section>
         </>
