@@ -100,7 +100,7 @@ export function Header() {
                             <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? 'Logout' : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                         </li>
                         <li className="flex gap-2 cursor-pointer">
-                            <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}  hideTitleOnMobile={true} badge={4} titleClassName={'text-medium text-gray-500 font-lato'}/>
+                            <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}  hideTitleOnMobile={true} badge={basketItems.length} titleClassName={'text-medium text-gray-500 font-lato'}/>
                         </li>
                     </ul>
                 </div>
