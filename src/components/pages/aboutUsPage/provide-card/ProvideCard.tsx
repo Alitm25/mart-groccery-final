@@ -1,4 +1,4 @@
-import {IconBox, ImageView} from "@/components";
+import {ImageView} from "@/components";
 import Link from "next/link";
 
 interface Props {

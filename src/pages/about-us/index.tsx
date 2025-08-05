@@ -74,6 +74,11 @@ export default function Index({}: Props) {
                     <InfoBlock title={'Our mission'} description={'Volutpat diam ut venenatis tellus in metus. Nec dui nunc mattis enim ut tellus eros donec ac odio orci ultrices in. ellus eros donec ac odio orci ultrices in.'} />
                 </div>
             </Section>
+            <Section>
+                <div className={'w-full rounded-lg'}>
+
+                </div>
+            </Section>
         </>
 
     );
