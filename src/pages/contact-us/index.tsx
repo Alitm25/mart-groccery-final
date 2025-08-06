@@ -1,5 +1,5 @@
 import {Section} from "@/components/section/Section";
-import {InfoBlock} from "@/components/common/ui/info-block";
+import {InfoBlock} from "@/components";
 
 interface Props {
     
@@ -22,6 +22,17 @@ export default function Index({}: Props) {
                         <InfoBlock title={'03. Billing Inquiries'} description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.'} />
                         <InfoBlock title={'04. General Inquiries'} description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.'} />
                     </div>
+                </div>
+            </Section>
+            <Section>
+                <div className={'w-full h-[483px]'}>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.314876619886!2d-87.62614042330084!3d41.88608486491334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2ca8b34afe61%3A0x6caeb5f721ca846!2s205%20N%20Michigan%20Ave%20Suit%20810%2C%20Chicago%2C%20IL%2060601%2C%20USA!5e0!3m2!1sen!2sae!4v1754523240590!5m2!1sen!2sae"
+                        className={"w-full h-full border-none rounded"}
+                        allowFullScreen={false}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </Section>
         </div>
