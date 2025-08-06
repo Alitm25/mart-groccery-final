@@ -7,7 +7,6 @@ import {ProvideCard} from "@/components/pages/aboutUsPage";
 import {InfoBlock} from "@/components/common/ui/info-block";
 import {TeamMemberCard} from "@/components/pages/aboutUsPage/team-member-card/TeamMemberCard";
 
-interface Props {
 
 export default function Index() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
