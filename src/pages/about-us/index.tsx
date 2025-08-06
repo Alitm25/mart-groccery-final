@@ -75,8 +75,35 @@ export default function Index({}: Props) {
                 </div>
             </Section>
             <Section>
-                <div className={'w-full rounded-lg'}>
+                <div className={'w-full rounded-xl relative bg-fixed bg-center p-32'} style={{backgroundImage: "url('/assets/images/about-us/about-banner.jpg')"}}>
+                    <div className="absolute inset-0 bg-[#4B675A] opacity-80 rounded-xl"></div>
 
+                     <div className={'flex flex-wrap md:flex-row gap-y-12 gap-x-6 items-center justify-between w-full h-auto relative z-10'}>
+                         <div className={'flex flex-col items-center justify-center'}>
+                             <p className={'text-6xl lg:text-7xl text-white font-bold'}>12+</p>
+                             <p className={'text-heading-sm md:text-heading5 font-quicksand text-white'}>Glorious years</p>
+                         </div>
+
+                         <div className={'flex flex-col items-center justify-center'}>
+                             <p className={'text-6xl lg:text-7xl text-white font-bold'}>360+</p>
+                             <p className={'text-heading-sm md:text-heading5 font-quicksand text-white'}>Happy clients</p>
+                         </div>
+
+                         <div className={'flex flex-col items-center justify-center'}>
+                             <p className={'text-6xl lg:text-7xl text-white font-bold'}>580+</p>
+                             <p className={'text-heading-sm md:text-heading5 font-quicksand text-white'}>Projects complete</p>
+                         </div>
+
+                         <div className={'flex flex-col items-center justify-center'}>
+                             <p className={'text-6xl lg:text-7xl text-white font-bold'}>160+</p>
+                             <p className={'text-heading-sm md:text-heading5 font-quicksand text-white'}>Team advisor</p>
+                         </div>
+
+                         <div className={'flex flex-col items-center justify-center'}>
+                             <p className={'text-6xl lg:text-7xl text-white font-bold'}>48+</p>
+                             <p className={'text-heading-sm md:text-heading5 font-quicksand text-white'}>Products Sale</p>
+                         </div>
+                     </div>
                 </div>
             </Section>
         </>
