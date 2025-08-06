@@ -12,13 +12,13 @@ interface Props {
 };
 
 export default function Index({}: Props) {
-    // const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    // const sliderImages = [
-    //     '/assets/images/about-us/about-3.jpg',
-    //     '/assets/images/about-us/about-2.jpg',
-    //     '/assets/images/about-us/about-1.jpg',
-    //     '/assets/images/about-us/about-4.jpg'
-    // ]
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const sliderImages = [
+        '/assets/images/about-us/about-3.jpg',
+        '/assets/images/about-us/about-2.jpg',
+        '/assets/images/about-us/about-1.jpg',
+        '/assets/images/about-us/about-4.jpg'
+    ]
     const merindaLink = {
         facebook: '#',
         twitter: '#',
@@ -35,9 +35,44 @@ export default function Index({}: Props) {
     return (
         <>
             <Section>
-                <div className={'container'}>
-                    <div className={'flex items-end justify-between py-12'}>
+                <div className="flex flex-col md:flex-row w-full h-full">
+                    {/* Left Side - Image */}
+                    <div className="w-full md:w-1/2 h-[500px] bg-cover bg-center" style={{ backgroundImage: `url(/assets/images/about-us/about-3.jpg)` }} />
 
+                    {/* Right Side - Content */}
+                    <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
+                        <h2 className="text-3xl font-bold text-slate-800 mb-4">Welcome to NestMart</h2>
+                        <p className="text-gray-600 mb-6">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...
+                        </p>
+
+                        {/* Swiper Thumbnail Slider */}
+                        <div className="relative mt-6">
+                            <Swiper
+                                modules={[Navigation]}
+                                navigation={{
+                                    prevEl: '.swiper-button-prev',
+                                    nextEl: '.swiper-button-next',
+                                }}
+                                spaceBetween={20}
+                                slidesPerView={3}
+                                className="w-full"
+                            >
+                                {sliderImages.map((slide, index) => (
+                                    <SwiperSlide key={index}>
+                                        <img src={slide} alt="" className="rounded-md object-cover h-32 w-full" />
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+                            {/* Custom Arrows */}
+                            <button className="swiper-button-prev absolute -left-6 top-1/2 transform -translate-y-1/2 bg-teal-400 text-white p-2 rounded-full z-10">
+                                ←
+                            </button>
+                            <button className="swiper-button-next absolute -right-6 top-1/2 transform -translate-y-1/2 bg-teal-400 text-white p-2 rounded-full z-10">
+                                →
+                            </button>
+                        </div>
                     </div>
                 </div>
             </Section>
