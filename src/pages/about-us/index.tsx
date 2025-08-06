@@ -106,6 +106,29 @@ export default function Index({}: Props) {
                      </div>
                 </div>
             </Section>
+            <Section>
+                <div className={'flex flex-col items-center mb-16'}>
+                    <h2 className={'text-heading3 md:text-heading1 font-quicksand text-[#253D4E] '}>Our Team</h2>
+                    <svg width="150" height="15" viewBox="0 0 150 15" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 7.5
+           C12.5 0, 37.5 15, 50 7.5
+           C62.5 0, 87.5 15, 100 7.5
+           C112.5 0, 137.5 15, 150 7.5"
+                              fill="none"
+                              stroke="#A7F3D0"
+                              stroke-width="6"
+                              stroke-linecap="round" />
+                    </svg>
+                </div>
+                <div className={'flex flex-wrap gap-x-6'}>
+                    <div className={'flex flex-col items-start justify-evenly w-4/12'}>
+                        <p className={'font-quicksand text-[18px] font-bold'}>Our Team</p>
+                        <h2 className={'text-heading3 md:text-heading1 font-quicksand text-[#253D4E]'}>Meet Our Expert Team</h2>
+                        <p className={'font-lato text-heading-sm text-[#7E7E7E] max-w-[400px] font-normal cursor-default mb-6'}>Proin ullamcorper pretium orci. Donec necscele risque leo. Nam massa dolor imperdiet neccon sequata congue idsem. Maecenas malesuada faucibus finibus. </p>
+                        <p className={'font-lato text-heading-sm text-[#7E7E7E] max-w-[400px] font-normal cursor-default'}>Proin ullamcorper pretium orci. Donec necscele risque leo. Nam massa dolor imperdiet neccon sequata congue idsem. Maecenas malesuada faucibus finibus. </p>
+                    </div>
+                </div>
+            </Section>
         </>
 
     );
