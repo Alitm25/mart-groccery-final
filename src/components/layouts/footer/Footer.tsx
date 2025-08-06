@@ -19,7 +19,7 @@ export function Footer() {
             title: 'Terms & Conditions', link: '#'
         },
         {
-            title: 'Contact Us', link: '#'
+            title: 'Contact Us', link: '/contact-us'
         },
         {
             title: 'Support Center', link: '#'
