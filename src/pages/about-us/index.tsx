@@ -5,6 +5,7 @@ import {useState} from "react";
 import {Section} from "@/components/section/Section";
 import {ProvideCard} from "@/components/pages/aboutUsPage";
 import {InfoBlock} from "@/components/common/ui/info-block";
+import {TeamMemberCard} from "@/components/pages/aboutUsPage/team-member-card/TeamMemberCard";
 
 interface Props {
 
@@ -128,6 +129,9 @@ export default function Index({}: Props) {
                         <p className={'font-lato text-heading-sm text-[#7E7E7E] max-w-[400px] font-normal cursor-default mb-6'}>Proin ullamcorper pretium orci. Donec necscele risque leo. Nam massa dolor imperdiet neccon sequata congue idsem. Maecenas malesuada faucibus finibus. </p>
                         <button className={'py-4 px-7 bg-[#3BB77E] rounded hover:bg-amber-200 text-white font-quicksand font-bold text-[18px] transition-all'}>View All Members</button>
                     </div>
+
+                    <TeamMemberCard img={'/assets/images/about-us/Rectangle-35.png'} name={'H. Merinda'} job={'CEO & Co-Founder'} />
+                    <TeamMemberCard img={'/assets/images/about-us/Rectangle-36.png'} name={'H. Dilan Specter'} job={'Head Engineer'} />
                 </div>
             </Section>
         </>
