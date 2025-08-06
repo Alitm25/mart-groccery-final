@@ -9,9 +9,7 @@ import {TeamMemberCard} from "@/components/pages/aboutUsPage/team-member-card/Te
 
 interface Props {
 
-};
-
-export default function Index({}: Props) {
+export default function Index() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const sliderImages = [
         '/assets/images/about-us/about-3.jpg',
