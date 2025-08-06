@@ -120,7 +120,7 @@ export default function Index({}: Props) {
                 </div>
             </Section>
             <Section>
-                <div className={'flex flex-col items-center mb-16'}>
+                <div className={'hidden lg:flex flex-col items-center mb-16'}>
                     <h2 className={'text-heading3 md:text-heading1 font-quicksand text-[#253D4E] '}>Our Team</h2>
                     <svg width="150" height="15" viewBox="0 0 150 15" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 7.5
@@ -133,9 +133,9 @@ export default function Index({}: Props) {
                               stroke-linecap="round" />
                     </svg>
                 </div>
-                <div className={'flex flex-wrap gap-x-6'}>
-                    <div className={'flex flex-col items-start justify-evenly w-4/12'}>
-                        <p className={'font-quicksand text-[18px] font-bold'}>Our Team</p>
+                <div className={'flex flex-wrap gap-x-6 gap-y-12 flex-col md:flex-row items-center justify-center'}>
+                    <div className={'flex flex-col items-center lg:items-start justify-evenly w-full lg:w-4/12'}>
+                        <p className={'font-quicksand text-[18px] font-bold text-[#3BB77E]'}>Our Team</p>
                         <h2 className={'text-heading3 md:text-heading1 font-quicksand text-[#253D4E] mb-6'}>Meet Our Expert Team</h2>
                         <p className={'font-lato text-heading-sm text-[#7E7E7E] max-w-[400px] font-normal cursor-default mb-6'}>Proin ullamcorper pretium orci. Donec necscele risque leo. Nam massa dolor imperdiet neccon sequata congue idsem. Maecenas malesuada faucibus finibus. </p>
                         <p className={'font-lato text-heading-sm text-[#7E7E7E] max-w-[400px] font-normal cursor-default mb-6'}>Proin ullamcorper pretium orci. Donec necscele risque leo. Nam massa dolor imperdiet neccon sequata congue idsem. Maecenas malesuada faucibus finibus. </p>
