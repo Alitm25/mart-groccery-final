@@ -123,9 +123,10 @@ export default function Index({}: Props) {
                 <div className={'flex flex-wrap gap-x-6'}>
                     <div className={'flex flex-col items-start justify-evenly w-4/12'}>
                         <p className={'font-quicksand text-[18px] font-bold'}>Our Team</p>
-                        <h2 className={'text-heading3 md:text-heading1 font-quicksand text-[#253D4E]'}>Meet Our Expert Team</h2>
+                        <h2 className={'text-heading3 md:text-heading1 font-quicksand text-[#253D4E] mb-6'}>Meet Our Expert Team</h2>
                         <p className={'font-lato text-heading-sm text-[#7E7E7E] max-w-[400px] font-normal cursor-default mb-6'}>Proin ullamcorper pretium orci. Donec necscele risque leo. Nam massa dolor imperdiet neccon sequata congue idsem. Maecenas malesuada faucibus finibus. </p>
-                        <p className={'font-lato text-heading-sm text-[#7E7E7E] max-w-[400px] font-normal cursor-default'}>Proin ullamcorper pretium orci. Donec necscele risque leo. Nam massa dolor imperdiet neccon sequata congue idsem. Maecenas malesuada faucibus finibus. </p>
+                        <p className={'font-lato text-heading-sm text-[#7E7E7E] max-w-[400px] font-normal cursor-default mb-6'}>Proin ullamcorper pretium orci. Donec necscele risque leo. Nam massa dolor imperdiet neccon sequata congue idsem. Maecenas malesuada faucibus finibus. </p>
+                        <button className={'py-4 px-7 bg-[#3BB77E] rounded hover:bg-amber-200 text-white font-quicksand font-bold text-[18px] transition-all'}>View All Members</button>
                     </div>
                 </div>
             </Section>
