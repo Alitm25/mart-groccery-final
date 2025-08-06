@@ -19,7 +19,19 @@ export default function Index({}: Props) {
     //     '/assets/images/about-us/about-1.jpg',
     //     '/assets/images/about-us/about-4.jpg'
     // ]
-    // @ts-ignore
+    const merindaLink = {
+        facebook: '#',
+        twitter: '#',
+        youtube: '#',
+        instagram: '#'
+    }
+    const specterLink = {
+        facebook: '#',
+        twitter: '#',
+        youtube: '#',
+        instagram: '#'
+    }
+
     return (
         <>
             <Section>
@@ -130,8 +142,8 @@ export default function Index({}: Props) {
                         <button className={'py-4 px-7 bg-[#3BB77E] rounded hover:bg-amber-200 text-white font-quicksand font-bold text-[18px] transition-all'}>View All Members</button>
                     </div>
 
-                    <TeamMemberCard img={'/assets/images/about-us/Rectangle-35.png'} name={'H. Merinda'} job={'CEO & Co-Founder'} />
-                    <TeamMemberCard img={'/assets/images/about-us/Rectangle-36.png'} name={'H. Dilan Specter'} job={'Head Engineer'} />
+                    <TeamMemberCard img={'/assets/images/about-us/Rectangle-35.png'} name={'H. Merinda'} job={'CEO & Co-Founder'} link={merindaLink}/>
+                    <TeamMemberCard img={'/assets/images/about-us/Rectangle-36.png'} name={'H. Dilan Specter'} job={'Head Engineer'} link={specterLink}/>
                 </div>
             </Section>
         </>
