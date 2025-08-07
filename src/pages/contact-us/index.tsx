@@ -1,11 +1,24 @@
 import {Section} from "@/components/section/Section";
-import {ImageView, InfoBlock} from "@/components";
+import {ImageView, InfoBlock, Input} from "@/components";
+import {useForm} from "react-hook-form";
+import {toast} from "react-toastify";
+import React from "react";
 
-interface Props {
-    
+interface formData {
+    name: string;
+    email: string;
+    phone: string;
+    subject: string;
+    message: string;
 };
 
-export default function Index({}: Props) {
+export default function Index({}) {
+    const {register, handleSubmit, formState: {errors}} = useForm<formData>()
+
+    const onSubmitHandler = (data :formData) => {
+        toast.success('Your message have sent successfully, Our team will respond your message as soon as possible.')
+    }
+
     return (
         <div className={'container'}>
             <Section>
@@ -61,9 +74,16 @@ export default function Index({}: Props) {
 
             </Section>
             <Section>
-                <div className="flex items-center justify-between">
-                    <form>
-
+                <div className="flex flex-col md:flex-row items-center justify-center gap-x-16">
+                    <form onSubmit={handleSubmit(onSubmitHandler)} className={'flex flex-col items-start justify-start md:grid md:grid-cols-2 w-full gap-6'}>
+                        <Input type={'text'} register={register( 'name', {required: 'Please insert your name.'})} errors={errors} placeholder={'Your name'}/>
+                        <Input type={'email'} register={register( 'email', {required: 'Please insert your Email.'})} errors={errors} placeholder={'Email'}/>
+                        <Input type={'tel'} register={register( 'phone', {required: 'Please insert your Phone number.'})} errors={errors} placeholder={'Phone number'}/>
+                        <Input type={'text'} register={register( 'subject', {required: 'Please write the subject you want to talking about.'})} errors={errors} placeholder={'Subject'}/>
+                        <textarea {...register('message', {required: 'Please insert your message'})} placeholder={'Message'} className={'w-full h-full col-span-2 outline-none hover:border-green-200 focus:border-green-200 font-lato font-normal text-base py-6 px-9 flex items-start justify-start text-[#B6B6B6] border rounded-xl transition-all'}></textarea>
+                        <button className={'col-span-2 w-fit h-fit rounded-xl border-2 bg-[#253D4E] text-white font-quicksand font-bold text-base md:py-[22px] md:px-[45px] py-4 px-7 hover:bg-white hover:border-[#253D4E] hover:text-[#253D4E] transition-all'}>
+                            Send Message
+                        </button>
                     </form>
                     <ImageView alt={'message form image'} width={378} height={412} src={'/assets/images/contact-us/Rectangle-43.png'} className={'hidden lg:block'}/>
                 </div>
