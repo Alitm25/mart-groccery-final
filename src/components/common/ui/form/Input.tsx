@@ -22,7 +22,7 @@ export function Input({type = 'text', placeholder, register, label, labelClassNa
 
     return (
         type === 'textarea' ? (
-            <div className={'flex flex-col items-center gap-y-1 col-span-2'}>
+            <div className={'flex flex-col items-start justify-center gap-y-1 col-span-2 w-full'}>
                 <textarea
                     {...register}
                     placeholder={placeholder}

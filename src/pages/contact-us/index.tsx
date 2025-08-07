@@ -83,14 +83,12 @@ export default function Index({}) {
                             <h2 className={'text-heading3 sm:text-heading2 md:text-heading1 font-quicksand text-[#253D4E]'}>Drop Us a Line</h2>
                             <p className={'text-heading-sm font-normal font-lato text-[#7E7E7E]'}>Your email address will not be published. Required fields are marked *</p>
                         </div>
+
                         <Input type={'text'} register={register( 'name', {required: 'Please insert your name.'})} errors={errors} placeholder={'Your name *'}/>
                         <Input type={'email'} register={register( 'email', {required: 'Please insert your Email.'})} errors={errors} placeholder={'Email *'}/>
                         <Input type={'tel'} register={register( 'phone', {required: 'Please insert your Phone number.'})} errors={errors} placeholder={'Phone number *'}/>
                         <Input type={'text'} register={register( 'subject', {required: 'Please write the subject you want to talking about.'})} errors={errors} placeholder={'Subject *'}/>
-                        <div className={'flex flex-col items-center gap-y-1 col-span-2'}>
-                            <textarea {...register('message', {required: 'Please insert your message'})} placeholder={'Message *'} className={'w-full h-[244px] outline-none hover:border-green-200 focus:border-green-200 font-lato font-normal text-base py-6 px-9 flex items-start justify-start text-[#B6B6B6] border rounded-xl transition-all'}></textarea>
-                            <ErrorMessage errors={errors} name={register.name} />
-                        </div>
+                        <Input register={register( 'message', {required: 'Please insert your message.'})} errors={errors} type={'textarea'} placeholder={'Message *'} textAreaHeight={244}/>
 
                         <button className={'col-span-2 w-fit h-fit rounded-xl border-2 bg-[#253D4E] text-white font-quicksand font-bold text-base md:py-[22px] md:px-[45px] py-4 px-7 hover:bg-white hover:border-[#253D4E] hover:text-[#253D4E] transition-all'}>
                             Send Message
