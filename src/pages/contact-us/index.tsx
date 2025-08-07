@@ -3,6 +3,7 @@ import {ImageView, InfoBlock, Input} from "@/components";
 import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
 import React from "react";
+import {ErrorMessage} from "@/components/common/ui/form/ErrorMessage";
 
 interface formData {
     name: string;
@@ -13,10 +14,11 @@ interface formData {
 };
 
 export default function Index({}) {
-    const {register, handleSubmit, formState: {errors}} = useForm<formData>()
+    const {register, handleSubmit, formState: {errors}, reset} = useForm<formData>()
 
     const onSubmitHandler = (data :formData) => {
-        toast.success('Your message have sent successfully, Our team will respond your message as soon as possible.')
+        toast.success('Your message have sent successfully, Our team will respond your message as soon as possible.');
+        reset();
     }
 
     return (
@@ -85,7 +87,10 @@ export default function Index({}) {
                         <Input type={'email'} register={register( 'email', {required: 'Please insert your Email.'})} errors={errors} placeholder={'Email *'}/>
                         <Input type={'tel'} register={register( 'phone', {required: 'Please insert your Phone number.'})} errors={errors} placeholder={'Phone number *'}/>
                         <Input type={'text'} register={register( 'subject', {required: 'Please write the subject you want to talking about.'})} errors={errors} placeholder={'Subject *'}/>
-                        <textarea {...register('message', {required: 'Please insert your message'})} placeholder={'Message *'} className={'w-full h-[244px] col-span-2 outline-none hover:border-green-200 focus:border-green-200 font-lato font-normal text-base py-6 px-9 flex items-start justify-start text-[#B6B6B6] border rounded-xl transition-all'}></textarea>
+                        <div className={'flex flex-col items-center gap-y-1 col-span-2'}>
+                            <textarea {...register('message', {required: 'Please insert your message'})} placeholder={'Message *'} className={'w-full h-[244px] outline-none hover:border-green-200 focus:border-green-200 font-lato font-normal text-base py-6 px-9 flex items-start justify-start text-[#B6B6B6] border rounded-xl transition-all'}></textarea>
+                            <ErrorMessage errors={errors} name={register.name} />
+                        </div>
 
                         <button className={'col-span-2 w-fit h-fit rounded-xl border-2 bg-[#253D4E] text-white font-quicksand font-bold text-base md:py-[22px] md:px-[45px] py-4 px-7 hover:bg-white hover:border-[#253D4E] hover:text-[#253D4E] transition-all'}>
                             Send Message
