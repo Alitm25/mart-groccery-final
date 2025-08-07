@@ -35,6 +35,31 @@ export default function Index({}: Props) {
                     </iframe>
                 </div>
             </Section>
+            <Section>
+                <div className={'flex flex-wrap items-center justify-evenly gap-y-12'}>
+                    <InfoBlock title={'Office'} description={'205 North Michigan Avenue, Suite 810\n' +
+                        'Chicago, 60601, USA\n' +
+                        'Phone: (123) 456-7890\n' +
+                        'Email: contact@Evara.com'} button={true} buttonTitle={'View map'} buttonClassName={'py-3 px-6 rounded-md bg-[#3BB77E] font-quicksand text-sm font-bold text-white mt-7'}
+                         buttonLink={'https://maps.app.goo.gl/ysjE9khVNQbpVt5V7'}
+                    />
+
+                    <InfoBlock title={'Studio'} description={'205 North Michigan Avenue, Suite 810\n' +
+                        'Chicago, 60601, USA\n' +
+                        'Phone: (123) 456-7890\n' +
+                        'Email: contact@Evara.com'} button={true} buttonTitle={'View map'} buttonClassName={'py-3 px-6 rounded-md bg-[#3BB77E] font-quicksand text-sm font-bold text-white mt-7'}
+                        buttonLink={'https://maps.app.goo.gl/ysjE9khVNQbpVt5V7'}
+                    />
+
+                    <InfoBlock title={'Shop'} description={'205 North Michigan Avenue, Suite 810\n' +
+                        'Chicago, 60601, USA\n' +
+                        'Phone: (123) 456-7890\n' +
+                        'Email: contact@Evara.com'} button={true} buttonTitle={'View map'} buttonClassName={'py-3 px-6 rounded-md bg-[#3BB77E] font-quicksand text-sm font-bold text-white mt-7'}
+                         buttonLink={'https://maps.app.goo.gl/ysjE9khVNQbpVt5V7'}
+                    />
+                </div>
+
+            </Section>
         </div>
     );
 };
