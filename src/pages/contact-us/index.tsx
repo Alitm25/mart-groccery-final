@@ -1,5 +1,5 @@
 import {Section} from "@/components/section/Section";
-import {InfoBlock} from "@/components";
+import {ImageView, InfoBlock} from "@/components";
 
 interface Props {
     
@@ -11,8 +11,8 @@ export default function Index({}: Props) {
             <Section>
                 <div className={'flex flex-col md:flex-row items-center justify-center gap-x-16 flex-wrap gap-y-12'}>
                     <div className={'flex flex-col items-center xl:items-start justify-center gap-y-5 w-full xl:w-4/12'}>
-                        <h3 className={'font-quicksand text-heading4 text-[#3BB77E]'}>How can help you ?</h3>
-                        <h1 className={'font-quicksand text-heading1 text-[#253D4E]'}>let us know how we can help you</h1>
+                        <h3 className={'font-quicksand text-heading5 md:text-heading4 text-[#3BB77E]'}>How can help you ?</h3>
+                        <h1 className={'font-quicksand text-heading2 md:text-heading1 text-[#253D4E]'}>let us know how we can help you</h1>
                         <p className={'font-lato text-heading-sm font-normal text-[#7E7E7E]'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
                         <p className={'font-lato text-heading-sm font-normal text-[#7E7E7E]'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
                     </div>
@@ -59,6 +59,14 @@ export default function Index({}: Props) {
                     />
                 </div>
 
+            </Section>
+            <Section>
+                <div className="flex items-center justify-between">
+                    <form>
+
+                    </form>
+                    <ImageView alt={'message form image'} width={378} height={412} src={'/assets/images/contact-us/Rectangle-43.png'} className={'hidden lg:block'}/>
+                </div>
             </Section>
         </div>
     );
