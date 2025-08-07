@@ -10,6 +10,7 @@ import {TeamMemberCard} from "@/components/pages/aboutUsPage/team-member-card/Te
 
 export default function Index() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
     const sliderImages = [
         '/assets/images/about-us/about-3.jpg',
         '/assets/images/about-us/about-2.jpg',
@@ -32,45 +33,76 @@ export default function Index() {
     return (
         <>
             <Section>
-                <div className="flex flex-col md:flex-row w-full h-full">
-                    {/* Left Side - Image */}
-                    <div className="w-full md:w-1/2 h-[500px] bg-cover bg-center" style={{ backgroundImage: `url(/assets/images/about-us/about-3.jpg)` }} />
+                <div className={'grid grid-cols-1 lg:grid-cols-2 gap-x-14 gap-y-6'}>
+                        <Swiper
+                            loop={true}
+                            spaceBetween={10}
+                            navigation={{
+                                nextEl: '.swiper-nav-right',
+                                prevEl: '.swiper-nav-left',
+                            }}
+                            thumbs={{ swiper: thumbsSwiper }}
+                            modules={[FreeMode, Navigation, Thumbs]}
+                            className="mySwiper2"
+                        >
+                            <div className={'hidden lg:block'}>
+                                <SwiperSlide>
+                                    <ImageView alt={'slider 1'} width={615} height={239} src={'/assets/images/about-us/about-3.jpg'} />
+                                </SwiperSlide>
 
-                    {/* Right Side - Content */}
-                    <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
-                        <h2 className="text-3xl font-bold text-slate-800 mb-4">Welcome to NestMart</h2>
-                        <p className="text-gray-600 mb-6">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...
-                        </p>
+                                <SwiperSlide>
+                                    <ImageView alt={'slider 2'} width={615} height={239} src={'/assets/images/about-us/about-2.jpg'} />
+                                </SwiperSlide>
 
-                        {/* Swiper Thumbnail Slider */}
-                        <div className="relative mt-6">
+                                <SwiperSlide>
+                                    <ImageView alt={'slider 3'} width={615} height={239} src={'/assets/images/about-us/about-1.jpg'} />
+                                </SwiperSlide>
+
+                                <SwiperSlide>
+                                    <ImageView alt={'slider 4'} width={615} height={239} src={'/assets/images/about-us/about-4.jpg'} />
+                                </SwiperSlide>
+                            </div>
+                        </Swiper>
+                    <div className={'grid grid-cols-1'}>
+                        <div className={'flex flex-col items-center md:items-start justify-center w-full lg:w-8/12 order-2 lg:order-1'}>
+                            <h1 className={'text-heading4 sm:text-heading3 md:text-heading2 font-quicksand text-[#253D4E] mb-7 lg:mb-12'}>Welcome to NestMart</h1>
+                            <p className={'font-lato text-heading-sm font-normal text-[#7E7E7E] mb-7'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.
+                                Ius ferri velit sanctus cu, sed at soleat accusata. Dictas prompta et Ut placerat legendos interpre.Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante Etiam sit amet orci eget. Quis commodo odio aenean sed adipiscing. Turpis massa tincidunt dui ut ornare lectus. Auctor elit sed vulputate mi sit amet. Commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.
+                            </p>
+                            <p className={'font-lato text-heading-sm font-normal text-[#7E7E7E] mb-7'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.
+                                Ius ferri velit sanctus cu, sed at soleat accusata. Dictas prompta et Ut placerat legendos interpre.Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante Etiam sit amet orci eget. Quis commodo odio aenean sed adipiscing. Turpis massa tincidunt dui ut ornare lectus. Auctor elit sed vulputate mi sit amet. Commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.
+                            </p>
+
+                        </div>
+                        <div className={'flex items-center justify-center relative order-1 lg:order-2 mb-7'}>
+
+                            <div className={'flex items-center justify-between absolute top-0 bottom-0 right-[-3%] left-[-3%] z-10'}>
+                                <IconBox icon={'swiper-nav-left icon-angle-small-left cursor-pointer bg-gray-100 p-2 md:p-4 rounded-full text-gray-500 hover:bg-green-200 hover:text-white transition-all'} size={24}/>
+                                <IconBox icon={'swiper-nav-right icon-angle-small-right cursor-pointer bg-gray-100 p-2 md:p-4 rounded-full text-gray-500 hover:bg-green-200 hover:text-white transition-all'} size={24}/>
+                            </div>
+
                             <Swiper
-                                modules={[Navigation]}
-                                navigation={{
-                                    prevEl: '.swiper-button-prev',
-                                    nextEl: '.swiper-button-next',
-                                }}
-                                spaceBetween={20}
-                                slidesPerView={3}
-                                className="w-full"
+                                onSwiper={() => setThumbsSwiper}
+                                loop={true}
+                                spaceBetween={10}
+                                slidesPerView={4}
+                                freeMode={true}
+                                watchSlidesProgress={true}
+                                modules={[FreeMode, Navigation, Thumbs]}
+                                className="mySwiper !h-auto"
                             >
-                                {sliderImages.map((slide, index) => (
-                                    <SwiperSlide key={index}>
-                                        <img src={slide} alt="" className="rounded-md object-cover h-32 w-full" />
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
+                                {
+                                    sliderImages.map( (img :string, index :number) => {
+                                        return <SwiperSlide>
+                                            <ImageView alt={`slider ${index + 1}`} width={182} height={224} src={img} />
+                                        </SwiperSlide>
+                                    })
+                                }
 
-                            {/* Custom Arrows */}
-                            <button className="swiper-button-prev absolute -left-6 top-1/2 transform -translate-y-1/2 bg-teal-400 text-white p-2 rounded-full z-10">
-                                ←
-                            </button>
-                            <button className="swiper-button-next absolute -right-6 top-1/2 transform -translate-y-1/2 bg-teal-400 text-white p-2 rounded-full z-10">
-                                →
-                            </button>
+                            </Swiper>
                         </div>
                     </div>
+
                 </div>
             </Section>
             <Section>
