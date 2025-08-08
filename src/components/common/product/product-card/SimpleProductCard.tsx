@@ -14,7 +14,7 @@ export function SimpleProductCard({data}: Props) {
     const {basketItems} = useBasketData();
     const router = useRouter();
     const changeRouteHandler = () => {
-        router.push('/single-product');
+        router.push(`/single-product/${data.id}`);
     }
 
     return (
