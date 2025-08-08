@@ -31,7 +31,7 @@ export function DealsProductCard({data}: Props) {
 
     return (
         <div className="relative h-[438px]">
-            <ImageView className={'w-full'} src={data.attributes.thumbnail?.data?.attributes.url} alt={'product'} width={378} height={355} />
+            <ImageView className={'w-full'} src={data.attributes.thumbnail?.data?.attributes.url ? data.attributes.thumbnail?.data.attributes.url : '/assets/images/default-product-image.png'} alt={'product'} width={378} height={355} />
             <div className="absolute z-[20] left-[50%] translate-x-[-50%] top-[195px]">
                 <div className="timer1 flex items-center gap-3 h-[60px]">
                     <div className="bg-white rounded-[6px] h-full aspect-square text-center">

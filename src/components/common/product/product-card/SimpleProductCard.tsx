@@ -27,7 +27,7 @@ export function SimpleProductCard({data}: Props) {
                         <IconBox icon={'icon-eye'} size={15} />
                     </div>
                 </div>
-                <ImageView src={data?.attributes?.thumbnail?.data?.attributes.url ? data?.attributes?.thumbnail?.data?.attributes.url : '/assets/images/default-product-image.jpg'} className={`m-auto w-full aspect-[3/2] ${data?.attributes?.categories?.data[0] ? 'mb-[28px]' : 'mb-[55px]'}`} alt={'product-image'} width={210} height={168}/>
+                <ImageView src={data?.attributes?.thumbnail?.data?.attributes.url ? data?.attributes?.thumbnail?.data?.attributes.url : '/assets/images/default-product-image.png'} className={`m-auto w-full aspect-[3/2] ${data?.attributes?.categories?.data[0] ? 'mb-[28px]' : 'mb-[55px]'}`} alt={'product-image'} width={210} height={168}/>
                 <div className={`flex flex-col gap-2`}>
                     {data?.attributes?.categories?.data[0] && <div className="text-gray-500 text-xsmall">{data?.attributes?.categories?.data[0].attributes.title}</div>}
                     <Link href={'#'}><h3 className="line-clamp-2 text-heading-sm text-blue-300 max-h-[50px] min-h-8 overflow-hidden">{data?.attributes?.title}</h3></Link>
