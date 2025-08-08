@@ -3,7 +3,6 @@ import {ImageView, InfoBlock, Input} from "@/components";
 import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
 import React from "react";
-import {ErrorMessage} from "@/components/common/ui/form/ErrorMessage";
 
 interface formData {
     name: string;
@@ -84,10 +83,10 @@ export default function Index({}) {
                             <p className={'text-heading-sm font-normal font-lato text-[#7E7E7E]'}>Your email address will not be published. Required fields are marked *</p>
                         </div>
 
-                        <Input type={'text'} register={register( 'name', {required: 'Please insert your name.'})} errors={errors} placeholder={'Your name *'}/>
-                        <Input type={'email'} register={register( 'email', {required: 'Please insert your Email.'})} errors={errors} placeholder={'Email *'}/>
-                        <Input type={'tel'} register={register( 'phone', {required: 'Please insert your Phone number.'})} errors={errors} placeholder={'Phone number *'}/>
-                        <Input type={'text'} register={register( 'subject', {required: 'Please write the subject you want to talking about.'})} errors={errors} placeholder={'Subject *'}/>
+                        <Input type={'text'} register={register( 'name', {required: 'Please insert your name.'})} errors={errors} placeholder={'Your name *'} {...{autoComplete: 'off'}}/>
+                        <Input type={'email'} register={register( 'email', {required: 'Please insert your Email.'})} errors={errors} placeholder={'Email *'} {...{autoComplete: 'off'}}/>
+                        <Input type={'tel'} register={register( 'phone', {required: 'Please insert your Phone number.'})} errors={errors} placeholder={'Phone number *'} {...{autoComplete: 'off'}}/>
+                        <Input type={'text'} register={register( 'subject', {required: 'Please write the subject you want to talking about.'})} errors={errors} placeholder={'Subject *'} {...{autoComplete: 'off'}}/>
                         <Input register={register( 'message', {required: 'Please insert your message.'})} errors={errors} type={'textarea'} placeholder={'Message *'} textAreaHeight={244}/>
 
                         <button className={'col-span-2 w-fit h-fit rounded-xl border-2 bg-[#253D4E] text-white font-quicksand font-bold text-base md:py-[22px] md:px-[45px] py-4 px-7 hover:bg-white hover:border-[#253D4E] hover:text-[#253D4E] transition-all'}>
