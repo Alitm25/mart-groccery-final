@@ -2,13 +2,16 @@ import {Section} from "@/components/section/Section";
 import {IconBox, ImageView} from "@/components";
 import {useQuery} from "@tanstack/react-query";
 import {getAllProductsApiCall} from "@/api/Products";
+import {useRouter} from "next/router";
 
 interface Props {
 
 };
 
 export default function Index({}: Props) {
-    useQuery({queryKey: ['single-product'], queryFn: () => getAllProductsApiCall({ filters: {id: 1}, })})
+    const router = useRouter();
+
+    useQuery({queryKey: ['single-product'], queryFn: () => getAllProductsApiCall({ filters: {id: router.query.id}, })})
 
     return (
         <Section>

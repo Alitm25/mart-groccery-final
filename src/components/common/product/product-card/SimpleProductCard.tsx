@@ -4,6 +4,7 @@ import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
 import {useBasketData} from "@/hooks/useBasketData";
+import {useRouter} from "next/router";
 
 interface Props {
     data: EntityType<ProductsType>
@@ -11,6 +12,10 @@ interface Props {
 
 export function SimpleProductCard({data}: Props) {
     const {basketItems} = useBasketData();
+    const router = useRouter();
+    const changeRouteHandler = () => {
+        router.push('/single-product');
+    }
 
     return (
         <div className={'w-full'}>
@@ -23,7 +28,7 @@ export function SimpleProductCard({data}: Props) {
                     <div className="p-2.5 border-r-[1px] border-r-green-200 hover:bg-green-150">
                         <IconBox icon={'icon-shuffle'} size={15} />
                     </div>
-                    <div className="p-2.5 hover:bg-green-150">
+                    <div onClick={changeRouteHandler} className="p-2.5 hover:bg-green-150">
                         <IconBox icon={'icon-eye'} size={15} />
                     </div>
                 </div>
