@@ -1,17 +1,16 @@
 import {Section} from "@/components/section/Section";
-import {Badge, IconBox, ImageView, Rating} from "@/components";
+import {Badge, IconBox, ImageView, InfoBody, Rating} from "@/components";
 import {useQuery} from "@tanstack/react-query";
 import {getAllProductsApiCall} from "@/api/Products";
 import {useRouter} from "next/router";
 import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
 import {useBasketData} from "@/hooks/useBasketData";
+import {useState} from "react";
 
-interface Props {
 
-};
-
-export default function Index({}: Props) {
+export default function Index() {
     const router = useRouter();
+    const [showInfo, setShowInfo] = useState('');
     const {data: singleData} = useQuery({queryKey: ['single-product'], queryFn: () => getAllProductsApiCall({ filters: {id: router.query.id}, populate: ['thumbnail'] })});
     const {addItem, getItem, updateProduct, basketItems} = useBasketData();
 
@@ -87,8 +86,14 @@ export default function Index({}: Props) {
                 }
             </Section>
             <Section>
-                <div className={'flex flex-col items-start justify-between p-12 border border-[#F2F3F4] rounded-lg'}>
+                <div className={'flex flex-col items-start justify-between p-12 border border-[#F2F3F4] rounded-xl'}>
+                    <div className={'flex flex-row items-center justify-center gap-x-6 mb-9'}>
+                        <button className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}>Description</button>
+                        <button className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}>Additional info</button>
+                        <button className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}>Reviews</button>
+                    </div>
 
+                    <InfoBody description={singleData?.data[0].attributes.description} />
                 </div>
             </Section>
         </div>
