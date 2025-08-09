@@ -87,7 +87,7 @@ export default function Index({}) {
                         <Input type={'email'} register={register( 'email', {required: 'Please insert your Email.'})} errors={errors} placeholder={'Email *'} {...{autoComplete: 'off'}}/>
                         <Input type={'tel'} register={register( 'phone', {required: 'Please insert your Phone number.'})} errors={errors} placeholder={'Phone number *'} {...{autoComplete: 'off'}}/>
                         <Input type={'text'} register={register( 'subject', {required: 'Please write the subject you want to talking about.'})} errors={errors} placeholder={'Subject *'} {...{autoComplete: 'off'}}/>
-                        <Input register={register( 'message', {required: 'Please insert your message.'})} errors={errors} type={'textarea'} placeholder={'Message *'} textAreaHeight={244}/>
+                        <Input register={register( 'message', {required: 'Please insert your message.'})} errors={errors} type={'textarea'} placeholder={'Message *'} className={'h-[244px] w-full'}/>
 
                         <button className={'col-span-2 w-fit h-fit rounded-xl border-2 bg-[#253D4E] text-white font-quicksand font-bold text-base md:py-[22px] md:px-[45px] py-4 px-7 hover:bg-white hover:border-[#253D4E] hover:text-[#253D4E] transition-all'}>
                             Send Message

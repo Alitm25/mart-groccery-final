@@ -1,6 +1,7 @@
 import React, {useId} from "react";
 import {FieldErrors, UseFormRegisterReturn} from "react-hook-form";
 import {ErrorMessage} from "@/components/common/ui/form/ErrorMessage";
+import {className} from "postcss-selector-parser";
 
 interface Props extends React.HTMLAttributes<HTMLInputElement> {
     type?:              'text' | 'password' | 'email' | 'tel' | 'number' | 'textarea';
@@ -9,11 +10,10 @@ interface Props extends React.HTMLAttributes<HTMLInputElement> {
     label?:             string;
     labelClassName?:    string;
     errors:             FieldErrors<any>;
-    textAreaWidth?: number;
-    textAreaHeight?: number;
+    className?:         string;
 };
 
-export function Input({type = 'text', placeholder, register, label, labelClassName, errors,textAreaWidth, textAreaHeight, ...rest}: Props) {
+export function Input({type = 'text', placeholder, register, label, labelClassName, errors, className, ...rest}: Props) {
     /// creating id for connecting label and input together
     const id = useId();
 
@@ -26,7 +26,7 @@ export function Input({type = 'text', placeholder, register, label, labelClassNa
                 <textarea
                     {...register}
                     placeholder={placeholder}
-                    className={`${textAreaWidth ? `w-[${textAreaWidth}px]` : 'w-full'} ${textAreaHeight ? `h-[${textAreaHeight}px]` : 'h-auto'} outline-none ${hasError ? 'border-rose-600 hover:border-rose-600' : ''} hover:border-green-200 focus:border-green-200 font-lato font-normal text-base py-6 px-9 flex items-start justify-start text-[#B6B6B6] border rounded-xl transition-all`}
+                    className={`${className} outline-none ${hasError ? 'border-rose-600 hover:border-rose-600' : ''} hover:border-green-200 focus:border-green-200 font-lato font-normal text-base py-6 px-9 flex items-start justify-start text-[#B6B6B6] border rounded-xl transition-all`}
                 ></textarea>
                 <ErrorMessage errors={errors} name={name} />
             </div>
