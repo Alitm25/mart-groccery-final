@@ -1,20 +1,30 @@
 import {Section} from "@/components/section/Section";
-import {Badge, IconBox, ImageView, InfoBody, Rating} from "@/components";
+import {Badge, IconBox, ImageView, InfoBlock, InfoBody, InfoBodyBlock, Rating} from "@/components";
 import {useQuery} from "@tanstack/react-query";
 import {getAllProductsApiCall} from "@/api/Products";
 import {useRouter} from "next/router";
 import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
 import {useBasketData} from "@/hooks/useBasketData";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 export default function Index() {
     const router = useRouter();
     const [showInfo, setShowInfo] = useState('');
+    const [isActive, setIsActive] = useState(true);
     const {data: singleData} = useQuery({queryKey: ['single-product'], queryFn: () => getAllProductsApiCall({ filters: {id: router.query.id}, populate: ['thumbnail'] })});
     const {addItem, getItem, updateProduct, basketItems} = useBasketData();
 
-    console.log(singleData);
+
+
+    const showInfoHandler = (info :string) => {
+        setShowInfo(info);
+    }
+
+    useEffect(() => {
+        showInfoHandler('description');
+    }, []);
+
 
     return (
         <div className={'container'}>
@@ -88,12 +98,33 @@ export default function Index() {
             <Section>
                 <div className={'flex flex-col items-start justify-between p-12 border border-[#F2F3F4] rounded-xl'}>
                     <div className={'flex flex-row items-center justify-center gap-x-6 mb-9'}>
-                        <button className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}>Description</button>
-                        <button className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}>Additional info</button>
-                        <button className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}>Reviews</button>
+                        <button onClick={ () => showInfoHandler('description')} className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}> Description     </button>
+                        <button onClick={ () => showInfoHandler('additional')}  className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}> Additional info </button>
+                        <button onClick={ () => showInfoHandler('review')} className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}>Reviews         </button>
                     </div>
 
-                    <InfoBody description={singleData?.data[0].attributes.description} />
+                    <div>
+                        {
+                            showInfo === 'description' ?
+                                <InfoBody description={singleData?.data[0].attributes.description} />
+                            : showInfo === 'additional' ?
+                                <div className={'flex flex-col items-start gap-y-[15px]'}>
+                                    <InfoBodyBlock title={'Packaging & Delivrey'} description={'Less lion goodness that euphemistically robin expeditiously bluebird smugly scratched far while thus cackled sheepishly rigid after due one assenting regarding censorious while occasional or this more crane went more as this less much amid overhung anathematic because much held one exuberantly sheep goodness so where rat wry well concomitantly.\n' +
+                                        'Less lion goodness that euphemistically robin expeditiously bluebird smugly scratched far while thus cackled sheepishly rigid after due one assenting regarding censorious while occasional or this more crane went more as this less much amid overhung anathematic because much held one exuberantly sheep goodness so where rat wry well concomitantly.\n'} />
+                                    <InfoBodyBlock title={'Suggested Use'} description={'\n' +
+                                        'Refrigeration not necessary.\n' +
+                                        '\n' +
+                                        'Stir before serving\n'} />
+                                    <InfoBodyBlock title={'Other Ingredients'} description={'Organic raw pecans, organic raw cashews.\n' +
+                                        'This butter was produced using a LTG (Low Temperature Grinding) process.\n' +
+                                        'Made in machinery that processes tree nuts but does not process peanuts, gluten, dairy or soy.'} />
+                                    <InfoBodyBlock title={'Warnings'} description={'Oil separation occurs naturally. May contain pieces of shell.'} />
+                                </div>
+                            : showInfo === 'review' &&
+                                    <p>this is reviews</p>
+                        }
+                    </div>
+
                 </div>
             </Section>
         </div>
