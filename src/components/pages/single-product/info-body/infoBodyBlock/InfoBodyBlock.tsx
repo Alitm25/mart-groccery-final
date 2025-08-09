@@ -3,7 +3,7 @@ interface Props {
     description: string;
 };
 
-export function InfoBlock({title, description}: Props) {
+export function InfoBodyBlock({title, description}: Props) {
     return (
         <div className={'flex flex-col items-start justify-start'}>
             <h3 className={'font-quicksand text-heading5 md:text-heading3 mb-[15px] transition-all cursor-default'}>{title}</h3>
