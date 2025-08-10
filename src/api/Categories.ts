@@ -10,7 +10,7 @@ interface Props {
 export function getAllCategories({filters = {}} :Props) :Promise<ApiResponseType<CategoryType>> {
     return apiClient.get('categories', {
         params: {
-            populate: 'thumbnail',
+            populate: '*',
             filters
         }
     })
