@@ -1,5 +1,5 @@
 import apiClient from "@/api/config/ApiClient";
-import {ApiResponseType} from "@/types";
+import {ApiResponseSingleType, ApiResponseType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 
 
@@ -25,4 +25,12 @@ export function getAllProductsApiCall({populate, filters = {}, sort = [], pagina
             pagination,
         }
     })
+}
+
+export function getSingleProduct(id :number) :Promise<ApiResponseSingleType<ProductsType>> {
+    return apiClient.get(`/products/${id}`, {
+        params: {
+            populate: '*'
+        }
+    });
 }

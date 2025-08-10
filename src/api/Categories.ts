@@ -2,15 +2,15 @@ import apiClient from "@/api/config/ApiClient";
 import {ApiResponseType} from "@/types";
 import {CategoryType} from "@/types/api/Category";
 
-export function getFeaturedCategories() :Promise<ApiResponseType<CategoryType>> {
+interface Props {
+    filters?: {}
+}
+
+export function getFeaturedCategories({filters = {}} :Props) :Promise<ApiResponseType<CategoryType>> {
     return apiClient.get('categories', {
         params: {
             populate: 'thumbnail',
-            filters: {
-                is_featured: {
-                    $eq: true,
-                }
-            }
+            filters
         }
     })
 }
