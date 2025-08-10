@@ -9,9 +9,10 @@ import {useState} from "react";
 
 
 export default function Index() {
-    const router = useRouter();
+    const router = useRouter().query.id;
+    console.log('router: ', router)
     const [showInfo, setShowInfo] = useState('description');
-    const {data: singleData} = useQuery({queryKey: ['single-product'], queryFn: () => getSingleProduct(Number(router.query.id))});
+    const {data: singleData} = useQuery({queryKey: ['single-product'], queryFn: () => getSingleProduct(Number(router))});
     const {addItem, getItem, updateProduct, basketItems} = useBasketData();
 
     console.log(singleData);
@@ -29,14 +30,14 @@ export default function Index() {
                     <div className="flex flex-col items-center mb-[68px]">
                         <div className="flex flex-col lg:flex-row items-start justify-center w-full gap-x-8">
                             <div>
-                                <div className="w-full lg:h-[670px] mb-[28px] p-[40px] border-[1px] border-gray-200 rounded-2xl">
+                                <div className="w-full h-full mb-[28px] p-[40px] border-[1px] border-gray-200 rounded-2xl">
                                     <div className="top-0 left-0 flex justify-end">
                                         <i className="icon-search text-[24px] text-gray-200 mb-20"></i>
                                     </div>
-                                    <ImageView alt={'product image'} width={586} height={421} src={singleData.data.attributes.thumbnail?.data?.attributes.url}/>
+                                    <ImageView alt={'product image'} width={586} height={421} src={singleData.data.attributes.thumbnail?.data?.attributes.url ? singleData.data.attributes.thumbnail?.data?.attributes.url : '/assets/images/default-product-image.png'}/>
                                 </div>
                                 {
-                                    singleData?.data.attributes.gallery &&
+                                    singleData.data.attributes.gallery?.data &&
                                     <div className="flex flex-row gap-[25px] justify-center items-center">
                                         <div className="bg-green-200 rounded-full flex flex-row-reverse items-center p-2">
                                             <IconBox icon={'icon-arrow-small-right rotate-180'} size={24}/>
