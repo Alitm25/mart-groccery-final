@@ -43,9 +43,9 @@ export default function Index() {
                 {
                     singleData &&
                     <div className="flex flex-col items-center mb-[68px]">
-                        <div className="flex flex-col md:flex-row items-start justify-center w-full gap-x-8">
+                        <div className="flex flex-col lg:flex-row items-start justify-center w-full gap-x-8">
                             <div>
-                                <div className="w-full md:h-[670px] mb-[28px] p-[40px] border-[1px] border-gray-200 rounded-2xl">
+                                <div className="w-full lg:h-[670px] mb-[28px] p-[40px] border-[1px] border-gray-200 rounded-2xl">
                                     <div className="top-0 left-0 flex justify-end">
                                         <i className="icon-search text-[24px] text-gray-200 mb-20"></i>
                                     </div>
@@ -75,11 +75,11 @@ export default function Index() {
                                     </div>
                                 }
                             </div>
-                            <div className="flex flex-col items-start justify-center w-4/12 gap-y-6">
+                            <div className="flex flex-col items-start justify-center w-full lg:w-4/12 gap-y-6">
                                 <div className={'py-1 px-3 rounded-md bg-[#DEF9EC] font-quicksand text-sm text-[#3BB77E] font-bold'}>
                                     In Stock
                                 </div>
-                                <h1 className={'text-heading2 font-quicksand text-[#253D4E]'}>{singleData.data[0].attributes.title}</h1>
+                                <h1 className={'text-heading3 md:text-heading2 font-quicksand text-[#253D4E]'}>{singleData.data[0].attributes.title}</h1>
                                 <div className={'flex items-center justify-center gap-x-[10px]'}>
                                     <Rating rate={singleData.data[0].attributes.rate} /> <span className={'text-xs font-lato font-normal text-[#7E7E7E]'}>({singleData.data[0].attributes.rate})</span>
                                 </div>
