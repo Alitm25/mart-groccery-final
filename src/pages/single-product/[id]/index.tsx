@@ -6,15 +6,26 @@ import {useRouter} from "next/router";
 import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
 import {useBasketData} from "@/hooks/useBasketData";
 import {useEffect, useState} from "react";
+import {filter} from "minimatch";
 
 
 export default function Index() {
     const router = useRouter();
     const [showInfo, setShowInfo] = useState('');
     const [isActive, setIsActive] = useState(true);
-    const {data: singleData} = useQuery({queryKey: ['single-product'], queryFn: () => getAllProductsApiCall({ filters: {id: router.query.id}, populate: ['thumbnail'] })});
+    const {data: singleData} = useQuery({queryKey: ['single-product'], queryFn: () => getAllProductsApiCall({ filters: {id: router.query.id}, populate: ['thumbnail', 'categories'] })});
     const {addItem, getItem, updateProduct, basketItems} = useBasketData();
-
+    const {data: relatedProducts} = useQuery({queryKey: ['category-based-products'], queryFn: () => getAllProductsApiCall(
+            {
+                filters: {
+                    categories: {
+                        title: {
+                            $eq: singleData?.data[0].attributes.categories?.data[0].attributes.title
+                        }
+                    }
+                }
+            }
+        )});
 
 
     const showInfoHandler = (info :string) => {
@@ -126,6 +137,9 @@ export default function Index() {
                     </div>
 
                 </div>
+            </Section>
+            <Section>
+
             </Section>
         </div>
 
