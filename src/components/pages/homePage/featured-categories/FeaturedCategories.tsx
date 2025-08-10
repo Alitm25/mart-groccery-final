@@ -9,7 +9,13 @@ import {CategoryType} from "@/types/api/Category";
 export function FeaturedCategories({}) {
     // TODO config of images are wrong, remember to ask the mentor for it
 
-    const {data} = useQuery<ApiResponseType<CategoryType>>({queryKey: [getFeaturedCategories.name], queryFn: () => getFeaturedCategories()});
+    const {data} = useQuery<ApiResponseType<CategoryType>>({queryKey: [getFeaturedCategories.name], queryFn: () => getFeaturedCategories({
+            filters: {
+                is_featured: {
+                    $eq: true,
+                }
+            }
+        })});
 
     return (
         <div>
