@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {ImageView} from "@/components";
 import {useQuery} from "@tanstack/react-query";
-import {getFeaturedCategories} from "@/api/Categories";
+import {getAllCategories} from "@/api/Categories";
 import {ApiResponseType, EntityType} from "@/types";
 import {CategoryType} from "@/types/api/Category";
 
@@ -9,7 +9,7 @@ import {CategoryType} from "@/types/api/Category";
 export function FeaturedCategories({}) {
     // TODO config of images are wrong, remember to ask the mentor for it
 
-    const {data} = useQuery<ApiResponseType<CategoryType>>({queryKey: [getFeaturedCategories.name], queryFn: () => getFeaturedCategories({
+    const {data} = useQuery<ApiResponseType<CategoryType>>({queryKey: [getAllCategories.name], queryFn: () => getAllCategories({
             filters: {
                 is_featured: {
                     $eq: true,
