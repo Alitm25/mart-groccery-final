@@ -45,7 +45,7 @@ export default function Index() {
                     <div className="flex flex-col items-center mb-[68px]">
                         <div className="flex flex-col md:flex-row items-start justify-center w-full gap-x-8">
                             <div>
-                                <div className="w-full h-[670px] mb-[28px] p-[40px] border-[1px] border-gray-200 rounded-2xl">
+                                <div className="w-full md:h-[670px] mb-[28px] p-[40px] border-[1px] border-gray-200 rounded-2xl">
                                     <div className="top-0 left-0 flex justify-end">
                                         <i className="icon-search text-[24px] text-gray-200 mb-20"></i>
                                     </div>
@@ -108,10 +108,10 @@ export default function Index() {
             </Section>
             <Section>
                 <div className={'flex flex-col items-start justify-between p-12 border border-[#F2F3F4] rounded-xl'}>
-                    <div className={'flex flex-row items-center justify-center gap-x-6 mb-9'}>
-                        <button onClick={ () => showInfoHandler('description')} className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}> Description     </button>
-                        <button onClick={ () => showInfoHandler('additional')}  className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}> Additional info </button>
-                        <button onClick={ () => showInfoHandler('review')} className={'px-[30px] py-[15px] rounded-full bg-white border border-[#F2F3F4] text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}>Reviews         </button>
+                    <div className={'flex flex-row flex-wrap items-center justify-center gap-x-4 md:gap-x-6 gap-y-6 mb-9'}>
+                        <button onClick={ () => showInfoHandler('description')} className={'px-5 py-2.5 md:px-[30px] md:py-[15px] rounded-full bg-white border border-[#F2F3F4] text-sm md:text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}> Description     </button>
+                        <button onClick={ () => showInfoHandler('additional')}  className={'px-5 py-2.5 md:px-[30px] md:py-[15px] rounded-full bg-white border border-[#F2F3F4] text-sm md:text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}> Additional info </button>
+                        <button onClick={ () => showInfoHandler('review')} className={'px-5 py-2.5 md:px-[30px] md:py-[15px] rounded-full bg-white border border-[#F2F3F4] text-sm md:text-[18px] font-quicksand font-bold text-[#B6B6B6] hover:text-[#3BB77E] focus:text-[#3BB77E] hover:drop-shadow-xl focus:drop-shadow-xl transition-all'}>Reviews         </button>
                     </div>
 
                     <div>
@@ -137,9 +137,6 @@ export default function Index() {
                     </div>
 
                 </div>
-            </Section>
-            <Section>
-
             </Section>
         </div>
 
