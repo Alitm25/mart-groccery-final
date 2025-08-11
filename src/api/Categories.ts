@@ -1,5 +1,5 @@
 import apiClient from "@/api/config/ApiClient";
-import {ApiResponseType} from "@/types";
+import {ApiResponseSingleType, ApiResponseType} from "@/types";
 import {CategoryType} from "@/types/api/Category";
 
 interface Props {
@@ -14,4 +14,12 @@ export function getAllCategories({filters = {}} :Props) :Promise<ApiResponseType
             filters
         }
     })
+}
+
+export function getSingleCategories(id :number | undefined) :Promise<ApiResponseSingleType<CategoryType>> | undefined {
+        return apiClient.get(`categories/${id}`, {
+            params: {
+                populate: '*',
+            }
+        })
 }
