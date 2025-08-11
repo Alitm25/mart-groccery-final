@@ -1,5 +1,6 @@
 import {ImageType} from "@/types/api/Image";
-import {EntityType} from "@/types";
+import {EntityType, PopulateType} from "@/types";
+import {ProductsType} from "@/types/api/Products";
 
 export interface CategoryType {
     title: string
@@ -13,4 +14,5 @@ export interface CategoryType {
     thumbnail: {
         data?: EntityType<ImageType>
     }
+    products: PopulateType<ProductsType>
 }
