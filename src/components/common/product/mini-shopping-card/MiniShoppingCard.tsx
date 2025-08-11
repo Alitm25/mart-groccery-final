@@ -6,7 +6,7 @@ import {getAllProductsApiCall} from "@/api/Products";
 
 
 export function MiniShoppingCard() {
-    const { updateProduct, basketItems, getItem } = useBasketData();
+    const { updateProduct, basketItems } = useBasketData();
 
     const productIds = basketItems.map((item) => item.product.data.id);
 
