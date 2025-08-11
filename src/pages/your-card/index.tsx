@@ -73,7 +73,7 @@ export default function Index({}: Props) {
                                                         <div className="font-quickSand text-xsmall md:text-heading4 text-gray-400">{item.product.data.attributes.sell_price ? item.product.data.attributes.sell_price : item.product.data.attributes.price}$</div>
                                                     </div>
                                                     <div className="flex justify-center items-center">
-                                                        <div className="border-[1px] font-quicksand font-bold rounded-[4px] border-green-300 text-green-300 h-full p-[3px] w-16 md:w-20 flex justify-evenly items-center">
+                                                        <div className="border-2 font-quicksand font-bold rounded-lg text-[#B6B6B6] border-[#B6B6B6] hover:border-[#3BB77E] hover:text-[#3BB77E] p-[7px] w-16 md:w-28 flex flex-row-reverse justify-evenly items-center transition-all">
                                                             <div className="flex flex-col justify-between items-center">
                                                                 <IconBox icon={'up icon-angle-small-up cursor-pointer'} size={10} onClick={ () => updateProduct(item.product.data.id, 'increase')}/>
                                                                 <IconBox icon={'down icon-angle-small-down cursor-pointer'} size={10} onClick={ () => updateProduct(item.product.data.id, 'decrease')}/>
