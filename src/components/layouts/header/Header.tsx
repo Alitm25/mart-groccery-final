@@ -61,7 +61,7 @@ export function Header() {
                     </li>
                     <div className={'group'}>
                         <li className={`flex gap-2 cursor-pointer`}>
-                            <IconBox icon={'icon-shopping-cart'} size={24} link={'#'} title={'Card'}  hideTitleOnMobile={true} badge={basketItems.length} titleClassName={'text-medium text-gray-500 font-lato'}/>
+                            <IconBox icon={'icon-shopping-cart'} size={24} link={'/your-card'} title={'Card'}  hideTitleOnMobile={true} badge={basketItems.length} titleClassName={'text-medium text-gray-500 font-lato'}/>
                         </li>
                         <div className={'hidden group-hover:block'}>
                             <MiniShoppingCard />
