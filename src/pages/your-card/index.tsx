@@ -1,13 +1,28 @@
 import {IconBox, ImageView} from "@/components";
 import {useBasketData} from "@/hooks/useBasketData";
 import Link from "next/link";
+import React from "react";
+import {useQuery} from "@tanstack/react-query";
+import {getAllProductsApiCall} from "@/api/Products";
 
 interface Props {
 
 };
 
 export default function Index({}: Props) {
-    const {basketItems} = useBasketData();
+    const { updateProduct, basketItems, getItem } = useBasketData();
+
+    const productIds = basketItems.map((item) => item.product.data.id);
+
+    const { data: basketProductsData } = useQuery({
+        queryKey: ['basketProducts', productIds],
+        queryFn: () =>
+            getAllProductsApiCall({
+                filters: { id: { $in: productIds } },
+                populate: ['thumbnail'],
+            }),
+        enabled: productIds.length > 0,
+    });
 
 
     return (
@@ -41,51 +56,54 @@ export default function Index({}: Props) {
                                         <div className="flex justify-center items-center">Subtotal</div>
                                         <div className="flex justify-center items-center">Remove</div>
                                     </div>
-                                    <div className="font-quickSand text-xsmall md:text-heading6 w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
-                                        <div className="flex justify-center items-center">
-                                            <label htmlFor="chbox1" className="hidden"></label>
-                                            <input type="checkbox" name="chbox1" id="chbox1"
-                                                   className="accent-green-200 w-3 h-3 md:w-4 md:h-4"/>
-                                        </div>
-                                        <div className="flex flex-col xl:flex-row items-center justify-between gap-4">
-                                            <img src="../assets/images/3%20389454.png" alt="orange" width="210"
-                                                 height="168"
-                                                 className="max-h-[64px] max-w-[64px] xl:max-h-[114px] xl:max-w-[114px]"/>
-                                            <div className="font-quickSand">Field Roast Chao Cheese Creamy Original
-                                            </div>
-                                        </div>
-                                        <div className="flex justify-center items-center">
-                                            <div
-                                                className="font-quickSand text-xsmall md:text-heading4 text-gray-400">$2.51
-                                            </div>
-                                        </div>
-                                        <div className="flex justify-center items-center">
-                                            <div
-                                                className="flex justify-center items-center focus-within:border-green-200 focus-within:border-[1px] focus-within:rounded-[10px] max-h-[50px] max-w-[120px] px-4 py-2">
-                                                <label htmlFor="price1" className="hidden"></label>
-                                                <input type="number" id="price1" min="1" max="10" name="pric1" value="1"
-                                                       className="w-full accent-green-200 flex justify-center items-center text-center text-green-200 font-quickSand text-xsmall md:text-heading5 focus:outline-none"/>
-                                            </div>
-                                        </div>
-                                        <div className="flex justify-center items-center">
-                                            <div
-                                                className="font-quickSand text-xsmall md:text-heading4 text-green-200">$2.51
-                                            </div>
-                                        </div>
-                                        <div className="flex justify-center items-center">
-                                            <ImageView alt={'remove-item-icon'} width={25} height={25} src={'/assets/images/remove-item.svg'} />
-                                        </div>
-                                    </div>
+                                    {
+                                        basketItems.map( (item, index) => {
+                                            return (
+                                                <div className="font-quickSand text-xsmall md:text-heading6 w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
+                                                    <div className="flex justify-center items-center">
+                                                        <label htmlFor="chbox1" className="hidden"></label>
+                                                        <input type="checkbox" name="chbox1" id="chbox1"
+                                                               className="accent-green-200 w-3 h-3 md:w-4 md:h-4"/>
+                                                    </div>
+                                                    <div className="flex flex-col xl:flex-row items-center justify-between gap-4">
+                                                        <ImageView alt={''} width={210} height={168} src={item.product.data.attributes.thumbnail?.data?.attributes.url} />
+                                                        <div className="font-quickSand">{item.product.data.attributes.title}</div>
+                                                    </div>
+                                                    <div className="flex justify-center items-center">
+                                                        <div className="font-quickSand text-xsmall md:text-heading4 text-gray-400">{item.product.data.attributes.sell_price ? item.product.data.attributes.sell_price : item.product.data.attributes.price}$</div>
+                                                    </div>
+                                                    <div className="flex justify-center items-center">
+                                                        <div className="border-[1px] font-quicksand font-bold rounded-[4px] border-green-300 text-green-300 h-full p-[3px] w-16 md:w-20 flex justify-evenly items-center">
+                                                            <div className="flex flex-col justify-between items-center">
+                                                                <IconBox icon={'up icon-angle-small-up cursor-pointer'} size={10} onClick={ () => updateProduct(item.product.data.id, 'increase')}/>
+                                                                <IconBox icon={'down icon-angle-small-down cursor-pointer'} size={10} onClick={ () => updateProduct(item.product.data.id, 'decrease')}/>
+                                                            </div>
+                                                            {item.quantity}
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex justify-center items-center">
+                                                        <div
+                                                            className="font-quickSand text-xsmall md:text-heading4 text-green-200">$2.51
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex justify-center items-center">
+                                                        <ImageView alt={'remove-item-icon'} width={25} height={25} src={'/assets/images/remove-item.svg'} />
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                 </div>
                             </div>
                             <div className="flex flex-col gap-[30px] mt-[26px]">
                                 <div className="h-[1px] w-full bg-gray-200"></div>
                                 <div className="flex flex-col lg:flex-row justify-between items-center">
-                                    <button type="submit" className="mt-6 px-[18px] py-4 bg-yellow-100 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5">
-                                        <IconBox icon={'icon-arrow-small-right rotate-180'} size={24}/>
-                                        <span
-                                            className="font-quickSand text-heading6 text-white">Continue Shopping</span>
-                                    </button>
+                                    <Link href={'/'}>
+                                        <button type="submit" className="mt-6 px-[18px] py-4 bg-yellow-100 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5">
+                                            <IconBox icon={'icon-arrow-small-right rotate-180'} size={24}/>
+                                            <span className="font-quickSand text-heading6 text-white">Continue Shopping</span>
+                                        </button>
+                                    </Link>
                                     <button type="submit" className="mt-6 px-[18px] py-4 bg-green-200 hover:bg-yellow-100 rounded cursor-pointer inline-flex max-w-max items-center gap-2.5 transition-all">
                                         <ImageView alt={'refresh-icon'} width={17} height={17} src={'/assets/images/refresh-icon.svg'} />
                                         <div className="font-quickSand text-heading6 text-white">Update Cart</div>
