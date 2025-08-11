@@ -89,8 +89,7 @@ export default function Index({}: Props) {
                                                         </div>
                                                     </div>
                                                     <div className="flex justify-center items-center">
-                                                        <div
-                                                            className="font-quickSand text-xsmall md:text-heading4 text-green-200">$2.51
+                                                        <div className="font-quickSand text-xsmall md:text-heading4 text-green-200">{product.attributes.sell_price ? (product.attributes.sell_price * item.quantity) : (product.attributes.price * item.quantity)}
                                                         </div>
                                                     </div>
                                                     <div className="flex justify-center items-center">
