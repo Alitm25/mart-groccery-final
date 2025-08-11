@@ -1,12 +1,12 @@
 import {Section} from "@/components/section/Section";
-import {IconBox, ImageView, InfoBody, InfoBodyBlock, Rating} from "@/components";
+import {IconBox, ImageView, InfoBody, InfoBodyBlock, Rating, SimpleProductCard} from "@/components";
 import {useQuery} from "@tanstack/react-query";
 import {getSingleProduct} from "@/api/Products";
 import {useRouter} from "next/router";
 import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
 import {useBasketData} from "@/hooks/useBasketData";
 import {useState} from "react";
-import {getAllCategories} from "@/api/Categories";
+import {getAllCategories, getSingleCategories} from "@/api/Categories";
 
 
 export default function Index() {
@@ -15,13 +15,7 @@ export default function Index() {
     const [showInfo, setShowInfo] = useState('description');
     const {data: singleData} = useQuery({queryKey: ['single-product'], queryFn: () => getSingleProduct(Number(router))});
 
-    const {data: categories} = useQuery({queryKey: [getAllCategories.name], queryFn: () => getAllCategories({
-            filters: {
-                id: {
-                    $eq: 13
-                }
-            }
-        })});
+    const {data: categories} = useQuery({queryKey: [getSingleCategories.name], queryFn: () => getSingleCategories(singleData?.data.attributes.categories?.data[0].id)});
     const {addItem, getItem, updateProduct, basketItems} = useBasketData();
 
     console.log('singleData: ',singleData);
@@ -136,6 +130,16 @@ export default function Index() {
             <Section>
                 <div className={'flex items-center justify-center flex-col'}>
                     <h2 className={'text-heading3 font-quicksand text-[#253D4E] mb-12'}>Related products</h2>
+
+                    <div className={'flex items-center justify-center gap-x-8'}>
+                        {
+                            categories?.data.attributes.products.data.map( (product) => {
+                                return (
+                                    <SimpleProductCard data={product} />
+                                )
+                            })
+                        }
+                    </div>
                 </div>
             </Section>
         </div>
