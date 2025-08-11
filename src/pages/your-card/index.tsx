@@ -30,9 +30,7 @@ export default function Index({}: Props) {
         <div className="container m-auto">
             <form className="font-lato">
                 <h1 className="text-heading2 font-quickSand">Your Cart</h1>
-                <div className="text-heading6 text-gray-500 mt-4">There are <span
-                    className="text-green-200">{basketItems.length}</span> products in your cart
-                </div>
+                <div className="text-heading6 text-gray-500 mt-4">There are <span className="text-green-200">{basketItems.length}</span> products in your cart</div>
                 <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12">
                     <div>
                         <div className="flex items-center justify-end pb-[20px]">
@@ -48,8 +46,7 @@ export default function Index({}: Props) {
                                         className="text-xsmall font-quickSand md:text-heading6 bg-gray-100 rounded-[15px] h-[58px] w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
                                         <div className="flex justify-center items-center">
                                             <label htmlFor="all-checkbox" className="hidden"></label>
-                                            <input type="checkbox" name="all-checkbox" id="all-checkbox"
-                                                   className="accent-green-200 w-3 h-3 md:w-4 md:h-4"/>
+                                            <input type="checkbox" name="all-checkbox" id="all-checkbox" className="accent-green-200 w-3 h-3 md:w-4 md:h-4"/>
                                         </div>
                                         <div className="flex justify-center items-center">Products</div>
                                         <div className="flex justify-center items-center">Unit Price</div>
@@ -58,10 +55,13 @@ export default function Index({}: Props) {
                                         <div className="flex justify-center items-center">Remove</div>
                                     </div>
                                     {
+
+
                                         basketItems.map( (item) => {
                                             const product = basketProducts.find(
                                                 (p) => p.id === item.product.data.id
                                             );
+
 
                                             if (!product) return null;
 
@@ -73,8 +73,8 @@ export default function Index({}: Props) {
                                                                className="accent-green-200 w-3 h-3 md:w-4 md:h-4"/>
                                                     </div>
                                                     <div className="flex flex-col xl:flex-row items-center justify-between gap-4">
-                                                        <ImageView alt={''} width={91} height={73} src={product.attributes.thumbnail?.data?.attributes.url} />
-                                                        <div className="font-quickSand">{product.attributes.title}</div>
+                                                        <ImageView alt={'products-image'} width={91} height={73} src={product.attributes.thumbnail?.data?.attributes.url} className={'border border-[#E5E5E5] rounded-lg p-5'}/>
+                                                        <div className="font-quickSand text-heading-sm lg:text-heading6 text-center lg:text-left text-[#253D4E]">{product.attributes.title}</div>
                                                     </div>
                                                     <div className="flex justify-center items-center">
                                                         <div className="font-quickSand text-xsmall md:text-heading4 text-gray-400">{product.attributes.sell_price ? product.attributes.sell_price : product.attributes.price}$</div>
@@ -89,12 +89,12 @@ export default function Index({}: Props) {
                                                         </div>
                                                     </div>
                                                     <div className="flex justify-center items-center">
-                                                        <div className="font-quickSand text-xsmall md:text-heading4 text-green-200">{product.attributes.sell_price ? (product.attributes.sell_price * item.quantity) : (product.attributes.price * item.quantity)}
+                                                        <div className="font-quickSand text-xsmall md:text-heading4 text-green-200">${product.attributes.sell_price ? (product.attributes.sell_price * item.quantity) : (product.attributes.price * item.quantity)}
                                                         </div>
                                                     </div>
-                                                    <div className="flex justify-center items-center">
+                                                    <button className="flex justify-center items-center" onClick={ () => item.quantity - item.quantity}>
                                                         <ImageView alt={'remove-item-icon'} width={25} height={25} src={'/assets/images/remove-item.svg'} />
-                                                    </div>
+                                                    </button>
                                                 </div>
                                             )
                                         })
@@ -115,8 +115,7 @@ export default function Index({}: Props) {
                                         <div className="font-quickSand text-heading6 text-white">Update Cart</div>
                                     </button>
                                 </div>
-                                <div
-                                    className="flex flex-col xl:grid xl:grid-cols-[minmax(0,_1.5fr)_minmax(0,_1fr)] gap-[45px] text-left">
+                                <div className="flex flex-col xl:grid xl:grid-cols-[minmax(0,_1.5fr)_minmax(0,_1fr)] gap-[45px] text-left">
                                     <div
                                         className="bg-white flex flex-col gap-[30px] md:gap-[14px] items-start justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8 max-h-[560px] overflow-y-auto">
                                         <div className="font-quickSand text-heading4">Calculate Shipping</div>
@@ -154,7 +153,6 @@ export default function Index({}: Props) {
                                         <div className="font-lato text-medium text-gray-400">Using A Promo Code?</div>
                                         <div
                                             className="lg:col-span-2 2xl:col-span-1 focus-within:border-green-200 bg-white text-medium text-gray-500 flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 w-full">
-                                            {/*<i class="fi-rs-user"></i>*/}
                                             <div className="flex gap-[7px] ml-[22px] flex-1 w-full">
                                                 <ImageView alt={'coupon-icon'} width={16} height={16} src={'/assets/images/coupon-icon.svg'}/>
                                                 <label htmlFor="coupon-code" className="hidden"></label>
@@ -197,7 +195,7 @@ export default function Index({}: Props) {
                             <div className="h-[1px] w-full bg-gray-200"></div>
                             <div className="flex justify-between items-center w-full">
                                 <div className="font-quickSand text-heading6 text-gray-400">Total</div>
-                                <div className="font-quickSand text-heading4 text-green-200">$12.31</div>
+                                <div className="font-quickSand text-heading4 text-green-200">${}</div>
                             </div>
                             <Link href={'/checkout'} className={'w-full'}>
                                 <button type="submit" className="w-full mt-6 py-4 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer flex items-center justify-center gap-2.5 transition-all">
