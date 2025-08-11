@@ -10,7 +10,7 @@ interface Props {
 };
 
 export default function Index({}: Props) {
-    const { updateProduct, basketItems, getItem } = useBasketData();
+    const { updateProduct, basketItems } = useBasketData();
 
     const productIds = basketItems.map((item) => item.product.data.id);
 
@@ -23,6 +23,7 @@ export default function Index({}: Props) {
             }),
         enabled: productIds.length > 0,
     });
+    const basketProducts = basketProductsData?.data || [];
 
 
     return (
@@ -57,7 +58,13 @@ export default function Index({}: Props) {
                                         <div className="flex justify-center items-center">Remove</div>
                                     </div>
                                     {
-                                        basketItems.map( (item, index) => {
+                                        basketItems.map( (item) => {
+                                            const product = basketProducts.find(
+                                                (p) => p.id === item.product.data.id
+                                            );
+
+                                            if (!product) return null;
+
                                             return (
                                                 <div className="font-quickSand text-xsmall md:text-heading6 w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
                                                     <div className="flex justify-center items-center">
@@ -66,17 +73,17 @@ export default function Index({}: Props) {
                                                                className="accent-green-200 w-3 h-3 md:w-4 md:h-4"/>
                                                     </div>
                                                     <div className="flex flex-col xl:flex-row items-center justify-between gap-4">
-                                                        <ImageView alt={''} width={210} height={168} src={item.product.data.attributes.thumbnail?.data?.attributes.url} />
-                                                        <div className="font-quickSand">{item.product.data.attributes.title}</div>
+                                                        <ImageView alt={''} width={91} height={73} src={product.attributes.thumbnail?.data?.attributes.url} />
+                                                        <div className="font-quickSand">{product.attributes.title}</div>
                                                     </div>
                                                     <div className="flex justify-center items-center">
-                                                        <div className="font-quickSand text-xsmall md:text-heading4 text-gray-400">{item.product.data.attributes.sell_price ? item.product.data.attributes.sell_price : item.product.data.attributes.price}$</div>
+                                                        <div className="font-quickSand text-xsmall md:text-heading4 text-gray-400">{product.attributes.sell_price ? product.attributes.sell_price : product.attributes.price}$</div>
                                                     </div>
                                                     <div className="flex justify-center items-center">
                                                         <div className="border-2 font-quicksand font-bold rounded-lg text-[#B6B6B6] border-[#B6B6B6] hover:border-[#3BB77E] hover:text-[#3BB77E] p-[7px] w-16 md:w-28 flex flex-row-reverse justify-evenly items-center transition-all">
                                                             <div className="flex flex-col justify-between items-center">
-                                                                <IconBox icon={'up icon-angle-small-up cursor-pointer'} size={10} onClick={ () => updateProduct(item.product.data.id, 'increase')}/>
-                                                                <IconBox icon={'down icon-angle-small-down cursor-pointer'} size={10} onClick={ () => updateProduct(item.product.data.id, 'decrease')}/>
+                                                                <IconBox icon={'up icon-angle-small-up cursor-pointer'} size={10} onClick={ () => updateProduct(product?.id, 'increase')}/>
+                                                                <IconBox icon={'down icon-angle-small-down cursor-pointer'} size={10} onClick={ () => updateProduct(product?.id, 'decrease')}/>
                                                             </div>
                                                             {item.quantity}
                                                         </div>
