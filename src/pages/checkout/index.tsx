@@ -1,10 +1,28 @@
-import {CheckOutForm, IconBox} from "@/components";
+import {CheckOutForm, IconBox, ImageView} from "@/components";
+import {useBasketData} from "@/hooks/useBasketData";
+import {useQuery} from "@tanstack/react-query";
+import {getAllProductsApiCall} from "@/api/Products";
 
 interface Props {
 
 };
 
 export default function Index({}: Props) {
+    const {basketItems} = useBasketData();
+
+    const productIds = basketItems.map((item) => item.product.data.id);
+
+    const { data: basketProductsData } = useQuery({
+        queryKey: ['basketProducts', productIds],
+        queryFn: () =>
+            getAllProductsApiCall({
+                filters: { id: { $in: productIds } },
+                populate: ['thumbnail'],
+            }),
+        enabled: productIds.length > 0,
+    });
+    const basketProducts = basketProductsData?.data || [];
+
     return (
         <div className="container m-auto">
                 <h1 className="text-heading2 font-quickSand">Checkout</h1>
@@ -20,57 +38,28 @@ export default function Index({}: Props) {
                                 <div className="font-quickSand text-heading6 text-gray-400">Subtotal</div>
                             </div>
                             <div className="h-[1px] w-full bg-gray-200"></div>
-                            <div
-                                className="grid grid-cols-[minmax(0,_2fr)_minmax(0,_4fr)_minmax(0,_1fr)_minmax(0,_1fr)] gap-7 w-full">
-                                <div className="flex justify-center items-center">
-                                    <img src="../assets/images/3%20389454.png" alt="orange" width="220" height="154"/>
-                                </div>
-                                <div
-                                    className="font-quickSand text-heading6 flex justify-center items-center py-[22px]">Field
-                                    Roast Chao Cheese Creamy Original
-                                </div>
-                                <div
-                                    className="font-lato text-heading4 text-gray-400 flex justify-center items-center">×
-                                    1
-                                </div>
-                                <div
-                                    className="font-lato text-heading4 text-green-200 flex justify-center items-center">$2.51
-                                </div>
-                            </div>
-                            <div
-                                className="grid grid-cols-[minmax(0,_2fr)_minmax(0,_4fr)_minmax(0,_1fr)_minmax(0,_1fr)] gap-7 w-full">
-                                <div className="flex justify-center items-center">
-                                    <img src="../assets/images/7%201.png" alt="orange" width="220" height="154"/>
-                                </div>
-                                <div
-                                    className="font-quickSand text-heading6 flex justify-center items-center py-[22px]">Seeds
-                                    of Change Organic Quinoa, Brown, & Red Rice
-                                </div>
-                                <div
-                                    className="font-lato text-heading4 text-gray-400 flex justify-center items-center">×
-                                    2
-                                </div>
-                                <div
-                                    className="font-lato text-heading4 text-green-200 flex justify-center items-center">$5.60
-                                </div>
-                            </div>
-                            <div
-                                className="grid grid-cols-[minmax(0,_2fr)_minmax(0,_4fr)_minmax(0,_1fr)_minmax(0,_1fr)] gap-7 w-full">
-                                <div className="flex justify-center items-center">
-                                    <img src="../assets/images/8%201.png" alt="orange" width="220" height="154"/>
-                                </div>
-                                <div
-                                    className="font-quickSand text-heading-sm flex justify-center items-center py-[22px]">Angie’s
-                                    Boomchickapop Sweet & Salty Kettle Corn
-                                </div>
-                                <div
-                                    className="font-lato text-heading4 text-gray-400 flex justify-center items-center">×
-                                    1
-                                </div>
-                                <div
-                                    className="font-lato text-heading4 text-green-200 flex justify-center items-center">$7.00
-                                </div>
-                            </div>
+                            {
+                                basketItems.map( (item) => {
+                                    const product = basketProducts.find(
+                                        (p) => p.id === item.product.data.id
+                                    );
+
+                                    if (!product) return null;
+
+
+                                    return (
+                                        <div className="grid grid-cols-[minmax(0,_2fr)_minmax(0,_4fr)_minmax(0,_1fr)_minmax(0,_1fr)] gap-7 w-full">
+                                            <div className="flex justify-center items-center">
+                                                <ImageView alt={'product-image'} width={220} height={154} src={product.attributes.thumbnail?.data?.attributes.url}/>
+                                            </div>
+                                            <div className="font-quickSand text-heading6 flex justify-center items-center py-[22px]">{product.attributes.title}</div>
+                                            <div className="font-lato text-heading4 text-gray-400 flex justify-center items-center">× {item.quantity}</div>
+                                            <div className="font-lato text-heading4 text-green-200 flex justify-center items-center">${product.attributes.sell_price ? (product.attributes.sell_price * item.quantity) : (product.attributes.price * item.quantity)}</div>
+                                        </div>
+                                    )
+
+                                })
+                            }
                         </div>
                         <div>
                             <div className="font-quickSand text-heading4">Payment</div>
