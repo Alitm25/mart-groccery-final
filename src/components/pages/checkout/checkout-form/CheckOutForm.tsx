@@ -1,4 +1,4 @@
-import {IconBox, Input} from "@/components";
+import {IconBox, ImageView, Input} from "@/components";
 import React from "react";
 import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
@@ -36,32 +36,24 @@ export function CheckOutForm({children, submitBtnClassName, options}: Props) {
 
 
     return (
-        <div className={'flex flex-col md:grid md:grid-cols-2 gap-6'}>
-            <div className="lg:col-span-2 2xl:col-span-1 text-medium text-gray-500 bg-white flex gap-[7px] py-[13px] items-center justify-center shadow-c rounded-[10px] border-[1px] border-gray-200">
-                <IconBox icon={'fi-rs-user'} />
-                <img src="../assets/icons/fi-rs-user.svg" width="16" height="16" alt="unanimous user"/>
-                <div>Already have an account?</div>
-                <a className="text-green-200" href="#">Click here to login</a>
-            </div>
-            <div
-                className="lg:col-span-2 2xl:col-span-1 focus-within:border-green-200 bg-white text-medium text-gray-500 flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 min-h-[52px]">
-                <IconBox icon={'fi-rs-user'} />
-                <div className="flex gap-[7px] ml-[22px] flex-1">
-                    <img src="../assets/icons/fi-rs-label%201.svg" width="16" height="16"
-                         alt="unanimous user"/>
-                    <label htmlFor="coupon-code" className="hidden"></label>
-                    <input name="coupon-code" id="coupon-code" type="text" placeholder="Coupon Code"
-                           className="w-full placeholder-gray-400 focus:outline-none text-gray-500 text-medium"/>
+        <div>
+            <div className={'flex flex-col md:flex-row items-center justify-center gap-7 mb-16'}>
+                <div className="text-sm lg:text-medium text-gray-500 bg-white flex gap-[7px] py-[13px] px-10 items-center justify-center shadow-c rounded-[10px] border-[1px] border-gray-200">
+                    <IconBox icon={'icon-user'} size={16} />
+                    <div>Already have an account?</div>
+                    <a className="text-green-200" href="#">Click here to login</a>
                 </div>
-                <button
-                    className="font-quickSand text-heading6 bg-blue-300 h-full min-h-[52px] rounded-r-[10px] text-white px-7">Apply
-                    Coupon
-                </button>
+                <div className="focus-within:border-green-200 bg-white text-medium text-gray-500 flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 min-h-[52px]">
+                    <div className="flex gap-[7px] ml-[22px] flex-1">
+                        <ImageView alt={'coupon-icon'} width={16} height={16} src={'/assets/images/coupon-icon.svg'}/>
+                        <label htmlFor="coupon-code" className="hidden"></label>
+                        <input name="coupon-code" id="coupon-code" type="text" placeholder="Coupon Code" className="w-full placeholder-gray-400 focus:outline-none text-gray-500 text-sm lg:text-medium"/>
+                    </div>
+                    <button className="font-quickSand text-heading-sm lg:text-heading6 bg-blue-300  rounded-r-[10px] text-white py-4 px-3 lg:px-5 xl:px-7">Apply Coupon</button>
+                </div>
             </div>
-            <form onSubmit={handleSubmit(onSubmitHandler)} className={"flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12"}>
-                <h3 className={'text-heading5 md:text-heading4 font-quicksand text-[#3BB77E]'}>Contact form</h3>
-
-
+            <h3 className={'text-heading5 md:text-heading4 font-quicksand text-[#3BB77E]'}>Contact form</h3>
+            <form onSubmit={handleSubmit(onSubmitHandler)} className={"flex flex-col lg:grid lg:grid-cols-2 w-full gap-6 mt-12"}>
                 <Input type={'text'}     register={register( 'firstName',  {required: 'Please insert your first name.'})}          errors={errors} placeholder={'First name *'}        {...{autoComplete: 'off'}}/>
                 <Input type={'text'}     register={register( 'lastName',   {required: 'Please insert your last name.'})}           errors={errors} placeholder={'Last name *'}         {...{autoComplete: 'off'}}/>
                 <Input type={'text'}     register={register( 'address',    {required: 'Please insert your address.'})}             errors={errors} placeholder={'Address 1 *'}         {...{autoComplete: 'off'}}/>
