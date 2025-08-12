@@ -51,10 +51,10 @@ export function MiniShoppingCard() {
                                                 {product.attributes.sell_price ? (
                                                     <div>
                             <span className="text-heading5 text-green-200">
-                              {product.attributes.sell_price * basketItem.quantity}
+                              ${product.attributes.sell_price * basketItem.quantity}
                             </span>
                             <span className="text-heading-sm line-through text-gray-500">
-                              {product.attributes.price}
+                              ${product.attributes.price}
                             </span>
                                                     </div>
                                                 ) : (
