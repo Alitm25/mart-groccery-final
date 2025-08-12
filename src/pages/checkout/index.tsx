@@ -26,8 +26,10 @@ export default function Index({}: Props) {
     return (
         <div className="container m-auto">
                 <h1 className="text-heading2 font-quickSand">Checkout</h1>
-                <div className="text-heading6 text-gray-500 mt-4">There are <span
-                    className="text-green-200">{basketItems.length}</span> products in your cart
+                <div className="text-heading6 text-gray-500 mt-4">
+                    There are
+                    <span className="text-green-200">{basketItems.length}</span>
+                    products in your cart
                 </div>
                 <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12">
                     <CheckOutForm options={['Iran', 'United State']}/>
@@ -76,14 +78,13 @@ export default function Index({}: Props) {
                                     <label className="font-lato text-medium text-gray-500" htmlFor="on-delivery">Cash on
                                         delivery</label>
                                 </div>
-                                <img src="../assets/images/payment-method%202.png" alt="payment method" width="307"
-                                     height="21"/>
+                                <ImageView alt={'payment method'} width={307} height={21} src={'/assets/images/payment-method%202.png'}/>
                             </div>
                         </div>
-                        <button type="submit"
-                                className="mt-6 px-[50px] py-2 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5">
+                        <button type="submit" className="mt-6 px-[50px] py-2 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5">
                             <div className="font-quickSand text-heading6 text-white">Place an Order</div>
-                            <img src="../assets/icons/fi-rs-sign-out%201.svg" alt="arrow right" width="16" height="16"/>
+                            <ImageView alt={'payment method'} width={16} height={16} src={'/assets/images/payment-method%202.png'}/>
+                            <img src="/assets/icons/fi-rs-sign-out%201.svg" alt="arrow right" width="16" height="16"/>
                         </button>
                     </div>
                 </div>
