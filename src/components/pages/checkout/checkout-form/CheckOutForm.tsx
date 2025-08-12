@@ -4,8 +4,9 @@ import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
 
 interface Props {
-    children: React.ReactNode;
-    submitBtnClassName: string;
+    children?: React.ReactNode;
+    submitBtnClassName?: string;
+    options: Array<country>
 }
 
 interface formData {
@@ -25,7 +26,7 @@ interface formData {
 
 type country = 'Iran' | 'United State'
 
-export function CheckOutForm({children, submitBtnClassName}: Props) {
+export function CheckOutForm({children, submitBtnClassName, options}: Props) {
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
     const onSubmitHandler = ( ) => {
