@@ -77,6 +77,29 @@ export function useBasketData() {
         })
     }
 
+    const deleteItemHandler = (productID: number) => {
+        // Prepare the basket without the deleted product
+        const preparedUpdateData = basketItems
+            .filter(item => item.product.data.id !== productID)
+            .map(item => ({
+                product: {
+                    connect: [{ id: item.product.data.id }]
+                },
+                quantity: item.quantity
+            }));
+
+        const updateBasketData: updateBasket = {
+            basket_items: preparedUpdateData
+        };
+
+        mutateUpdate.mutate(updateBasketData, {
+            onSuccess: () => {
+                queryClient.invalidateQueries({ queryKey: ['get-basket'] });
+            }
+        });
+    };
+
+
     const getItemHandler = (productID :number) :basketItems | undefined => {
         return basketItems.find( (item) => item.product.data.id === productID);
     }
@@ -96,5 +119,5 @@ export function useBasketData() {
     }
 
 
-    return {basketItems: basketItems, addItem: addItemHandler, updateProduct: updateProductHandler, getItem: getItemHandler, uuid2User: uuid2UserHandler}
+    return {basketItems: basketItems, addItem: addItemHandler, updateProduct: updateProductHandler, deleteItem: deleteItemHandler, getItem: getItemHandler, uuid2User: uuid2UserHandler}
 }
