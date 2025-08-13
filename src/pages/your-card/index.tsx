@@ -27,6 +27,20 @@ export default function Index({}: Props) {
 
 
     return (
+        basketItems.length < 1 ?
+            <div className={'flex flex-col mx-auto text-center items-center justify-center gap-y-6'}>
+                <h1 className={'text-heading3 lg:text-heading2 xl:text-heading1 2xl:text-display2 text-blue-300'}>
+                    Your basket is Empty!
+                </h1>
+                <p className={'font-lato text-heading-sm md:text-heading-5 text-[#7E7E7E] w-full font-normal cursor-default'}>In order to continue, return to the homepage and add some products to your basket</p>
+                <Link href={'/'}>
+                    <button type="submit" className="mt-6 px-[18px] py-4 bg-yellow-100 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5">
+                        <IconBox icon={'icon-arrow-small-right rotate-180'} size={24}/>
+                        <span className="font-quickSand text-heading6 text-white">Continue Shopping</span>
+                    </button>
+                </Link>
+            </div>
+        :
         <div className="container m-auto">
             <form className="font-lato">
                 <h1 className="text-heading2 font-quickSand">Your Cart</h1>
@@ -75,7 +89,7 @@ export default function Index({}: Props) {
                                                         <div className="font-quickSand text-heading-sm lg:text-heading6  text-[#253D4E]">{product.attributes.title}</div>
                                                     </div>
                                                     <div className="flex justify-center items-center">
-                                                        <div className="font-quickSand text-xsmall md:text-heading4 text-gray-400">{product.attributes.sell_price ? product.attributes.sell_price : product.attributes.price}$</div>
+                                                        <div className="font-quickSand text-xsmall md:text-heading4 text-gray-400">{product.attributes.sell_price ? product.attributes.sell_price :  product.attributes.price}$</div>
                                                     </div>
                                                     <div className="flex justify-center items-center">
                                                         <div className="border-2 font-quicksand font-bold rounded-lg text-[#B6B6B6] border-[#B6B6B6] hover:border-[#3BB77E] hover:text-[#3BB77E] p-[7px] w-16 md:w-28 flex flex-row-reverse justify-evenly items-center transition-all">
