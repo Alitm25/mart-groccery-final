@@ -36,8 +36,8 @@ export default function Index({}: Props) {
                     <div className="flex flex-col gap-[70px]">
                         <div className="bg-white flex flex-col gap-[30px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8 max-h-[560px] overflow-y-auto">
                             <div className="flex justify-between items-center w-full">
-                                <div className="font-quickSand text-heading4">Your Orders</div>
-                                <div className="font-quickSand text-heading6 text-gray-400">Subtotal</div>
+                                <div className="font-quickSand text-heading5 md:text-heading4">Your Orders</div>
+                                <div className="font-quickSand text-heading-sm md:text-heading6 text-gray-400">Subtotal</div>
                             </div>
                             <div className="h-[1px] w-full bg-gray-200"></div>
                             {
@@ -54,9 +54,9 @@ export default function Index({}: Props) {
                                             <div className="flex justify-center items-center">
                                                 <ImageView alt={'product-image'} width={220} height={154} src={product.attributes.thumbnail?.data?.attributes.url}/>
                                             </div>
-                                            <div className="font-quickSand text-heading6 flex justify-center items-center py-[22px]">{product.attributes.title}</div>
-                                            <div className="font-lato text-heading4 text-gray-400 flex justify-center items-center">× {item.quantity}</div>
-                                            <div className="font-lato text-heading4 text-green-200 flex justify-center items-center">${product.attributes.sell_price ? (product.attributes.sell_price * item.quantity) : (product.attributes.price * item.quantity)}</div>
+                                            <div className="font-quickSand text-heading-sm md:text-heading6 flex justify-center items-center py-[22px]">{product.attributes.title}</div>
+                                            <div className="font-lato text-heading5 md:text-heading4 text-gray-400 flex flex-row justify-center items-center">× {item.quantity}</div>
+                                            <div className="font-lato text-heading-sm md:text-heading4 text-green-200 flex justify-center items-center">${product.attributes.sell_price ? (product.attributes.sell_price * item.quantity) : (product.attributes.price * item.quantity)}</div>
                                         </div>
                                     )
 
