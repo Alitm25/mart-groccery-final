@@ -56,8 +56,8 @@ export function CheckOutForm({options}: Props) {
                     <button className="font-quickSand text-heading-sm lg:text-heading6 bg-blue-300  rounded-r-[10px] text-white py-4 px-3 lg:px-5 xl:px-7">Apply Coupon</button>
                 </div>
             </div>
-            <h3 className={'text-heading5 md:text-heading4 font-quicksand text-[#3BB77E]'}>Contact form</h3>
-            <form onSubmit={handleSubmit(onSubmitHandler)} className={"flex flex-col lg:grid lg:grid-cols-2 w-full gap-6 mt-12"}>
+            <h3 className={'text-heading5 md:text-heading4 font-quicksand text-[#253D4E]'}>Billing Details</h3>
+            <form onSubmit={handleSubmit(onSubmitHandler)} className={"flex flex-col lg:grid lg:grid-cols-2 w-full gap-6 mt-10"}>
                 <Input type={'text'}     register={register( 'firstName',  {required: 'Please insert your first name.'})}          errors={errors} placeholder={'First name *'}        {...{autoComplete: 'off'}}/>
                 <Input type={'text'}     register={register( 'lastName',   {required: 'Please insert your last name.'})}           errors={errors} placeholder={'Last name *'}         {...{autoComplete: 'off'}}/>
                 <Input type={'text'}     register={register( 'address',    {required: 'Please insert your address.'})}             errors={errors} placeholder={'Address 1 *'}         {...{autoComplete: 'off'}}/>
