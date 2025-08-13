@@ -1,5 +1,5 @@
 import {IconBox, ImageView, Input} from "@/components";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
 import {useModal} from "@/stores/ModalContext";
@@ -28,13 +28,17 @@ type country = 'Iran' | 'United State'
 export function CheckOutForm({options}: Props) {
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
     const {openModal} = useModal();
+    const [loginToken, setLoginToken] = useState<string | null>(null)
 
     const onSubmitHandler = ( ) => {
         toast.success('Your message have sent successfully, Our team will respond your message as soon as possible.');
         reset();
     }
 
-    const loginToken = window.localStorage.getItem('loginToken');
+    useEffect(() => {
+        const token = window.localStorage.getItem('loginToken');
+        setLoginToken(token);
+    }, []);
 
     return (
         <div>
