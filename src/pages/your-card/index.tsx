@@ -10,7 +10,7 @@ interface Props {
 };
 
 export default function Index({}: Props) {
-    const { updateProduct, basketItems } = useBasketData();
+    const { updateProduct, basketItems, deleteItem } = useBasketData();
 
     const productIds = basketItems.map((item) => item.product.data.id);
 
@@ -55,8 +55,6 @@ export default function Index({}: Props) {
                                         <div className="flex justify-center items-center">Remove</div>
                                     </div>
                                     {
-
-
                                         basketItems.map( (item) => {
                                             const product = basketProducts.find(
                                                 (p) => p.id === item.product.data.id
@@ -72,9 +70,9 @@ export default function Index({}: Props) {
                                                         <input type="checkbox" name="chbox1" id="chbox1"
                                                                className="accent-green-200 w-3 h-3 md:w-4 md:h-4"/>
                                                     </div>
-                                                    <div className="flex flex-col xl:flex-row items-center justify-between gap-4">
+                                                    <div className="flex flex-col xl:flex-row items-center justify-between gap-4 text-center lg:text-left">
                                                         <ImageView alt={'products-image'} width={91} height={73} src={product.attributes.thumbnail?.data?.attributes.url} className={'border border-[#E5E5E5] rounded-lg p-5'}/>
-                                                        <div className="font-quickSand text-heading-sm lg:text-heading6 text-center lg:text-left text-[#253D4E]">{product.attributes.title}</div>
+                                                        <div className="font-quickSand text-heading-sm lg:text-heading6  text-[#253D4E]">{product.attributes.title}</div>
                                                     </div>
                                                     <div className="flex justify-center items-center">
                                                         <div className="font-quickSand text-xsmall md:text-heading4 text-gray-400">{product.attributes.sell_price ? product.attributes.sell_price : product.attributes.price}$</div>
@@ -92,7 +90,7 @@ export default function Index({}: Props) {
                                                         <div className="font-quickSand text-xsmall md:text-heading4 text-green-200">${product.attributes.sell_price ? (product.attributes.sell_price * item.quantity) : (product.attributes.price * item.quantity)}
                                                         </div>
                                                     </div>
-                                                    <button className="flex justify-center items-center" onClick={ () => item.quantity - item.quantity}>
+                                                    <button type={'button'} className="flex justify-center items-center" onClick={ () => deleteItem(product?.id)}>
                                                         <ImageView alt={'remove-item-icon'} width={25} height={25} src={'/assets/images/remove-item.svg'} />
                                                     </button>
                                                 </div>
@@ -160,8 +158,7 @@ export default function Index({}: Props) {
                                                        placeholder="Coupon Code"
                                                        className="w-full placeholder-gray-400 focus:outline-none text-gray-500 text-medium"/>
                                             </div>
-                                            <button
-                                                className="font-quickSand text-heading6 bg-green-200 hover:bg-yellow-100 h-full min-h-[52px] rounded-r-[10px] text-white px-7 transition-all">Apply
+                                            <button className="font-quickSand text-heading6 bg-green-200 hover:bg-yellow-100 h-full min-h-[52px] rounded-r-[10px] text-white px-7 transition-all">Apply
                                             </button>
                                         </div>
                                     </div>

@@ -26,7 +26,7 @@ interface formData {
 type country = 'Iran' | 'United State'
 
 export function CheckOutForm({options}: Props) {
-    const {register, handleSubmit, formState: {errors}, reset} = useForm<formData>()
+    const {register, formState: {errors}, reset} = useForm<formData>()
     const {openModal} = useModal();
     const [loginToken, setLoginToken] = useState<string | null>(null)
 
@@ -61,7 +61,7 @@ export function CheckOutForm({options}: Props) {
                 </div>
             </div>
             <h3 className={'text-heading5 md:text-heading4 font-quicksand text-[#253D4E]'}>Billing Details</h3>
-            <form onSubmit={handleSubmit(onSubmitHandler)} className={"flex flex-col lg:grid lg:grid-cols-2 w-full gap-6 mt-10"}>
+            <div className={"flex flex-col lg:grid lg:grid-cols-2 w-full gap-6 mt-10"}>
                 <Input type={'text'}     register={register( 'firstName',  {required: 'Please insert your first name.'})}          errors={errors} placeholder={'First name *'}        {...{autoComplete: 'off'}}/>
                 <Input type={'text'}     register={register( 'lastName',   {required: 'Please insert your last name.'})}           errors={errors} placeholder={'Last name *'}         {...{autoComplete: 'off'}}/>
                 <Input type={'text'}     register={register( 'address',    {required: 'Please insert your address.'})}             errors={errors} placeholder={'Address 1 *'}         {...{autoComplete: 'off'}}/>
@@ -73,8 +73,7 @@ export function CheckOutForm({options}: Props) {
                 <Input type={'email'}    register={register( 'email',      {required: 'Please insert your email address.'})}       errors={errors} placeholder={'Email*'}              {...{autoComplete: 'off'}}/>
                 <Input type={'text'}     register={register( 'company')}                                                         errors={errors} placeholder={'Company'}             {...{autoComplete: 'off'}}/>
                 <Input type={'textarea'} register={register( 'additional',)} errors={errors} placeholder={'Additional information'} className={'h-[208px] w-full'}/>
-
-            </form>
+            </div>
         </div>
     );
 };

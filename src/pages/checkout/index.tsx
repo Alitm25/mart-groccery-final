@@ -2,13 +2,28 @@ import {CheckOutForm, ImageView} from "@/components";
 import {useBasketData} from "@/hooks/useBasketData";
 import {useQuery} from "@tanstack/react-query";
 import {getAllProductsApiCall} from "@/api/Products";
+import {useForm} from "react-hook-form";
+import {toast} from "react-toastify";
 
-interface Props {
+interface formData {
+    firstName: string,
+    lastName: string,
+    address: string,
+    address2: string,
+    state: Array<string>,
+    city: string,
+    postCode: string,
+    phone: string,
+    email: string,
+    company?: string,
+    additional?: string,
 
 };
 
-export default function Index({}: Props) {
+export default function Index() {
     const {basketItems} = useBasketData();
+    const methods = useForm();
+    const { handleSubmit } = methods;
 
     const productIds = basketItems.map((item) => item.product.data.id);
 
@@ -23,6 +38,11 @@ export default function Index({}: Props) {
     });
     const basketProducts = basketProductsData?.data || [];
 
+
+    const onSubmitHandler = () => {
+        toast.success('Your order was successfully completed. Thanks for your purchase. You can observe your orders process in your account page')
+    }
+
     return (
         <div className="container m-auto">
                 <h1 className="text-heading2 font-quickSand">Checkout</h1>
@@ -32,7 +52,9 @@ export default function Index({}: Props) {
                     products in your cart
                 </div>
                 <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12">
-                    <CheckOutForm options={['Iran', 'United State']}/>
+                    <form id="checkout-form" onSubmit={handleSubmit(onSubmitHandler)}>
+                        <CheckOutForm options={['Iran', 'United State']}/>
+                    </form>
                     <div className="flex flex-col gap-[70px]">
                         <div className="bg-white flex flex-col gap-[30px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8 max-h-[560px] overflow-y-auto">
                             <div className="flex justify-between items-center w-full">
@@ -81,7 +103,12 @@ export default function Index({}: Props) {
                                 <ImageView alt={'payment method'} width={307} height={21} src={'/assets/images/payment-method%202.png'}/>
                             </div>
                         </div>
-                        <button type="submit" className="mt-6 px-[50px] py-4 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5 transition-all">
+                        <button type="submit"
+                            onClick={() => {
+                                const form = document.getElementById("checkout-form") as HTMLFormElement;
+                                form?.requestSubmit();
+                        }
+                        } className="mt-6 px-[50px] py-4 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5 transition-all">
                             <div className="font-quickSand text-heading6 text-white">Place an Order</div>
                             <ImageView alt={'payment method'} width={16} height={16} src={'/assets/images/order-logo.svg'}/>
                         </button>
