@@ -2,10 +2,9 @@ import {IconBox, ImageView, Input} from "@/components";
 import React from "react";
 import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
+import {useModal} from "@/stores/ModalContext";
 
 interface Props {
-    children?: React.ReactNode;
-    submitBtnClassName?: string;
     options: Array<country>
 }
 
@@ -26,23 +25,28 @@ interface formData {
 
 type country = 'Iran' | 'United State'
 
-export function CheckOutForm({children, submitBtnClassName, options}: Props) {
+export function CheckOutForm({options}: Props) {
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
+    const {openModal} = useModal();
 
     const onSubmitHandler = ( ) => {
         toast.success('Your message have sent successfully, Our team will respond your message as soon as possible.');
         reset();
     }
 
+    const loginToken = window.localStorage.getItem('loginToken');
 
     return (
         <div>
             <div className={'flex flex-col md:flex-row items-center justify-center gap-7 mb-16'}>
-                <div className="text-sm lg:text-medium text-gray-500 bg-white flex gap-[7px] py-[13px] px-10 items-center justify-center shadow-c rounded-[10px] border-[1px] border-gray-200">
-                    <IconBox icon={'icon-user'} size={16} />
-                    <div>Already have an account?</div>
-                    <a className="text-green-200" href="#">Click here to login</a>
-                </div>
+                {
+                    !loginToken &&
+                    <div className="text-sm lg:text-medium text-gray-500 bg-white flex gap-[7px] py-[13px] px-10 items-center justify-center shadow-c rounded-[10px] border-[1px] border-gray-200">
+                        <IconBox icon={'icon-user'} size={16} />
+                        <div>Already have an account?</div>
+                        <span onClick={() => openModal('Login')} className={"text-green-200 cursor-pointer"} >Click here to login</span>
+                    </div>
+                }
                 <div className="focus-within:border-green-200 bg-white text-medium text-gray-500 flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 min-h-[52px]">
                     <div className="flex gap-[7px] ml-[22px] flex-1">
                         <ImageView alt={'coupon-icon'} width={16} height={16} src={'/assets/images/coupon-icon.svg'}/>
@@ -66,9 +70,6 @@ export function CheckOutForm({children, submitBtnClassName, options}: Props) {
                 <Input type={'text'}     register={register( 'Company')}                                                         errors={errors} placeholder={'Company'}             {...{autoComplete: 'off'}}/>
                 <Input type={'textarea'} register={register( 'additional',)} errors={errors} placeholder={'Additional information'} className={'h-[208px] w-full'}/>
 
-                <button className={submitBtnClassName}>
-                    {children}
-                </button>
             </form>
         </div>
     );
