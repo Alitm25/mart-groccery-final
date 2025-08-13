@@ -99,6 +99,18 @@ export function useBasketData() {
         });
     };
 
+    const clearBasketHandler = () => {
+        const updateBasketData = {
+            basket_items: [],
+        }
+
+        mutateUpdate.mutate(updateBasketData, {
+            onSuccess: () => {
+                queryClient.invalidateQueries({ queryKey: ['get-basket'] });
+            }
+        });
+    }
+
 
     const getItemHandler = (productID :number) :basketItems | undefined => {
         return basketItems.find( (item) => item.product.data.id === productID);
@@ -119,5 +131,5 @@ export function useBasketData() {
     }
 
 
-    return {basketItems: basketItems, addItem: addItemHandler, updateProduct: updateProductHandler, deleteItem: deleteItemHandler, getItem: getItemHandler, uuid2User: uuid2UserHandler}
+    return {basketItems: basketItems, addItem: addItemHandler, updateProduct: updateProductHandler, deleteItem: deleteItemHandler, clearBasket: clearBasketHandler, getItem: getItemHandler, uuid2User: uuid2UserHandler}
 }
