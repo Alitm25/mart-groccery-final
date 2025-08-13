@@ -66,7 +66,7 @@ export function CheckOutForm({options}: Props) {
                 <Input type={'text'}     register={register( 'lastName',   {required: 'Please insert your last name.'})}           errors={errors} placeholder={'Last name *'}         {...{autoComplete: 'off'}}/>
                 <Input type={'text'}     register={register( 'address',    {required: 'Please insert your address.'})}             errors={errors} placeholder={'Address 1 *'}         {...{autoComplete: 'off'}}/>
                 <Input type={'text'}     register={register( 'address2',   {required: 'Please insert your address line 2.'})}      errors={errors} placeholder={'Address line 2 *'}    {...{autoComplete: 'off'}}/>
-                <Input type={'select'}   register={register( 'state',      {required: 'Please choose your state or country.'})}    errors={errors} options={options}/>
+                <Input type={'select'}   register={register( 'state',      {required: 'Please choose your state or country.'})}    errors={errors} placeholder={'State/Country'}       options={options}/>
                 <Input type={'text'}     register={register( 'city',       {required: 'Please insert your city or town.'})}        errors={errors} placeholder={'City/Town *'}         {...{autoComplete: 'off'}}/>
                 <Input type={'text'}     register={register( 'postCode',   {required: 'Please insert your postcode or Zip.'})}     errors={errors} placeholder={'Postcode/Zip *'}      {...{autoComplete: 'off'}}/>
                 <Input type={'tel'}      register={register( 'phone',      {required: 'Please insert phone number.'})}             errors={errors} placeholder={'Address line 2 *'}    {...{autoComplete: 'off'}}/>
