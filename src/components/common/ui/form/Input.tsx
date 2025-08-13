@@ -32,11 +32,15 @@ export function Input({type = 'text', placeholder, register, label, labelClassNa
                 <ErrorMessage errors={errors} name={name} />
             </div>
         ) : type === 'select' ? (
-            <select {...register} className={`w-full outline-none ${hasError ? 'border-rose-600 hover:border-rose-600' : ''} hover:border-green-200 focus:border-green-200 font-lato font-normal text-base py-6 px-9 flex items-start justify-center text-[#B6B6B6] border rounded-xl transition-all`}>
+            <select {...register} className={`w-full outline-none ${hasError ? 'border-rose-600 hover:border-rose-600' : ''} bg-white hover:border-green-200 focus:border-green-200 font-lato font-normal text-base py-6 px-9 flex items-start justify-center text-[#B6B6B6] border rounded-xl transition-all`}>
+                <option value="" defaultChecked>{placeholder}</option>
                 {options!.map( (option, index) => (
-                    <option key={index} value={option}>
-                        {option}
-                    </option>
+                    <>
+                        <option key={index} value={option}>
+                            {option}
+                        </option>
+                    </>
+
                 ))}
             </select>
         ) : (
