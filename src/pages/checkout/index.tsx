@@ -81,10 +81,9 @@ export default function Index({}: Props) {
                                 <ImageView alt={'payment method'} width={307} height={21} src={'/assets/images/payment-method%202.png'}/>
                             </div>
                         </div>
-                        <button type="submit" className="mt-6 px-[50px] py-2 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5">
+                        <button type="submit" className="mt-6 px-[50px] py-4 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5 transition-all">
                             <div className="font-quickSand text-heading6 text-white">Place an Order</div>
-                            <ImageView alt={'payment method'} width={16} height={16} src={'/assets/images/payment-method%202.png'}/>
-                            <img src="/assets/icons/fi-rs-sign-out%201.svg" alt="arrow right" width="16" height="16"/>
+                            <ImageView alt={'payment method'} width={16} height={16} src={'/assets/images/order-logo.svg'}/>
                         </button>
                     </div>
                 </div>
