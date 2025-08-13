@@ -110,7 +110,7 @@ export default function Index() {
                         }
                         } className="mt-6 px-[50px] py-4 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5 transition-all">
                             <div className="font-quickSand text-heading6 text-white">Place an Order</div>
-                            <ImageView alt={'payment method'} width={16} height={16} src={'/assets/images/order-logo.svg'}/>
+                            <ImageView alt={'payment method'} width={16} height={16} src={'/order-logo.svg'}/>
                         </button>
                     </div>
                 </div>
