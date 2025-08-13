@@ -22,7 +22,7 @@ interface formData {
 };
 
 export default function Index() {
-    const {basketItems} = useBasketData();
+    const {basketItems, clearBasket} = useBasketData();
     const {register, handleSubmit, formState: {errors}, reset} = useForm<formData>()
     const router = useRouter();
 
@@ -110,6 +110,7 @@ export default function Index() {
                             onClick={() => {
                                 const form = document.querySelector("#checkout-form") as HTMLFormElement;
                                 form?.requestSubmit();
+                                clearBasket();
                         }
                         } className="mt-6 px-[50px] py-4 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5 transition-all">
                             <div className="font-quickSand text-heading6 text-white">Place an Order</div>
