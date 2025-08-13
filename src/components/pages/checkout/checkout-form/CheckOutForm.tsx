@@ -26,7 +26,7 @@ interface formData {
 type country = 'Iran' | 'United State'
 
 export function CheckOutForm({options}: Props) {
-    const {register, handleSubmit, formState: {errors}, reset} = useForm()
+    const {register, handleSubmit, formState: {errors}, reset} = useForm<formData>()
     const {openModal} = useModal();
     const [loginToken, setLoginToken] = useState<string | null>(null)
 
@@ -71,7 +71,7 @@ export function CheckOutForm({options}: Props) {
                 <Input type={'text'}     register={register( 'postCode',   {required: 'Please insert your postcode or Zip.'})}     errors={errors} placeholder={'Postcode/Zip *'}      {...{autoComplete: 'off'}}/>
                 <Input type={'tel'}      register={register( 'phone',      {required: 'Please insert phone number.'})}             errors={errors} placeholder={'Address line 2 *'}    {...{autoComplete: 'off'}}/>
                 <Input type={'email'}    register={register( 'email',      {required: 'Please insert your email address.'})}       errors={errors} placeholder={'Email*'}              {...{autoComplete: 'off'}}/>
-                <Input type={'text'}     register={register( 'Company')}                                                         errors={errors} placeholder={'Company'}             {...{autoComplete: 'off'}}/>
+                <Input type={'text'}     register={register( 'company')}                                                         errors={errors} placeholder={'Company'}             {...{autoComplete: 'off'}}/>
                 <Input type={'textarea'} register={register( 'additional',)} errors={errors} placeholder={'Additional information'} className={'h-[208px] w-full'}/>
 
             </form>
