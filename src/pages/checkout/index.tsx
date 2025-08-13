@@ -28,7 +28,7 @@ export default function Index({}: Props) {
                 <h1 className="text-heading2 font-quickSand">Checkout</h1>
                 <div className="text-heading6 text-gray-500 mt-4">
                     There are
-                    <span className="text-green-200">{basketItems.length}</span>
+                    <span className="text-green-200 mx-1">{basketItems.length}</span>
                     products in your cart
                 </div>
                 <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12">
