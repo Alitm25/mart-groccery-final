@@ -1,39 +1,18 @@
 import {IconBox, ImageView, Input} from "@/components";
 import React, {useEffect, useState} from "react";
-import {useForm} from "react-hook-form";
-import {toast} from "react-toastify";
 import {useModal} from "@/stores/ModalContext";
 
 interface Props {
-    options: Array<country>
+    options:    Array<country>;
+    register:   any;
+    errors:     any;
 }
-
-interface formData {
-    firstName: string,
-    lastName: string,
-    address: string,
-    address2: string,
-    state: country,
-    city: string,
-    postCode: string,
-    phone: string,
-    email: string,
-    company?: string,
-    additional?: string,
-
-};
 
 type country = 'Iran' | 'United State'
 
-export function CheckOutForm({options}: Props) {
-    const {register, formState: {errors}, reset} = useForm<formData>()
+export function CheckOutForm({options, register, errors}: Props) {
     const {openModal} = useModal();
     const [loginToken, setLoginToken] = useState<string | null>(null)
-
-    const onSubmitHandler = ( ) => {
-        toast.success('Your message have sent successfully, Our team will respond your message as soon as possible.');
-        reset();
-    }
 
     useEffect(() => {
         const token = window.localStorage.getItem('loginToken');
@@ -62,15 +41,15 @@ export function CheckOutForm({options}: Props) {
             </div>
             <h3 className={'text-heading5 md:text-heading4 font-quicksand text-[#253D4E]'}>Billing Details</h3>
             <div className={"flex flex-col lg:grid lg:grid-cols-2 w-full gap-6 mt-10"}>
-                <Input type={'text'}     register={register( 'firstName',  {required: 'Please insert your first name.'})}          errors={errors} placeholder={'First name *'}        {...{autoComplete: 'off'}}/>
-                <Input type={'text'}     register={register( 'lastName',   {required: 'Please insert your last name.'})}           errors={errors} placeholder={'Last name *'}         {...{autoComplete: 'off'}}/>
-                <Input type={'text'}     register={register( 'address',    {required: 'Please insert your address.'})}             errors={errors} placeholder={'Address 1 *'}         {...{autoComplete: 'off'}}/>
-                <Input type={'text'}     register={register( 'address2',   {required: 'Please insert your address line 2.'})}      errors={errors} placeholder={'Address line 2 *'}    {...{autoComplete: 'off'}}/>
-                <Input type={'select'}   register={register( 'state',      {required: 'Please choose your state or country.'})}    errors={errors} placeholder={'State/Country'}       options={options}/>
-                <Input type={'text'}     register={register( 'city',       {required: 'Please insert your city or town.'})}        errors={errors} placeholder={'City/Town *'}         {...{autoComplete: 'off'}}/>
-                <Input type={'text'}     register={register( 'postCode',   {required: 'Please insert your postcode or Zip.'})}     errors={errors} placeholder={'Postcode/Zip *'}      {...{autoComplete: 'off'}}/>
-                <Input type={'tel'}      register={register( 'phone',      {required: 'Please insert phone number.'})}             errors={errors} placeholder={'Address line 2 *'}    {...{autoComplete: 'off'}}/>
-                <Input type={'email'}    register={register( 'email',      {required: 'Please insert your email address.'})}       errors={errors} placeholder={'Email*'}              {...{autoComplete: 'off'}}/>
+                <Input type={'text'}     register={register( 'firstName',  { required: 'Please insert your first name.'} )}          errors={errors} placeholder={'First name *'}        {...{autoComplete: 'off'}}/>
+                <Input type={'text'}     register={register( 'lastName',   { required: 'Please insert your last name.'} )}           errors={errors} placeholder={'Last name *'}         {...{autoComplete: 'off'}}/>
+                <Input type={'text'}     register={register( 'address',    { required: 'Please insert your address.'} )}             errors={errors} placeholder={'Address 1 *'}         {...{autoComplete: 'off'}}/>
+                <Input type={'text'}     register={register( 'address2',   { required: 'Please insert your address line 2.'} )}      errors={errors} placeholder={'Address line 2 *'}    {...{autoComplete: 'off'}}/>
+                <Input type={'select'}   register={register( 'state',      { required: 'Please choose your state or country.'} )}    errors={errors} placeholder={'State/Country'}       options={options}/>
+                <Input type={'text'}     register={register( 'city',       { required: 'Please insert your city or town.', } )}        errors={errors} placeholder={'City/Town *'}         {...{autoComplete: 'off'}}/>
+                <Input type={'text'}     register={register( 'postCode',   { required: 'Please insert your postcode or Zip.'} )}     errors={errors} placeholder={'Postcode/Zip *'}      {...{autoComplete: 'off'}}/>
+                <Input type={'tel'}      register={register( 'phone',      { required: 'Please insert phone number.', pattern: {value: '^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,4}?\\)?[-.\\s]?\\d{1,9}([-.\\s]?\\d{1,9})?$\n', message: 'Please enter a valid phone number'} } )}             errors={errors} placeholder={'Phone number *'}      {...{autoComplete: 'off'}}/>
+                <Input type={'email'}    register={register( 'email',      {required: 'Please insert your email address.'} )}       errors={errors} placeholder={'Email*'}              {...{autoComplete: 'off'}}/>
                 <Input type={'text'}     register={register( 'company')}                                                           errors={errors} placeholder={'Company'}             {...{autoComplete: 'off'}}/>
                 <Input type={'textarea'} register={register( 'additional',)} errors={errors} placeholder={'Additional information'} className={'h-[208px] w-full'}/>
             </div>
