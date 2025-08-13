@@ -1,4 +1,4 @@
-import {CheckOutForm, IconBox, ImageView} from "@/components";
+import {CheckOutForm, ImageView} from "@/components";
 import {useBasketData} from "@/hooks/useBasketData";
 import {useQuery} from "@tanstack/react-query";
 import {getAllProductsApiCall} from "@/api/Products";
