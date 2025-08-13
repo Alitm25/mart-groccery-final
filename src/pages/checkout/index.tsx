@@ -4,6 +4,7 @@ import {useQuery} from "@tanstack/react-query";
 import {getAllProductsApiCall} from "@/api/Products";
 import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
+import {useRouter} from "next/router";
 
 interface formData {
     firstName: string,
@@ -22,8 +23,8 @@ interface formData {
 
 export default function Index() {
     const {basketItems} = useBasketData();
-    const methods = useForm();
-    const { handleSubmit } = methods;
+    const {register, handleSubmit, formState: {errors}, reset} = useForm<formData>()
+    const router = useRouter();
 
     const productIds = basketItems.map((item) => item.product.data.id);
 
@@ -39,8 +40,10 @@ export default function Index() {
     const basketProducts = basketProductsData?.data || [];
 
 
-    const onSubmitHandler = () => {
-        toast.success('Your order was successfully completed. Thanks for your purchase. You can observe your orders process in your account page')
+    const onSubmitHandler = (data :formData) => {
+        router.push('/');
+        toast.success('Your order was successfully completed. Thanks for your purchase. You can observe your orders process in your account page');
+        console.log(data);
     }
 
     return (
@@ -53,7 +56,7 @@ export default function Index() {
                 </div>
                 <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12">
                     <form id="checkout-form" onSubmit={handleSubmit(onSubmitHandler)}>
-                        <CheckOutForm options={['Iran', 'United State']}/>
+                        <CheckOutForm options={['Iran', 'United State']} register={register} errors={errors}/>
                     </form>
                     <div className="flex flex-col gap-[70px]">
                         <div className="bg-white flex flex-col gap-[30px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8 max-h-[560px] overflow-y-auto">
@@ -105,7 +108,7 @@ export default function Index() {
                         </div>
                         <button type="submit"
                             onClick={() => {
-                                const form = document.getElementById("checkout-form") as HTMLFormElement;
+                                const form = document.querySelector("#checkout-form") as HTMLFormElement;
                                 form?.requestSubmit();
                         }
                         } className="mt-6 px-[50px] py-4 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5 transition-all">
