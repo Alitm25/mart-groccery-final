@@ -1,4 +1,4 @@
-import React, {useState, MouseEvent} from 'react';
+import React, {useState, MouseEvent, useEffect} from 'react';
 import {IconBox, LoginModal, Logo, Menu, MiniShoppingCard, RegisterModal, SearchForm} from "@/components";
 import Link from "next/link";
 import useOverlay from "@/hooks/useOverlay";
@@ -6,6 +6,8 @@ import {useModal} from "@/stores/ModalContext";
 import {useAuth} from "@/stores/AuthContext";
 import {ConfirmLogoutModal} from "@/components/auth/ConfirmLogoutModal";
 import {useBasketData} from "@/hooks/useBasketData";
+import {UserType} from "@/types/api/Auth";
+import {useRouter} from "next/router";
 
 
 
@@ -14,7 +16,16 @@ export function Header() {
     const [showMobileMenu, setShowMobileMenu]   = useState<boolean>(false);
     const {currentModal, openModal, closeModal} = useModal();
     const {isLogin}                             = useAuth();
-    // const {basketItem}                          = useBasket();
+    const router                     = useRouter();
+    const [user, setUser]                       = useState<UserType | null>(null);
+
+    useEffect(() => {
+        const user = window.localStorage.getItem('user');
+
+        if (user)
+            setUser(JSON.parse(user) as UserType);
+    }, []);
+
 
     const mobileMenuBtnHandler = (e :MouseEvent) => {
         e.stopPropagation();
@@ -27,7 +38,7 @@ export function Header() {
 
     const accountHandler = () => {
         if (isLogin) {
-            openModal('ConfirmLogout');
+            router.push('/account')
         } else {
             openModal('Login')
         }
@@ -57,7 +68,7 @@ export function Header() {
                 </div>
                 <ul className="hidden lg:flex gap-5">
                     <li className="flex gap-2 cursor-pointer" onClick={accountHandler}>
-                        <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? 'Logout' : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
+                        <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? user?.username : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
                     </li>
                     <div className={'group'}>
                         <li className={`flex gap-2 cursor-pointer`}>
