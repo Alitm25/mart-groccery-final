@@ -14,6 +14,7 @@ import {ToastContainer} from "react-toastify";
 import {useState} from "react";
 import {ModalContextProvider} from "@/stores/ModalContext";
 import {AuthContextProvider} from "@/stores/AuthContext";
+import {OrderContextProvider} from "@/stores/OrderContext";
 
 
 
@@ -52,11 +53,13 @@ export default function App({ Component, pageProps }: AppProps) {
                 <HydrationBoundary state={pageProps.dehydratedState}>
                         <AuthContextProvider>
                             <ModalContextProvider>
+                                <OrderContextProvider>
                                 <div id={'modal-portal'}></div>
-                                <Layout>
-                                    <Component {...pageProps} />
-                                    <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false} theme={"light"} position={"top-right"}/>
-                                </Layout>
+                                    <Layout>
+                                        <Component {...pageProps} />
+                                        <ToastContainer autoClose={false} hideProgressBar={false} closeOnClick={true} draggable={false} theme={"light"} position={"top-right"}/>
+                                    </Layout>
+                                </OrderContextProvider>
                             </ModalContextProvider>
                         </AuthContextProvider>
                 </HydrationBoundary>
