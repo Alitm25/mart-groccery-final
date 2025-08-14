@@ -15,41 +15,41 @@ export default function Index({}: Props) {
             <div className="flex flex-wrap justify-center items-center">
                 {/*buttons*/}
                 <div className="flex flex-col gap-2.5 font-quickSand text-gray-500 text-heading6 lg:mr-[73px] sm:mr-0 sm:mb-10">
-                    <div className="flex cursor-pointer gap-3.5 text-black px-4 py-3 rounded-[10px] items-center border border-gray-100 hover:bg-green-200 hover:text-white">
+                    <button className="flex cursor-pointer gap-3.5 text-black px-4 py-3 rounded-[10px] items-center border border-gray-100 hover:bg-green-200 hover:text-white">
                         <ImageView alt={'setting logo'} width={26} height={24} src={'/setting-logo.svg'}/>
                         <div className="text-medium">Dashboard</div>
-                    </div>
+                    </button>
 
-                    <div
+                    <button
                         className="flex cursor-pointer gap-3.5 text-black px-4 py-3 rounded-[10px] items-center border border-gray-100 hover:bg-green-200 hover:text-white">
                         <ImageView alt={'setting logo'} width={26} height={24} src={'/setting-logo.svg'}/>
                         <div className="text-medium">Order list</div>
-                    </div>
+                    </button>
 
-                    <div
+                    <button
                         className="flex cursor-pointer gap-3.5 text-black px-4 py-3 rounded-[10px] items-center border border-gray-100 hover:bg-green-200 hover:text-white">
                         <ImageView alt={'shop logo'} width={26} height={24} src={'/shop-logo.svg'}/>
 
                         <div className="text-medium">Track your orders</div>
-                    </div>
+                    </button>
 
-                    <div
+                    <button
                         className="flex cursor-pointer gap-3.5 text-black px-4 py-3 rounded-[10px] items-center border border-gray-100 hover:bg-green-200 hover:text-white">
                         <ImageView alt={'location logo'} width={26} height={24} src={'/location-logo.svg'}/>
                         <div className="text-medium">My address</div>
-                    </div>
+                    </button>
 
-                    <div
+                    <button
                         className="flex cursor-pointer gap-3.5 text-black px-4 py-3 rounded-[10px] items-center border border-gray-100 hover:bg-green-200 hover:text-white">
                         <ImageView alt={'location logo'} width={26} height={24} src={'/account-logo.svg'}/>
                         <div className="text-medium">Account details</div>
-                    </div>
+                    </button>
 
-                    <div onClick={() => openModal('ConfirmLogout')}
+                    <button onClick={() => openModal('ConfirmLogout')}
                         className="flex cursor-pointer gap-3.5 text-black px-4 py-3 rounded-[10px] items-center border border-gray-100 hover:bg-green-200 hover:text-white">
                         <ImageView alt={'payment method'} width={26} height={24} src={'/order-logo.svg'}/>
                         <div className="text-medium">Log out </div>
-                    </div>
+                    </button>
                 </div>
 
                 {/*order details*/}
