@@ -1,11 +1,15 @@
 import {Section} from "@/components/section/Section";
 import {ImageView} from "@/components";
+import {useModal} from "@/stores/ModalContext";
 
 interface Props {
 
 };
 
 export default function Index({}: Props) {
+    const {openModal} = useModal();
+
+
     return (
         <Section sectionClassName={"container lg:mt-[100px] sm:mt-4 font-lato mb-[239px]"}>
             <div className="flex flex-wrap justify-center items-center">
@@ -41,7 +45,7 @@ export default function Index({}: Props) {
                         <div className="text-medium">Account details</div>
                     </div>
 
-                    <div
+                    <div onClick={() => openModal('ConfirmLogout')}
                         className="flex cursor-pointer gap-3.5 text-black px-4 py-3 rounded-[10px] items-center border border-gray-100 hover:bg-green-200 hover:text-white">
                         <ImageView alt={'payment method'} width={26} height={24} src={'/order-logo.svg'}/>
                         <div className="text-medium">Log out </div>
