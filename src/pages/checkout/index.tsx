@@ -43,7 +43,7 @@ export default function Index() {
     const onSubmitHandler = (data :formData) => {
         router.push('/');
         toast.success('Your order was successfully completed. Thanks for your purchase. You can observe your orders process in your account page');
-        console.log(data);
+        clearBasket();
     }
 
     return (
@@ -110,7 +110,6 @@ export default function Index() {
                             onClick={() => {
                                 const form = document.querySelector("#checkout-form") as HTMLFormElement;
                                 form?.requestSubmit();
-                                clearBasket();
                         }
                         } className="mt-6 px-[50px] py-4 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5 transition-all">
                             <div className="font-quickSand text-heading6 text-white">Place an Order</div>
