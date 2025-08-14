@@ -1,5 +1,6 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
 import {UserType} from "@/types/api/Auth";
+import {useRouter} from "next/router";
 
 interface Props {
     children: React.ReactNode;
@@ -17,6 +18,7 @@ export const useAuth = () => useContext(AuthContext)
 
 export function AuthContextProvider({children} :Props) {
     const [isLogin, setIsLogin] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         if (window.localStorage.getItem('loginToken')) {
@@ -33,6 +35,7 @@ export function AuthContextProvider({children} :Props) {
     const logOutHandler = () => {
         window.localStorage.removeItem('loginToken');
         window.localStorage.removeItem('user');
+        router.push('/');
         setIsLogin(false);
     }
 
