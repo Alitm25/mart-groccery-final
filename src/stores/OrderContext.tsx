@@ -1,4 +1,4 @@
-import {createContext} from "react";
+import {createContext, useState} from "react";
 
 interface Props {
     children: React.ReactNode;
@@ -8,8 +8,10 @@ interface Props {
 const OrderContext = createContext({});
 
 export function OrderContextProvider({children}: Props) {
+    const [order, setOrder] = useState({});
+
     return (
-        <OrderContext.Provider value={{}}>
+        <OrderContext.Provider value={{order, setOrder}}>
             {children}
         </OrderContext.Provider>
     );
