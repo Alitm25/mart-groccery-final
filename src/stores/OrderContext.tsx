@@ -1,15 +1,28 @@
-import {createContext, useContext, useState} from "react";
+import {createContext, Dispatch, ReactNode, SetStateAction, useContext, useState} from "react";
 
 interface Props {
-    children: React.ReactNode;
+    children: ReactNode;
 };
 
+interface Order {
+    orderId: number;
+    date: string;
+    status: string;
+    total: string;
+    action: any;
+}
 
-const OrderContext = createContext({});
+interface OrderContextType {
+    order: Order | null;
+    setOrder: Dispatch<SetStateAction<Order | null>>;
+}
+
+
+const OrderContext = createContext<OrderContextType>({ order: null, setOrder: () => {} });
 export const useOrder = () => useContext(OrderContext);
 
 export function OrderContextProvider({children}: Props) {
-    const [order, setOrder] = useState({});
+    const [order, setOrder] = useState<Order | null>(null);
 
     return (
         <OrderContext.Provider value={{order, setOrder}}>
