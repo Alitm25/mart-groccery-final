@@ -10,8 +10,7 @@ interface Props {
 
 
 function ProductCardButton({productData}: Props) {
-    // const {addItem, getItem, incrementItem, decrementItem} = useBasket();
-    // const currentProductInBasket = getItem(productData.id);
+
     const {addItem, getItem, updateProduct} = useBasketData();
     const basketItem = getItem(productData.id);
 
