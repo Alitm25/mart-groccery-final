@@ -34,7 +34,7 @@ export function SimpleProductCard({data}: Props) {
                 <ImageView src={data?.attributes?.thumbnail?.data?.attributes.url ? data?.attributes?.thumbnail?.data?.attributes.url : '/assets/images/default-product-image.png'} className={`m-auto w-full aspect-[3/2] ${data?.attributes?.categories?.data[0] ? 'mb-[28px]' : 'mb-[55px]'}`} alt={'product-image'} width={210} height={168}/>
                 <div className={`flex flex-col gap-2`}>
                     {data?.attributes?.categories?.data[0] && <div className="text-gray-500 text-xsmall">{data?.attributes?.categories?.data[0].attributes.title}</div>}
-                    <Link href={'#'}><h3 className="line-clamp-2 text-heading-sm text-blue-300 max-h-[50px] min-h-8 overflow-hidden">{data?.attributes?.title}</h3></Link>
+                    <Link href={`/single-product/${data.id}`}><h3 className="line-clamp-2 text-heading-sm text-blue-300 max-h-[50px] min-h-8 overflow-hidden">{data?.attributes?.title}</h3></Link>
                     <div className="flex gap-4">
                         <Rating rate={data?.attributes?.rate}/>
                         <div className="text-xsmall text-gray-500 font-lato">({data?.attributes?.rate})</div>
