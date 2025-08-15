@@ -12,10 +12,7 @@ interface Props {
 
 export function SimpleProductCard({data}: Props) {
     const {basketItems} = useBasketData();
-    const router = useRouter();
-    const changeRouteHandler = () => {
-        router.push(`/single-product/${data.id}`);
-    }
+
 
     return (
         <div className={'w-full'}>
@@ -28,9 +25,11 @@ export function SimpleProductCard({data}: Props) {
                     <div className="p-2.5 border-r-[1px] border-r-green-200 hover:bg-green-150">
                         <IconBox icon={'icon-shuffle'} size={15} />
                     </div>
-                    <div onClick={changeRouteHandler} className="p-2.5 hover:bg-green-150">
-                        <IconBox icon={'icon-eye'} size={15} />
-                    </div>
+                    <Link href={`/single-product/${data.id}`}>
+                        <div className="p-2.5 hover:bg-green-150">
+                            <IconBox icon={'icon-eye'} size={15} />
+                        </div>
+                    </Link>
                 </div>
                 <ImageView src={data?.attributes?.thumbnail?.data?.attributes.url ? data?.attributes?.thumbnail?.data?.attributes.url : '/assets/images/default-product-image.png'} className={`m-auto w-full aspect-[3/2] ${data?.attributes?.categories?.data[0] ? 'mb-[28px]' : 'mb-[55px]'}`} alt={'product-image'} width={210} height={168}/>
                 <div className={`flex flex-col gap-2`}>
