@@ -7,6 +7,7 @@ import ProductCardButton from "@/components/common/product/product-card/ProductC
 import {useBasketData} from "@/hooks/useBasketData";
 import {useEffect, useState} from "react";
 import {getSingleCategories} from "@/api/Categories";
+import SingleProductButton from "@/components/common/product/product-card/SingleProductButton";
 
 
 export default function Index() {
@@ -42,7 +43,7 @@ export default function Index() {
                 {
                     singleData &&
                     <div className="flex flex-col items-center mb-[68px]">
-                        <div className="flex flex-col lg:flex-row items-start justify-center w-full gap-x-8">
+                        <div className="flex flex-col items-center text-left lg:flex-row lg:items-start justify-center w-full gap-x-8">
                             <div>
                                 <div className="w-full h-full mb-[28px] p-[40px] border-[1px] border-gray-200 rounded-2xl">
                                     <div className="top-0 left-0 flex justify-end">
@@ -94,7 +95,7 @@ export default function Index() {
 
                                     Uninhibited carnally hired played in whimpered dear gorilla koala depending and much yikes off far quetzal goodness and from for grimaced goodness.
                                 </p>
-                                <ProductCardButton productData={singleData.data}/>
+                                <SingleProductButton productData={singleData.data}/>
 
                                 <div className={'flex flex-row items-center justify-center gap-x-1'}>
                                     <span className={'font-lato text-lg font-normal text-[#253D4E]'}>SKU: </span>
