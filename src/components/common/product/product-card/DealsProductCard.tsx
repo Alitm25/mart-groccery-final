@@ -5,6 +5,7 @@ import {ProductsType} from "@/types/api/Products";
 import {EntityType} from "@/types";
 import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
 import {useBasketData} from "@/hooks/useBasketData";
+import Link from "next/link";
 
 interface Props {
     data: EntityType<ProductsType>
@@ -52,7 +53,7 @@ export function DealsProductCard({data}: Props) {
                     </div>
                 </div>
                 <div className="bg-white mt-2.5 px-8 pt-6 pb-4 rounded-[10px] shadow-c-xs">
-                    <div className="text-heading-sm text-blue-300 min-h-8 line-clamp-2">{data.attributes.title}</div>
+                    <Link href={`/single-product/${data.id}`}><div className="text-heading-sm text-blue-300 min-h-8 line-clamp-2">{data.attributes.title}</div></Link>
                     <div className="flex w-[106px] justify-between h-4 items-center mt-1">
                         <div className="flex gap-4">
                             <Rating rate={data.attributes.rate} />
