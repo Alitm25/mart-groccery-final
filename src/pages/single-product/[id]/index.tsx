@@ -1,22 +1,32 @@
 import {Section} from "@/components/section/Section";
 import {IconBox, ImageView, InfoBody, InfoBodyBlock, Rating, SimpleProductCard} from "@/components";
-import {useQuery} from "@tanstack/react-query";
+import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {getSingleProduct} from "@/api/Products";
 import {useRouter} from "next/router";
 import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
 import {useBasketData} from "@/hooks/useBasketData";
-import {useState} from "react";
-import {getAllCategories, getSingleCategories} from "@/api/Categories";
+import {useEffect, useState} from "react";
+import {getSingleCategories} from "@/api/Categories";
 
 
 export default function Index() {
-    const router = useRouter().query.id;
-    console.log('router: ', router)
-    const [showInfo, setShowInfo] = useState('description');
-    const {data: singleData} = useQuery({queryKey: ['single-product'], queryFn: () => getSingleProduct(Number(router))});
+    const queryClient = useQueryClient();
+    const router = useRouter()
+    const {id} = router.query;
 
-    const {data: categories} = useQuery({queryKey: [getSingleCategories.name], queryFn: () => getSingleCategories(singleData?.data.attributes.categories?.data[0].id)});
+    const [showInfo, setShowInfo] = useState('description');
+    const {data: singleData} = useQuery({queryKey: ['single-product'], queryFn: () => getSingleProduct(Number(id)), enabled: !!id});
+
+    const categoryId = singleData?.data?.attributes?.categories?.data?.[0]?.id;
+
+    const {data: categories} = useQuery({queryKey: [getSingleCategories.name, categoryId], queryFn: () => getSingleCategories(categoryId),
+        enabled: !!categoryId});
     const {addItem, getItem, updateProduct, basketItems} = useBasketData();
+
+    useEffect(() => {
+        queryClient.invalidateQueries({queryKey: ['single-product']});
+        queryClient.invalidateQueries({queryKey: [getSingleCategories.name, categoryId]});
+    }, [id]);
 
     console.log('singleData: ',singleData);
     console.log('singleDataCategory: ',categories);
@@ -128,19 +138,23 @@ export default function Index() {
                 </div>
             </Section>
             <Section>
-                <div className={'flex items-center justify-center flex-col'}>
-                    <h2 className={'text-heading3 font-quicksand text-[#253D4E] mb-12'}>Related products</h2>
+                {
+                    <div className={'flex items-center justify-center flex-col'}>
+                        <h2 className={'text-heading3 font-quicksand text-[#253D4E] mb-12'}>Related products</h2>
 
-                    <div className={'flex items-center justify-center gap-x-8'}>
-                        {
-                            categories?.data.attributes.products.data.map( (product) => {
-                                return (
-                                    <SimpleProductCard data={product} />
-                                )
-                            })
-                        }
+                        <div className={'flex items-center justify-center gap-x-8'}>
+                            {
+                                categories ?
+                                categories.data.attributes.products.data.map( (product) => {
+                                    return (
+                                        <SimpleProductCard data={product} />
+                                    )
+                                }) :
+                                    <div>There is no related products for this product</div>
+                            }
+                        </div>
                     </div>
-                </div>
+                }
             </Section>
         </div>
 
