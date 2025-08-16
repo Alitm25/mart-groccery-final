@@ -3,8 +3,6 @@ import {IconBox, ImageView, InfoBody, InfoBodyBlock, Rating, SimpleProductCard} 
 import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {getSingleProduct} from "@/api/Products";
 import {useRouter} from "next/router";
-import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
-import {useBasketData} from "@/hooks/useBasketData";
 import {useEffect, useState} from "react";
 import {getSingleCategories} from "@/api/Categories";
 import SingleProductButton from "@/components/common/product/product-card/SingleProductButton";
@@ -24,7 +22,6 @@ export default function Index() {
 
     const {data: categories} = useQuery({queryKey: [getSingleCategories.name, categoryId], queryFn: () => getSingleCategories(categoryId),
         enabled: !!categoryId});
-    const {addItem, getItem, updateProduct, basketItems} = useBasketData();
 
     useEffect(() => {
         queryClient.invalidateQueries({queryKey: ['single-product']});
