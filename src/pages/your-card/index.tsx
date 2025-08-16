@@ -10,7 +10,7 @@ interface Props {
 };
 
 export default function Index({}: Props) {
-    const { updateProduct, basketItems, deleteItem } = useBasketData();
+    const { updateProduct, basketItems, deleteItem, clearBasket } = useBasketData();
 
     const productIds = basketItems.map((item) => item.product.data.id);
 
@@ -48,7 +48,7 @@ export default function Index({}: Props) {
                 <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12">
                     <div>
                         <div className="flex items-center justify-end pb-[20px]">
-                            <button className="flex items-center gap-x-[2px] font-quickSand text-heading6 text-[#B6B6B6]">
+                            <button type={'button'} onClick={clearBasket} className="flex items-center gap-x-[2px] font-quickSand text-heading6 text-[#B6B6B6]">
                                 <ImageView alt={'trash-bin-icon'} width={16} height={17} src={'/assets/images/trash-bin.svg'} />
                                 Clear Cart
                             </button>
