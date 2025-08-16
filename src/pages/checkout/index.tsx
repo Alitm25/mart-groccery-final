@@ -56,7 +56,6 @@ export default function Index() {
         router.push('/');
         toast.success('Your order was successfully completed. Thanks for your purchase. You can observe your orders process in your account page');
         clearBasket();
-        console.log(newOrder);
     }
 
     return (
