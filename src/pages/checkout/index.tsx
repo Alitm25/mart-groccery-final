@@ -6,6 +6,7 @@ import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
 import {useRouter} from "next/router";
 import {useOrder} from "@/stores/OrderContext";
+import calculateTotal from "@/utils/calculateTotal";
 
 interface formData {
     firstName: string,
@@ -26,7 +27,7 @@ export default function Index() {
     const { basketItems, clearBasket } =                              useBasketData();
     const { register, handleSubmit, formState: {errors} } =           useForm<formData>()
     const router =                                         useRouter();
-    const { setOrder } =                                              useOrder();
+    const { addOrder } =                                              useOrder();
 
     const productIds = basketItems.map((item) => item.product.data.id);
 
@@ -41,18 +42,21 @@ export default function Index() {
     });
     const basketProducts = basketProductsData?.data || [];
 
+    const date = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
 
     const onSubmitHandler = (data :formData) => {
-        setOrder({
-            orderId: Math.floor(Math.random() * 1000000),
-            date: new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }),
-            status: 'Processing',
-            total: '$125 for 2 item',
-            action: 'view'
-        })
+        const newOrder = {
+            id: Math.floor(Math.random() * 1000),
+            date: date,
+            status: 'processing',
+            total: calculateTotal(basketItems),
+            items: [...basketItems]
+        }
+        addOrder(newOrder);
         router.push('/');
         toast.success('Your order was successfully completed. Thanks for your purchase. You can observe your orders process in your account page');
         clearBasket();
+        console.log(newOrder);
     }
 
     return (
