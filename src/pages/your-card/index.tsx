@@ -4,12 +4,9 @@ import Link from "next/link";
 import React from "react";
 import {useQuery} from "@tanstack/react-query";
 import {getAllProductsApiCall} from "@/api/Products";
+import calculateTotal from "@/utils/calculateTotal";
 
-interface Props {
-
-};
-
-export default function Index({}: Props) {
+export default function Index({}) {
     const { updateProduct, basketItems, deleteItem, clearBasket } = useBasketData();
 
     const productIds = basketItems.map((item) => item.product.data.id);
@@ -24,7 +21,7 @@ export default function Index({}: Props) {
         enabled: productIds.length > 0,
     });
     const basketProducts = basketProductsData?.data || [];
-
+    const total = calculateTotal(basketItems);
 
     return (
         basketItems.length < 1 ?
@@ -42,7 +39,6 @@ export default function Index({}: Props) {
             </div>
         :
         <div className="container m-auto">
-            <form className="font-lato">
                 <h1 className="text-heading2 font-quickSand">Your Cart</h1>
                 <div className="text-heading6 text-gray-500 mt-4">There are <span className="text-green-200">{basketItems.length}</span> products in your cart</div>
                 <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12">
@@ -185,7 +181,7 @@ export default function Index({}: Props) {
                             className="bg-white flex flex-col gap-[30px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8 max-h-[560px] overflow-y-auto">
                             <div className="flex justify-between items-center w-full">
                                 <div className="font-quickSand text-heading6 text-gray-400">Subtotal</div>
-                                <div className="font-quickSand text-heading4 text-green-200">$12.31</div>
+                                <div className="font-quickSand text-heading4 text-green-200">${total}</div>
                             </div>
                             <div className="h-[1px] w-full bg-gray-200"></div>
                             <div className="grid grid-cols-2 gap-7 w-full">
@@ -206,7 +202,7 @@ export default function Index({}: Props) {
                             <div className="h-[1px] w-full bg-gray-200"></div>
                             <div className="flex justify-between items-center w-full">
                                 <div className="font-quickSand text-heading6 text-gray-400">Total</div>
-                                <div className="font-quickSand text-heading4 text-green-200">${}</div>
+                                <div className="font-quickSand text-heading4 text-green-200">${total}</div>
                             </div>
                             <Link href={'/checkout'} className={'w-full'}>
                                 <button type="submit" className="w-full mt-6 py-4 bg-green-200 hover:bg-yellow-100 rounded-[3px] cursor-pointer flex items-center justify-center gap-2.5 transition-all">
@@ -217,7 +213,6 @@ export default function Index({}: Props) {
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
 
     );
