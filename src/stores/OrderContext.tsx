@@ -1,5 +1,5 @@
-import {createContext, Dispatch, ReactNode, SetStateAction, useContext, useState} from "react";
-import {BasketItemsType} from "@/types/api/Basket";
+import {createContext, ReactNode, SetStateAction, useContext, useState} from "react";
+import {basketItems} from "@/types/api/Basket";
 
 interface Props {
     children: ReactNode;
@@ -9,9 +9,8 @@ interface Order {
     id: number;
     date: string;
     status: string;
-    total: string;
-    action: any;
-    items: Array<BasketItemsType>
+    total: number;
+    items: Array<basketItems>
 }
 
 interface OrderContextType {
