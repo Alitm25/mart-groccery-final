@@ -1,6 +1,7 @@
 import {Section} from "@/components/section/Section";
 import {ImageView} from "@/components";
 import {useModal} from "@/stores/ModalContext";
+import {useOrder} from "@/stores/OrderContext";
 
 interface Props {
 
@@ -8,6 +9,7 @@ interface Props {
 
 export default function Index({}: Props) {
     const {openModal} = useModal();
+    const {order} =     useOrder();
 
 
     return (
@@ -56,42 +58,17 @@ export default function Index({}: Props) {
 
                 <div className="flex flex-col items-start">
                     <div className="text-heading3 font-quickSand text-blue-300 mb-[22px]">Your Orders</div>
-                    <div
-                        className="flex flex-wrap bg-gray-100 justify-start items-start gap-32 rounded-2xl mb-[24px] py-[19px] px-[30px]">
-                        <div className="text-heading6 text-blue-300 font-quickSand gap">Order ID</div>
-                        <div className="text-heading6 text-blue-300 font-quickSand">Date</div>
-                        <div className="text-heading6 text-blue-300 font-quickSand">Status</div>
-                        <div className="text-heading6 text-blue-300 font-quickSand">Total</div>
-                        <div className="text-heading6 text-blue-300 font-quickSand">Actions</div>
-                    </div>
-                    <div className="flex flex-wrap justify-between items-start gap-20 mb-[30px] rounded-2xl px-[30px]">
-                        <div className="text-medium text-gray-500">#1357</div>
-                        <div className="text-medium text-gray-500">March 15, 2021</div>
-                        <div className="text-medium text-yellow-200">Processing</div>
-                        <div className="text-medium text-gray-500">$125.00 for 2 item</div>
-                        <button className="text-medium text-green-200">View</button>
-                    </div>
-                    <div className="flex flex-wrap justify-between items-start gap-20 rounded-2xl mb-[30px] px-[30px]">
-                        <div className="text-medium text-gray-500">#1357</div>
-                        <div className="text-medium text-gray-500">March 15, 2021</div>
-                        <div className="text-medium text-green-300">Completed</div>
-                        <div className="text-medium text-gray-500">$125.00 for 2 item</div>
-                        <button className="text-medium text-green-200">View</button>
-                    </div>
-                    <div className="flex flex-wrap justify-between items-start gap-20 rounded-2xl mb-[30px] px-[30px]">
-                        <div className="text-medium text-gray-500">#1357</div>
-                        <div className="text-medium text-gray-500">March 15, 2021</div>
-                        <div className="text-medium text-green-300">Completed</div>
-                        <div className="text-medium text-gray-500">$125.00 for 2 item</div>
-                        <button className="text-medium text-green-200">View</button>
-                    </div>
-                    <div className="flex flex-wrap justify-between items-start gap-20 rounded-2xl mb-[30px] px-[30px]">
-                        <div className="text-medium text-gray-500">#1357</div>
-                        <div className="text-medium text-gray-500">March 15, 2021</div>
-                        <div className="text-medium text-green-300">Completed</div>
-                        <div className="text-medium text-gray-500">$125.00 for 2 item</div>
-                        <button className="text-medium text-green-200">View</button>
-                    </div>
+                    {
+                        order &&
+                            <div className="flex flex-wrap justify-between items-start gap-20 rounded-2xl mb-[30px] px-[30px]">
+                                <div className="text-medium text-gray-500">#1357</div>
+                                <div className="text-medium text-gray-500">March 15, 2021</div>
+                                <div className="text-medium text-green-300">Completed</div>
+                                <div className="text-medium text-gray-500">$125.00 for 2 item</div>
+                                <button className="text-medium text-green-200">View</button>
+                            </div>
+                    }
+
                 </div>
             </div>
         </Section>

@@ -26,7 +26,7 @@ export default function Index() {
     const { basketItems, clearBasket } =                              useBasketData();
     const { register, handleSubmit, formState: {errors} } =           useForm<formData>()
     const router =                                         useRouter();
-    const { setOrder } =                                                      useOrder();
+    const { setOrder } =                                              useOrder();
 
     const productIds = basketItems.map((item) => item.product.data.id);
 

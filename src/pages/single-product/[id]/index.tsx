@@ -8,6 +8,8 @@ import {useBasketData} from "@/hooks/useBasketData";
 import {useEffect, useState} from "react";
 import {getSingleCategories} from "@/api/Categories";
 import SingleProductButton from "@/components/common/product/product-card/SingleProductButton";
+import {Autoplay, Navigation} from "swiper/modules";
+import {Swiper, SwiperSlide} from "swiper/react";
 
 
 export default function Index() {
@@ -143,17 +145,39 @@ export default function Index() {
                     <div className={'flex items-center justify-center flex-col'}>
                         <h2 className={'text-heading3 font-quicksand text-[#253D4E] mb-12'}>Related products</h2>
 
-                        <div className={'flex items-center justify-center gap-x-8'}>
-                            {
+                        <Swiper
+                            spaceBetween={16}
+                            slidesPerView={2}
+                            autoplay={true}
+                            modules={[Autoplay, Navigation]}
+                            breakpoints={
+                                {
+                                    768: {
+                                        slidesPerView: 3,
+                                        spaceBetween: 18
+                                    },
+                                    1024: {
+                                        slidesPerView: 4,
+                                        spaceBetween: 22
+                                    },
+                                    1280: {
+                                        slidesPerView: 5,
+                                        spaceBetween: 24
+                                    }
+                                }
+                            }
+                        >                            {
                                 categories ?
-                                categories.data.attributes.products.data.map( (product) => {
+                                categories.data.attributes.products.data.map( (product, index) => {
                                     return (
+                                        <SwiperSlide key={index}>
                                         <SimpleProductCard data={product} />
+                                        </SwiperSlide>
                                     )
                                 }) :
                                     <div>There is no related products for this product</div>
                             }
-                        </div>
+                        </Swiper>
                     </div>
                 }
             </Section>

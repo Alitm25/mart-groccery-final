@@ -18,11 +18,11 @@ interface OrderContextType {
 }
 
 
-const OrderContext = createContext<OrderContextType>({ order: null, setOrder: () => {} });
+const OrderContext = createContext<OrderContextType>({ order: Array<Order | null>, setOrder: () => {} });
 export const useOrder = () => useContext(OrderContext);
 
 export function OrderContextProvider({children}: Props) {
-    const [order, setOrder] = useState<Order | null>(null);
+    const [order, setOrder] = useState<Order | Array<Or>>([]);
 
     return (
         <OrderContext.Provider value={{order, setOrder}}>
