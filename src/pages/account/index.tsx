@@ -10,7 +10,6 @@ interface Props {
 export default function Index({}: Props) {
     const {openModal} = useModal();
     const {order} =     useOrder();
-    console.log(order);
 
 
     return (
