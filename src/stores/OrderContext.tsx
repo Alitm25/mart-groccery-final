@@ -5,7 +5,7 @@ interface Props {
     children: ReactNode;
 };
 
-interface Order {
+export interface Order {
     id: number;
     date: string;
     status: string;
