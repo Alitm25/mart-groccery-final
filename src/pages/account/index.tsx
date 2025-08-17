@@ -10,6 +10,7 @@ interface Props {
 export default function Index({}: Props) {
     const {openModal} = useModal();
     const {order} =     useOrder();
+    console.log(order);
 
 
     return (
@@ -60,13 +61,18 @@ export default function Index({}: Props) {
                     <div className="text-heading3 font-quickSand text-blue-300 mb-[22px]">Your Orders</div>
                     {
                         order &&
-                            <div className="flex flex-wrap justify-between items-start gap-20 rounded-2xl mb-[30px] px-[30px]">
-                                <div className="text-medium text-gray-500">#1357</div>
-                                <div className="text-medium text-gray-500">March 15, 2021</div>
-                                <div className="text-medium text-green-300">Completed</div>
-                                <div className="text-medium text-gray-500">$125.00 for 2 item</div>
-                                <button className="text-medium text-green-200">View</button>
-                            </div>
+                            order.map( (item) => {
+                                return (
+                                    <div className="flex flex-wrap justify-between items-start gap-20 rounded-2xl mb-[30px] px-[30px]">
+                                        <div className="text-medium text-gray-500">#{item.id}</div>
+                                        <div className="text-medium text-gray-500">{item.date}</div>
+                                        <div className="text-medium text-green-300">{item.status}</div>
+                                        <div className="text-medium text-gray-500">${item.total} for {order.length} item</div>
+                                        <button className="text-medium text-green-200">View</button>
+                                    </div>
+                                )
+                            })
+
                     }
 
                 </div>

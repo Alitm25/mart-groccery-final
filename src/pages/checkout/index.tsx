@@ -45,12 +45,14 @@ export default function Index() {
     const date = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
 
     const onSubmitHandler = (data :formData) => {
+        const basketSnapShot = [...basketItems];
+
         const newOrder = {
             id: Math.floor(Math.random() * 1000),
             date: date,
             status: 'processing',
-            total: calculateTotal(basketItems),
-            items: [...basketItems]
+            total: calculateTotal(basketSnapShot),
+            items: basketSnapShot
         }
         addOrder(newOrder);
         router.push('/');

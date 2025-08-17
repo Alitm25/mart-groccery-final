@@ -28,9 +28,6 @@ export default function Index() {
         queryClient.invalidateQueries({queryKey: [getSingleCategories.name, categoryId]});
     }, [id]);
 
-    console.log('singleData: ',singleData);
-    console.log('singleDataCategory: ',categories);
-
     const showInfoHandler = (info :string) => {
         setShowInfo(info);
     }

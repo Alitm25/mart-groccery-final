@@ -28,10 +28,20 @@ const OrderContext = createContext<OrderContextType>(
 export const useOrder = () => useContext(OrderContext);
 
 export function OrderContextProvider({children}: Props) {
-    const [order, setOrder] = useState<Order[]>([]);
+    const [order, setOrder] = useState<Order[]>( () => {
+        if (typeof window !== "undefined") {
+            const order= localStorage.getItem('order');
+            return order ? JSON.parse(order) : [];
+        }
+        return [];
+    });
 
     const addOrderHandler = (order :Order) => {
-        setOrder(prevState => [...prevState, order]);
+        setOrder( (prevState) => {
+            const updatedOrder = [...prevState, order];
+            localStorage.setItem("orders", JSON.stringify(updatedOrder));
+            return updatedOrder;
+        });
     }
 
     return (
