@@ -5,6 +5,7 @@ import {useOrder} from "@/stores/OrderContext";
 import {YourOrders} from "@/components/pages/account/YourOrders";
 import {AccountSectionBtn} from "@/components/pages/account/AccountSectionBtn";
 import {useState} from "react";
+import {AccountDetails} from "@/components/pages/account/AccountDetails";
 
 type AccountSection = 'dashboard' | 'order-list' | 'track-orders' | 'my-address' | 'account-detail'
 
@@ -40,7 +41,7 @@ export default function Index() {
                                     : accountSection === 'my-address' ?
                                         <div>This is my-address</div>
                                         : accountSection === 'account-detail' ?
-                                            <div>This is account-details</div>
+                                            <AccountDetails />
                                             : null
 
                     }
