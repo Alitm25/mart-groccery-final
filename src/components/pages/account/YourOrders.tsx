@@ -11,14 +11,6 @@ export function YourOrders({order}: Props) {
             <div className="text-heading3 font-quicksand text-[#253D4E] mb-6">Your Orders</div>
 
             <div className="w-full max-h-[500px] overflow-auto">
-                {/* Header */}
-                {/*<div className="min-w-[600px] bg-[#F5F5F5] rounded-xl px-6 py-4 flex flex-row items-center justify-between text-left">*/}
-                {/*    <p className="text-heading6 font-quicksand text-[#253D4E]">Order ID</p>*/}
-                {/*    <p className="text-heading6 font-quicksand text-[#253D4E]">Date</p>*/}
-                {/*    <p className="text-heading6 font-quicksand text-[#253D4E]">Status</p>*/}
-                {/*    <p className="text-heading6 font-quicksand text-[#253D4E]">Total</p>*/}
-                {/*    <p className="text-heading6 font-quicksand text-[#253D4E]">Actions</p>*/}
-                {/*</div>*/}
                 <table>
                     <th>
                         <tr className={'min-w-[600px] bg-[#F5F5F5] rounded-xl px-6 py-4 flex flex-row items-center justify-between text-left'}>
