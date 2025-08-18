@@ -7,24 +7,47 @@ interface Props {
 
 export function YourOrders({order}: Props) {
     return (
-        <div className="flex flex-col items-start">
-            <div className="text-heading3 font-quickSand text-blue-300 mb-[22px]">Your Orders</div>
-            {
-                order &&
-                order.map( (item) => {
-                    return (
-                        <div className="flex flex-wrap justify-between items-start gap-20 rounded-2xl mb-[30px] px-[30px]">
-                            <div className="text-medium text-gray-500">#{item.id}</div>
-                            <div className="text-medium text-gray-500">{item.date}</div>
-                            <div className="text-medium text-green-300">{item.status}</div>
-                            <div className="text-medium text-gray-500">${item.total} for {order.length} item</div>
-                            <button className="text-medium text-green-200">View</button>
-                        </div>
-                    )
-                })
+        <div className="flex flex-col items-start w-full">
+            <div className="text-heading3 font-quicksand text-[#253D4E] mb-6">Your Orders</div>
 
-            }
+            <div className="w-full max-h-[500px] overflow-auto">
+                {/* Header */}
+                {/*<div className="min-w-[600px] bg-[#F5F5F5] rounded-xl px-6 py-4 flex flex-row items-center justify-between text-left">*/}
+                {/*    <p className="text-heading6 font-quicksand text-[#253D4E]">Order ID</p>*/}
+                {/*    <p className="text-heading6 font-quicksand text-[#253D4E]">Date</p>*/}
+                {/*    <p className="text-heading6 font-quicksand text-[#253D4E]">Status</p>*/}
+                {/*    <p className="text-heading6 font-quicksand text-[#253D4E]">Total</p>*/}
+                {/*    <p className="text-heading6 font-quicksand text-[#253D4E]">Actions</p>*/}
+                {/*</div>*/}
+                <table>
+                    <th>
+                        <tr className={'min-w-[600px] bg-[#F5F5F5] rounded-xl px-6 py-4 flex flex-row items-center justify-between text-left'}>
+                            <td className={'text-heading6 font-quicksand text-[#253D4E]'}>Order ID</td>
+                            <td className={'text-heading6 font-quicksand text-[#253D4E]'}>Date</td>
+                            <td className={'text-heading6 font-quicksand text-[#253D4E]'}>Status</td>
+                            <td className={'text-heading6 font-quicksand text-[#253D4E]'}>Total</td>
+                            <td className={'text-heading6 font-quicksand text-[#253D4E]'}>Actions</td>
+                        </tr>
+                    </th>
+                    <tbody>
+                        {order.map(order => (
+                            <tr key={order.id} className={'min-w-[600px] px-6 py-4 flex flex-row items-center justify-between text-left'}>
+                                <td className="text-medium font-lato text-[#7E7E7E]">#{order.id}</td>
+                                <td className="text-medium font-lato text-[#7E7E7E]">{order.date}</td>
+                                <td className={`text-medium font-lato ${order.status === 'processing' ? 'text-[#FDC040]' : 'text-[#81B13D]'}`}>
+                                    {order.status}
+                                </td>
+                                <td className="text-medium font-lato text-[#7E7E7E]">${order.total} for {order.items.length} item</td>
+                                <button className="text-medium font-lato text-[#3BB77E]">View</button>
+                            </tr>
 
+
+                        ))}
+                    </tbody>
+                </table>
+
+            </div>
         </div>
+
     );
 };
