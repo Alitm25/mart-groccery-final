@@ -17,10 +17,10 @@ export default function Index() {
 
     return (
         <Section sectionClassName={"container lg:mt-[100px] sm:mt-4 font-lato mb-[239px]"}>
-            <div className={'flex items-center justify-evenly'}>
-                <div className="flex flex-wrap justify-center items-center">
+            <div className={'flex flex-col lg:flex-row items-start justify-center gap-2.5'}>
+                <div className="flex flex-wrap justify-center items-start mb-16 mr-16">
                     {/*buttons*/}
-                    <div className="flex flex-col gap-2.5 font-quickSand text-gray-500 text-heading6 ml-auto sm:mb-10">
+                    <div className="flex flex-row flex-wrap lg:flex-col gap-2.5 font-quickSand text-gray-500 text-heading6 sm:mb-10 flex-shrink">
                         <AccountSectionBtn title={'Dashbord'} icon={'/setting-logo.svg'} onClick={ () => setAccountSection('dashboard')} isSelect={accountSection === 'dashboard'} />
                         <AccountSectionBtn title={'Order list'} icon={'/setting-logo.svg'} onClick={ () => setAccountSection('order-list')} isSelect={accountSection === 'order-list'}/>
                         <AccountSectionBtn title={'Track your orders'} icon={'/shop-logo.svg'} onClick={ () => setAccountSection('track-orders')} isSelect={accountSection === 'track-orders'}/>
@@ -29,7 +29,7 @@ export default function Index() {
                         <AccountSectionBtn title={'Log out'} icon={'/order-logo.svg'} onClick={() => openModal('ConfirmLogout')}/>
                     </div>
                 </div>
-                <div>
+                <div className={'w-full lg:w-8/12'}>
                     {/*sections*/}
                     {
                         accountSection === 'dashboard' ?
