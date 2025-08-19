@@ -32,7 +32,7 @@ export function BestSellerSlider({sliderData}: Props) {
                 sliderData.map( (slideData, index) => {
                     return (
                         <SwiperSlide key={index}>
-                            <SimpleProductCard data={slideData}/>
+                            <SimpleProductCard data={slideData} isSoldShown={true}/>
                         </SwiperSlide>
                     )
                 })
