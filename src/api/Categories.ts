@@ -19,7 +19,11 @@ export function getAllCategories({filters = {}} :Props) :Promise<ApiResponseType
 export function getSingleCategories(id :number | undefined) :Promise<ApiResponseSingleType<CategoryType>> | undefined {
         return apiClient.get(`categories/${id}`, {
             params: {
-                populate: '*',
+                populate: {
+                    products: {
+                        populate: '*'
+                    }
+                }
             }
         })
 }
