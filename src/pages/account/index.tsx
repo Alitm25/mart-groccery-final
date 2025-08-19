@@ -1,5 +1,4 @@
 import {Section} from "@/components/section/Section";
-import {ImageView} from "@/components";
 import {useModal} from "@/stores/ModalContext";
 import {useOrder} from "@/stores/OrderContext";
 import {YourOrders} from "@/components/pages/account/YourOrders";
