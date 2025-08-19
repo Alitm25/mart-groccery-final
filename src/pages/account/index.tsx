@@ -18,7 +18,7 @@ export default function Index() {
     return (
         <Section sectionClassName={"container lg:mt-[100px] sm:mt-4 font-lato mb-[239px]"}>
             <div className={'flex flex-col lg:flex-row items-start justify-center gap-2.5'}>
-                <div className="flex flex-wrap justify-center items-start mb-16 mr-16">
+                <div className="flex flex-wrap w-full lg:w-auto justify-center items-start mb-16 mr-16">
                     {/*buttons*/}
                     <div className="flex flex-row flex-wrap lg:flex-col gap-2.5 font-quickSand text-gray-500 text-heading6 sm:mb-10 flex-shrink">
                         <AccountSectionBtn title={'Dashbord'} icon={'/setting-logo.svg'} onClick={ () => setAccountSection('dashboard')} isSelect={accountSection === 'dashboard'} />
