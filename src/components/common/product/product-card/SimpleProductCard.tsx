@@ -8,9 +8,10 @@ import {useRouter} from "next/router";
 
 interface Props {
     data: EntityType<ProductsType>
+    isSoldShown?: boolean;
 }
 
-export function SimpleProductCard({data}: Props) {
+export function SimpleProductCard({data, isSoldShown}: Props) {
     const {basketItems} = useBasketData();
 
 
@@ -42,7 +43,7 @@ export function SimpleProductCard({data}: Props) {
                     <div className="font-lato text-xsmall text-gray-500">{data?.attributes?.weight} {data?.attributes?.unit}</div>
                 </div>
                 {
-                    data?.attributes?.total && data?.attributes?.sold ?
+                    data?.attributes?.total && data?.attributes?.sold && isSoldShown ?
                         <>
                             <div className="flex items-center justify-between mt-3">
                                 {
