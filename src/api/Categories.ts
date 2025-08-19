@@ -21,7 +21,7 @@ export function getSingleCategories(id :number | undefined) :Promise<ApiResponse
             params: {
                 populate: {
                     products: {
-                        populate: '*'
+                        populate: 'thumbnail'
                     }
                 }
             }
