@@ -1,21 +1,26 @@
 import {Section} from "@/components/section/Section";
 import {useRouter} from "next/router";
-import {useQuery} from "@tanstack/react-query";
+import {QueryClient, useQuery} from "@tanstack/react-query";
 import {getSingleCategories} from "@/api/Categories";
-import ProductCardButton from "@/components/common/product/product-card/ProductCardButton";
 import {IconBox, SimpleProductCard} from "@/components";
 import Link from "next/link";
-import React from "react";
+import React, {useEffect} from "react";
 
 export default function Index() {
+    const queryClient = new QueryClient();
+
     const router = useRouter();
     const {id} = router.query;
 
     const {data: categories} = useQuery({
-        queryKey: [getSingleCategories.name],
+        queryKey: [getSingleCategories.name, id],
         queryFn: () => getSingleCategories(Number(id)),
         enabled: !!id
     });
+
+    useEffect(() => {
+        queryClient.invalidateQueries({queryKey: [getSingleCategories.name, id]});
+    }, [id]);
 
     return (
         <div className={'container'}>
