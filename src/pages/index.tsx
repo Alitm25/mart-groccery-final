@@ -113,7 +113,7 @@ export default function Home() {
 
             {/*Deals of the day section */}
             <Section>
-                <div className="flex justify-between items-center mb-[50px]">
+                <div id={'hot-deals'} className="flex justify-between items-center mb-[50px]">
                     <h2 className="text-heading6 md:text-heading5 lg:text-heading4 xl:text-heading3 text-blue-300">Deals
                         Of The Days</h2>
                     <Link href={'#'} className={'flex items-center'}>All Deals <IconBox icon={'icon-angle-small-right'} size={24}/></Link>

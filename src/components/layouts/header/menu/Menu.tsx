@@ -50,14 +50,6 @@ export function Menu() {
                             })
                         }
 
-                        {/*{*/}
-                        {/*    browsCategoriesMock.map( (item, index) => {*/}
-                        {/*        return (*/}
-                        {/*            <IconBox icon={item.icon} size={30} link={item.link} title={item.title} titleClassName={'text-heading-sm text-blue-300'} path={item.iconPath} linkClassName={'gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-[calc(50%-8px)] justify-start pl-4 lg:hover:border-green-300 '}/>*/}
-                        {/*        )*/}
-                        {/*    })*/}
-                        {/*}*/}
-
                         <div id="more_categories" className="cursor-pointer flex gap-4 items-center lg:justify-center w-full mt-[17px]">
                             <IconBox icon={'icon-add'} size={24} />
                             <div className="text-heading-sm text-blue-300">More Categories</div>
@@ -83,14 +75,6 @@ export function Menu() {
                         })
                     }
 
-                    {/*{*/}
-                    {/*    menuMock.map( (item, index) => {*/}
-                    {/*        return (*/}
-                    {/*            item.icon ? <IconBox {...item} size={24}/> : <Link href={item.link} className="flex items-center gap-1">{item.title}</Link>*/}
-
-                    {/*        )*/}
-                    {/*    })*/}
-                    {/*}*/}
                 </ul>
             </nav>
         </>
