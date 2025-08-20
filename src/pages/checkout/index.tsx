@@ -7,6 +7,9 @@ import {toast} from "react-toastify";
 import {useRouter} from "next/router";
 import {useOrder} from "@/stores/OrderContext";
 import calculateTotal from "@/utils/calculateTotal";
+import {useEffect, useState} from "react";
+import {UserType} from "@/types/api/Auth";
+import {useModal} from "@/stores/ModalContext";
 
 interface formData {
     firstName: string,
@@ -24,10 +27,19 @@ interface formData {
 };
 
 export default function Index() {
-    const { basketItems, clearBasket } =                              useBasketData();
-    const { register, handleSubmit, formState: {errors} } =           useForm<formData>()
-    const router =                                         useRouter();
-    const { addOrder } =                                              useOrder();
+    const { basketItems, clearBasket }                      = useBasketData();
+    const { register, handleSubmit, formState: {errors} }   = useForm<formData>()
+    const router                                 = useRouter();
+    const { addOrder }                                      = useOrder();
+    const { openModal }                                     = useModal();
+    const [user, setUser]                                   = useState<UserType | null>(null);
+
+    useEffect(() => {
+        const user = window.localStorage.getItem('user');
+
+        if (user)
+            setUser(JSON.parse(user) as UserType);
+    }, []);
 
     const productIds = basketItems.map((item) => item.product.data.id);
 
@@ -45,19 +57,25 @@ export default function Index() {
     const date = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
 
     const onSubmitHandler = (data :formData) => {
-        const basketSnapShot = [...basketItems];
+        if (!user) {
+            openModal('Register');
+            return
+        } else {
 
-        const newOrder = {
-            id: Math.floor(Math.random() * 1000),
-            date: date,
-            status: 'processing',
-            total: calculateTotal(basketSnapShot),
-            items: basketSnapShot
+            const basketSnapShot = [...basketItems];
+
+            const newOrder = {
+                id: Math.floor(Math.random() * 1000),
+                date: date,
+                status: 'processing',
+                total: calculateTotal(basketSnapShot),
+                items: basketSnapShot
+            }
+            addOrder(newOrder);
+            router.push('/');
+            toast.success('Your order was successfully completed. Thanks for your purchase. You can observe your orders process in your account page');
+            clearBasket();
         }
-        addOrder(newOrder);
-        router.push('/');
-        toast.success('Your order was successfully completed. Thanks for your purchase. You can observe your orders process in your account page');
-        clearBasket();
     }
 
     return (
