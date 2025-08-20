@@ -93,10 +93,13 @@ export default function Index() {
                                 </p>
                                 <SingleProductButton productData={singleData.data}/>
 
-                                <div className={'flex flex-row items-center justify-center gap-x-1'}>
-                                    <span className={'font-lato text-lg font-normal text-[#253D4E]'}>SKU: </span>
-                                    <span className={'font-lato text-lg font-normal text-[#B6B6B6]'}>{singleData.data.attributes.SKU}</span>
-                                </div>
+                                {
+                                    singleData.data.attributes.SKU &&
+                                    <div className={'flex flex-row items-center justify-center gap-x-1'}>
+                                        <span className={'font-lato text-lg font-normal text-[#253D4E]'}>SKU: </span>
+                                        <span className={'font-lato text-lg font-normal text-[#B6B6B6]'}>{singleData.data.attributes.SKU}</span>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
