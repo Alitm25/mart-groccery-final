@@ -20,7 +20,7 @@ export default function Index() {
                 <div className="flex flex-wrap w-full lg:w-auto justify-center items-start mb-16 mr-16">
                     {/*buttons*/}
                     <div className="flex flex-row flex-wrap lg:flex-col gap-2.5 font-quickSand text-gray-500 text-heading6 sm:mb-10 flex-shrink">
-                        <AccountSectionBtn title={'Dashbord'} icon={'/setting-logo.svg'} onClick={ () => setAccountSection('dashboard')} isSelect={accountSection === 'dashboard'} />
+                        <AccountSectionBtn title={'Dashboard'} icon={'/setting-logo.svg'} onClick={ () => setAccountSection('dashboard')} isSelect={accountSection === 'dashboard'} />
                         <AccountSectionBtn title={'Order list'} icon={'/setting-logo.svg'} onClick={ () => setAccountSection('order-list')} isSelect={accountSection === 'order-list'}/>
                         <AccountSectionBtn title={'Track your orders'} icon={'/shop-logo.svg'} onClick={ () => setAccountSection('track-orders')} isSelect={accountSection === 'track-orders'}/>
                         <AccountSectionBtn title={'My address'} icon={'/location-logo.svg'} onClick={ () => setAccountSection('my-address')} isSelect={accountSection === 'my-address'}/>
@@ -34,6 +34,7 @@ export default function Index() {
                         accountSection === 'dashboard' ?
                             <div>This is dashboard</div>
                             : accountSection === 'order-list' ?
+                                order &&
                                 <YourOrders order={order} />
                                 : accountSection === 'track-orders' ?
                                     <div>This is track-orders</div>
