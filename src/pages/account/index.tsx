@@ -34,7 +34,6 @@ export default function Index() {
                         accountSection === 'dashboard' ?
                             <div>This is dashboard</div>
                             : accountSection === 'order-list' ?
-                                order &&
                                 <YourOrders order={order} />
                                 : accountSection === 'track-orders' ?
                                     <div>This is track-orders</div>
