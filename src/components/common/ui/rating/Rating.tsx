@@ -6,8 +6,9 @@ interface Props {
 
 export function Rating({rate}: Props) {
     let starFill = [];
+    const roundRate = Math.round(rate);
 
-    for (let i = 0; i < rate; i++) {
+    for (let i = 0; i < roundRate; i++) {
         starFill.push(
             <li className="flex"><IconBox icon={"icon-star-full"} size={12}></IconBox></li>
         );
@@ -15,7 +16,7 @@ export function Rating({rate}: Props) {
 
     let starEmpty = [];
 
-    for (let i = rate; i < 5; i++) {
+    for (let i = roundRate; i < 5; i++) {
         starEmpty.push(
             <li className="flex"><IconBox icon={"icon-star-empty"} size={12}></IconBox></li>
         );
