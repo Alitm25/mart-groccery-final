@@ -16,7 +16,6 @@ export function FeaturedCategories({}) {
                 }
             }
         })});
-    console.log(data);
 
     return (
         <div>
