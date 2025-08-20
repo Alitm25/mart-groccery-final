@@ -5,6 +5,7 @@ import {getSingleCategories} from "@/api/Categories";
 import {IconBox, ProductVerticalList, SimpleProductCard} from "@/components";
 import Link from "next/link";
 import React, {useEffect} from "react";
+import {getAllProductsApiCall} from "@/api/Products";
 
 export default function Index() {
     const queryClient = new QueryClient();
@@ -17,6 +18,19 @@ export default function Index() {
         queryFn: () => getSingleCategories(Number(id)),
         enabled: !!id
     });
+
+    const categoryID = categories?.data.id;
+
+    const {data: categoryProducts} = useQuery({
+        queryKey: ['category-products', categoryID],
+        queryFn: () => getAllProductsApiCall({
+            filters: {
+                categories: {
+                    id: { $eq: categoryID },
+                }
+            }
+        })
+    })
 
     useEffect(() => {
         queryClient.invalidateQueries({queryKey: [getSingleCategories.name, id]});
@@ -136,33 +150,14 @@ export default function Index() {
                             </div>
                             {/*Cards Ends*/}
                             {/*buttons*/}
-                            <div className="flex flex-wrap gap-[10px] justify-center items-start mb-[60px]">
-                                <div
-                                    className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer">
-                                    <i className="icon-angle-small-left"></i>
-                                </div>
-                                <div
-                                    className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer">1
-                                </div>
-                                <div
-                                    className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer">2
-                                </div>
-                                <div
-                                    className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer">3
-                                </div>
-                                <div
-                                    className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer pb-1">...
-                                </div>
-                                <div
-                                    className="w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer">
-                                    <i className="icon-angle-small-right flex justify-center items-center"></i>
-                                </div>
-                            </div>
+                            {
+
+                            }
                         </div>
                         {/*Right_col End*/}
                     </Section>
                     : isLoading ?
-                    <div className={'flex flex-col mx-auto text-center items-center justify-center gap-y-6'}>
+                    <div className={'flex flex-col mx-auto text-center items-center justify-center py-32'}>
                         <h3 className={'text-heading5 lg:text-heading2 xl:text-heading1 2xl:text-display2 text-blue-300'}>
                             Loading...
                         </h3>
