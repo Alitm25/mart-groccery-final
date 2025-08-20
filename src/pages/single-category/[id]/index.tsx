@@ -2,7 +2,7 @@ import {Section} from "@/components/section/Section";
 import {useRouter} from "next/router";
 import {QueryClient, useQuery} from "@tanstack/react-query";
 import {getSingleCategories} from "@/api/Categories";
-import {IconBox, SimpleProductCard} from "@/components";
+import {IconBox, ProductVerticalList, SimpleProductCard} from "@/components";
 import Link from "next/link";
 import React, {useEffect} from "react";
 
@@ -12,7 +12,7 @@ export default function Index() {
     const router = useRouter();
     const {id} = router.query;
 
-    const {data: categories} = useQuery({
+    const {data: categories, isLoading} = useQuery({
         queryKey: [getSingleCategories.name, id],
         queryFn: () => getSingleCategories(Number(id)),
         enabled: !!id
@@ -42,8 +42,7 @@ export default function Index() {
                         {/*sidebar Start*/}
                         <div className="flex flex-col mr-7">
                             {/*1*/}
-                            <div
-                                className="flex flex-col border-[1px] border-gray-200 rounded-[10px] px-[30px] pt-7 mb-[55px] pb-4">
+                            <div className="flex flex-col border-[1px] border-gray-200 rounded-[10px] px-[30px] pt-7 mb-[55px] pb-4">
                                 <p className="text-heading4 font-quickSand mb-[14px] pb-[14px] border-b-2">Filter items</p>
                                 <div className="flex items-center justify-between mt-3">
                                     <div className="flex">
@@ -111,115 +110,8 @@ export default function Index() {
                                 </div>
                             </div>
                             {/*2*/}
-                            <div
-                                className="flex flex-col border-[1px] border-gray-200 rounded-[10px] px-[30px] pt-7 gap-6 pb-[36px] pr-[180px] mb-10">
-                                <p className="text-heading4 font-quickSand mb-[14px] pb-[14px] border-b-2">Popular Items</p>
-                                <div className="flex flex-col gap-6">
-                                    <div className="flex gap-3 lg:gap-5">
-                                        <img src="../assets/images/products/avocado.png" width="120" height="120"/>
-                                        <div className="flex flex-col justify-between">
-                                            <div>
-                                                <div className="font-quickSand text-heading6 text-blue-300 mb-1">Seeds of Change
-                                                    Organic
-                                                </div>
-                                                <div className="flex gap-4">
-                                                    <ul className="flex gap-1">
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-empty text-[12px]"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <span className="font-quickSand text-heading5 text-green-200">$2.51</span>
-                                                <span
-                                                    className="font-quickSand text-heading-sm line-through text-gray-500">$2.80</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-3 lg:gap-5">
-                                        <img src="../assets/images/products/banana.png" width="120" height="120"/>
-                                        <div className="flex flex-col justify-between">
-                                            <div>
-                                                <div className="font-quickSand text-heading6 text-blue-300 mb-1">Seeds of Change
-                                                    Organic
-                                                </div>
-                                                <div className="flex gap-4">
-                                                    <ul className="flex gap-1">
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-empty text-[12px]"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <span className="font-quickSand text-heading5 text-green-200">$2.51</span>
-                                                <span
-                                                    className="font-quickSand text-heading-sm line-through text-gray-500">$2.80</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-3 lg:gap-5">
-                                        <img src="../assets/images/products/orange-fruit.png" width="120" height="120"/>
-                                        <div className="flex flex-col justify-between">
-                                            <div>
-                                                <div className="font-quickSand text-heading6 text-blue-300 mb-1">Seeds of Change
-                                                    Organic
-                                                </div>
-                                                <div className="flex gap-4">
-                                                    <ul className="flex gap-1">
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-empty text-[12px]"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <span className="font-quickSand text-heading5 text-green-200">$2.51</span>
-                                                <span
-                                                    className="font-quickSand text-heading-sm line-through text-gray-500">$2.80</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-3 lg:gap-5">
-                                        <img src="../assets/images/products/watter-melon.png" width="120" height="120"/>
-                                        <div className="flex flex-col justify-between">
-                                            <div>
-                                                <div className="font-quickSand text-heading6 text-blue-300 mb-1">Seeds of Change
-                                                    Organic
-                                                </div>
-                                                <div className="flex gap-4">
-                                                    <ul className="flex gap-1">
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-full text-[12px]"></i></li>
-                                                        <li className="flex"><i className="icon-star-empty text-[12px]"></i>
-                                                        </li>
-                                                    </ul>
-                                                    <div className="text-xsmall text-gray-500 font-lato">(4.0)</div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <span className="font-quickSand text-heading5 text-green-200">$2.51</span>
-                                                <span
-                                                    className="font-quickSand text-heading-sm line-through text-gray-500">$2.80</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div className={'border border-[#E5E5E5] rounded-xl p-7 mb-16'}>
+                                <ProductVerticalList title={'Popular Items'} data={categories.data.attributes.products.data} />
                             </div>
                         </div>
                         {/*sidebar End*/}
@@ -269,6 +161,12 @@ export default function Index() {
                         </div>
                         {/*Right_col End*/}
                     </Section>
+                    : isLoading ?
+                    <div className={'flex flex-col mx-auto text-center items-center justify-center gap-y-6'}>
+                        <h3 className={'text-heading5 lg:text-heading2 xl:text-heading1 2xl:text-display2 text-blue-300'}>
+                            Loading...
+                        </h3>
+                    </div>
                     :
                     <div className={'flex flex-col mx-auto text-center items-center justify-center gap-y-6'}>
                         <h1 className={'text-heading3 lg:text-heading2 xl:text-heading1 2xl:text-display2 text-blue-300'}>
