@@ -3,7 +3,7 @@ import {IconBox, ImageView, InfoBody, InfoBodyBlock, Rating, SimpleProductCard} 
 import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {getSingleProduct} from "@/api/Products";
 import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {getSingleCategories} from "@/api/Categories";
 import SingleProductButton from "@/components/common/product/product-card/SingleProductButton";
 import {Autoplay, Navigation} from "swiper/modules";
@@ -16,7 +16,7 @@ export default function Index() {
     const {id} = router.query;
 
     const [showInfo, setShowInfo] = useState('description');
-    const {data: singleData} = useQuery({queryKey: ['single-product'], queryFn: () => getSingleProduct(Number(id)), enabled: !!id});
+    const {data: singleData, isLoading} = useQuery({queryKey: ['single-product'], queryFn: () => getSingleProduct(Number(id)), enabled: !!id});
 
     const categoryId = singleData?.data?.attributes?.categories?.data?.[0]?.id;
 
@@ -37,8 +37,16 @@ export default function Index() {
         <div className={'container'}>
             <Section>
                 {
-                    singleData &&
-                    <div className="flex flex-col items-center mb-[68px]">
+                    isLoading ?
+                        <div className={'flex flex-col mx-auto text-center items-center justify-center py-32'}>
+                            <h3 className={'text-heading5 lg:text-heading2 xl:text-heading1 2xl:text-display2 text-blue-300'}>
+                                Loading...
+                            </h3>
+                        </div>
+                        :
+                        singleData &&
+
+                        <div className="flex flex-col items-center mb-[68px]">
                         <div className="flex flex-col items-center text-left lg:flex-row lg:items-start justify-center w-full gap-x-8">
                             <div>
                                 <div className="w-full h-full mb-[28px] p-[40px] border-[1px] border-gray-200 rounded-2xl">
