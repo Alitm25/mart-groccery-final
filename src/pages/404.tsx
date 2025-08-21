@@ -10,14 +10,6 @@ export default function Custom404() {
                 <h1 className={'text-heading1 font-quicksand text-[#253D4E] mb-7'}>Page Not Found</h1>
                 <p className={'text-heading-sm font-normal font-lato text-[#7E7E7E] mb-1'}>The link you clicked may be broken or the page may have been removed. </p>
                 <p className={'text-heading-sm font-normal font-lato text-[#7E7E7E] mb-7'}>visit the <Link href={'/'}><span className={'text-[#3BB77E]'}>Homepage</span></Link>  or <Link href={'/contact-us'}><span className={'text-[#3BB77E]'}>Contact us</span></Link> about the problem </p>
-                {/*<div className="w-full max-w-md border border-[#E5E5E5] rounded-2xl drop-shadow hover:drop-shadow-lg flex items-center gap-x-2 transition-all p-4 relative">*/}
-                {/*    <IconBox icon="icon-search" size={22} />*/}
-                {/*    <input*/}
-                {/*        type="text"*/}
-                {/*        placeholder="Enter your keywords..."*/}
-                {/*        className="flex-grow w-full h-full text-base font-lato font-normal text-[#B6B6B6] outline-none"*/}
-                {/*    />*/}
-                {/*</div>*/}
                 <div className="flex items-center w-full max-w-md rounded-xl border border-gray-200 shadow-sm px-[15px] py-5 bg-white hover:drop-shadow-xl transition">
                     <IconBox icon="icon-search mr-1" size={22} />
                     <input
