@@ -114,7 +114,7 @@ export default function Index() {
                 }
             </Section>
             <Section>
-                <div className={'flex flex-col items-start justify-between p-12 border border-[#F2F3F4] rounded-xl'}>
+                <div className={'flex flex-col items-start justify-between p-6 lg:p-12 border border-[#F2F3F4] rounded-xl'}>
                     <div className={'flex flex-row flex-wrap items-center justify-center gap-x-4 md:gap-x-6 gap-y-6 mb-9'}>
                         <button onClick={ () => showInfoHandler('description')} className={`px-5 py-2.5 md:px-[30px] md:py-[15px] rounded-full bg-white border border-[#F2F3F4] text-sm md:text-[18px] font-quicksand font-bold hover:text-[#3BB77E] ${showInfo === 'description' ? 'text-[#3BB77E] drop-shadow-xl' : 'text-[#B6B6B6]'} hover:drop-shadow-xl  transition-all`}> Description     </button>
                         <button onClick={ () => showInfoHandler('additional')}  className={`px-5 py-2.5 md:px-[30px] md:py-[15px] rounded-full bg-white border border-[#F2F3F4] text-sm md:text-[18px] font-quicksand font-bold  hover:text-[#3BB77E] ${showInfo === 'additional' ? 'text-[#3BB77E] drop-shadow-xl' : 'text-[#B6B6B6]'} hover:drop-shadow-xl transition-all`}> Additional info </button>
