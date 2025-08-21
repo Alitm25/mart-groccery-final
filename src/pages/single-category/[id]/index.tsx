@@ -8,12 +8,16 @@ import React, {useEffect, useState} from "react";
 import {getAllProductsApiCall} from "@/api/Products";
 
 export default function Index() {
+    // declaring query
     const queryClient = new QueryClient();
+    // declaring pagination page state
     const [page, setPage] = useState<number>(1);
 
+    // declaring ROUTER variables
     const router = useRouter();
     const {id} = router.query;
 
+    // CATEGORIES api data fetching
     const {data: categories, isLoading} = useQuery({
         queryKey: [getSingleCategories.name, id],
         queryFn: () => getSingleCategories(Number(id)),
@@ -22,6 +26,7 @@ export default function Index() {
 
     const categoryID = categories?.data.id;
 
+    /// CATEGORY-PRODUCTS api data fetching
     const {data: categoryProducts} = useQuery({
         queryKey: ['category-products', categoryID, page],
         queryFn: () => getAllProductsApiCall({
@@ -39,7 +44,7 @@ export default function Index() {
         })
     })
 
-
+    // invalidating data based on url ID
     useEffect(() => {
         queryClient.invalidateQueries({queryKey: [getSingleCategories.name, id]});
     }, [id]);
