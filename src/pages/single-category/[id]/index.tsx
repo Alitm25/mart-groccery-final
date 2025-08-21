@@ -4,11 +4,12 @@ import {QueryClient, useQuery} from "@tanstack/react-query";
 import {getSingleCategories} from "@/api/Categories";
 import {IconBox, ProductVerticalList, SimpleProductCard} from "@/components";
 import Link from "next/link";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {getAllProductsApiCall} from "@/api/Products";
 
 export default function Index() {
     const queryClient = new QueryClient();
+    const [page, setPage] = useState<number>(1);
 
     const router = useRouter();
     const {id} = router.query;
@@ -22,19 +23,37 @@ export default function Index() {
     const categoryID = categories?.data.id;
 
     const {data: categoryProducts} = useQuery({
-        queryKey: ['category-products', categoryID],
+        queryKey: ['category-products', categoryID, page],
         queryFn: () => getAllProductsApiCall({
             filters: {
                 categories: {
                     id: { $eq: categoryID },
                 }
+            },
+            populate: ['thumbnail'],
+            pagination: {
+                withCount: true,
+                page:      page,
+                pageSize:  15,
             }
         })
     })
 
+
     useEffect(() => {
         queryClient.invalidateQueries({queryKey: [getSingleCategories.name, id]});
     }, [id]);
+
+    /// Pagination calculation
+    let paginationList = [];
+    for (let i = 1; i < categoryProducts?.meta.pagination.pageCount!; i++) {
+        paginationList.push(
+            <li key={i}
+                className={`w-[50px] h-[50px] rounded-full flex items-center justify-center text-gray-500 bg-gray-200 cursor-pointer ${categoryProducts?.meta.pagination.page === i && 'bg-green-200 text-white'}`}
+                onClick={() => setPage(i)}
+            >{i}</li>
+        )
+    }
 
     return (
         <div className={'container'}>
@@ -49,8 +68,8 @@ export default function Index() {
                 </div>
             </Section>
             {
-                categories &&
-                categories?.data.attributes.products.data.length > 0 ?
+                categoryProducts &&
+                categoryProducts?.data.length > 0 ?
                     <Section sectionClassName={"md:flex md:flex-row sm:flex-col md:justify-between"}>
 
                         {/*sidebar Start*/}
@@ -125,7 +144,7 @@ export default function Index() {
                             </div>
                             {/*2*/}
                             <div className={'border border-[#E5E5E5] rounded-xl p-7 mb-16'}>
-                                <ProductVerticalList title={'Popular Items'} data={categories.data.attributes.products.data} />
+                                <ProductVerticalList title={'Popular Items'} data={categories?.data.attributes.products.data!} />
                             </div>
                         </div>
                         {/*sidebar End*/}
@@ -134,7 +153,7 @@ export default function Index() {
                         <div>
                             <div className="flex justify-between rounded-[15px] bg-gray-200 py-[25px] ps-[30px] mb-[48px]">
                                 <div className="text-heading6 text-gray-500">There are <span
-                                    className="text-blue-200">{categories?.data.attributes.products.data.length}</span> products in this category
+                                    className="text-blue-200">{categoryProducts?.data.length}</span> products in this category
                                 </div>
                                 <div className="text-medium text-gray-500 mr-[5px] flex justify-center">Sort by: Featured <i
                                     className="icon-angle-small-down text-gray-200"></i></div>
@@ -142,8 +161,8 @@ export default function Index() {
                             {/*Cards Start -->*/}
                             <div className={'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-11'}>
                                 {
-                                    categories &&
-                                    categories.data.attributes.products.data.map( (item) => {
+                                    categoryProducts &&
+                                    categoryProducts.data.map( (item) => {
                                         return <SimpleProductCard data={item} />
                                     })
                                 }
@@ -151,7 +170,10 @@ export default function Index() {
                             {/*Cards Ends*/}
                             {/*buttons*/}
                             {
-
+                                categoryProducts &&
+                                <ul className={"flex flex-wrap gap-[10px] justify-center items-start mb-[60px]"}>
+                                    {paginationList}
+                                </ul>
                             }
                         </div>
                         {/*Right_col End*/}
