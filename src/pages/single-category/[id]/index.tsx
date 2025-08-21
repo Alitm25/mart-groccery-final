@@ -18,7 +18,7 @@ export default function Index() {
     const {id} = router.query;
 
     // CATEGORIES api data fetching
-    const {data: categories, isLoading} = useQuery({
+    const {data: categories, isLoading: productsLoading} = useQuery({
         queryKey: [getSingleCategories.name, id],
         queryFn: () => getSingleCategories(Number(id)),
         enabled: !!id
@@ -27,7 +27,7 @@ export default function Index() {
     const categoryID = categories?.data.id;
 
     /// CATEGORY-PRODUCTS api data fetching
-    const {data: categoryProducts} = useQuery({
+    const {data: categoryProducts, isLoading: categoryLoading} = useQuery({
         queryKey: ['category-products', categoryID, page],
         queryFn: () => getAllProductsApiCall({
             filters: {
@@ -183,7 +183,8 @@ export default function Index() {
                         </div>
                         {/*Right_col End*/}
                     </Section>
-                    : isLoading ?
+                    : productsLoading || categoryLoading ?
+
                     <div className={'flex flex-col mx-auto text-center items-center justify-center py-32'}>
                         <h3 className={'text-heading5 lg:text-heading2 xl:text-heading1 2xl:text-display2 text-blue-300'}>
                             Loading...
