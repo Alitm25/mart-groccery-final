@@ -173,14 +173,14 @@ export default function Index() {
                             }
                         >                            {
                                 categories ?
-                                categories.data.attributes.products.data.map( (product, index) => {
-                                    return (
-                                        <SwiperSlide key={index}>
-                                        <SimpleProductCard data={product} />
-                                        </SwiperSlide>
-                                    )
-                                }) :
-                                    <div>There is no related products for this product</div>
+                                categories.data.attributes.products.data.filter( item => item.id !== singleData?.data.id)
+                                    .map( (product, index) => {
+                                        return (
+                                            <SwiperSlide key={index}>
+                                            <SimpleProductCard data={product} />
+                                            </SwiperSlide>
+                                        )
+                                    }) : <div>There is no related products for this product</div>
                             }
                         </Swiper>
                     </div>
