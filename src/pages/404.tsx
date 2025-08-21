@@ -1,4 +1,4 @@
-import {IconBox, ImageView, Input, SearchForm} from "@/components";
+import {IconBox, ImageView} from "@/components";
 import Link from "next/link";
 import React from "react";
 
