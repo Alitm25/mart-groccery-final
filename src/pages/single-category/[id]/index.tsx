@@ -62,6 +62,7 @@ export default function Index() {
 
     return (
         <div className={'container'}>
+            {/*banner section*/}
             <Section>
                 <div
                     className="rounded-[6px] md:rounded-[14px] lg:rounded-[30px] bg-hero-pattern bg-[rgba(59,183,126,.2)] bg-opacity-20 bg-cover bg-top bg-no-repeat flex justify-between items-center mt-[38px] relative">
