@@ -77,7 +77,7 @@ export default function Index() {
                 categoryProducts?.data.length > 0 ?
                     <Section sectionClassName={"md:flex md:flex-row sm:flex-col md:justify-between"}>
 
-                        {/*sidebar Start*/}
+                        {/*popular products section Start*/}
                         <div className="flex flex-col mr-7">
                             {/*1*/}
                             <div className="flex flex-col border-[1px] border-gray-200 rounded-[10px] px-[30px] pt-7 mb-[55px] pb-4">
@@ -152,9 +152,9 @@ export default function Index() {
                                 <ProductVerticalList title={'Popular Items'} data={categories?.data.attributes.products.data!} />
                             </div>
                         </div>
-                        {/*sidebar End*/}
+                        {/*popular products section End*/}
 
-                        {/*Right_col Start*/}
+                        {/*Category products section Start*/}
                         <div>
                             <div className="flex justify-between rounded-[15px] bg-gray-200 py-[25px] ps-[30px] mb-[48px]">
                                 <div className="text-heading6 text-gray-500">There are <span
@@ -163,7 +163,7 @@ export default function Index() {
                                 <div className="text-medium text-gray-500 mr-[5px] flex justify-center">Sort by: Featured <i
                                     className="icon-angle-small-down text-gray-200"></i></div>
                             </div>
-                            {/*Cards Start -->*/}
+
                             <div className={'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-11'}>
                                 {
                                     categoryProducts &&
@@ -172,8 +172,8 @@ export default function Index() {
                                     })
                                 }
                             </div>
-                            {/*Cards Ends*/}
-                            {/*buttons*/}
+
+                            {/*pagination buttons*/}
                             {
                                 categoryProducts &&
                                 <ul className={"flex flex-wrap gap-[10px] justify-center items-start mb-[60px]"}>
@@ -181,8 +181,9 @@ export default function Index() {
                                 </ul>
                             }
                         </div>
-                        {/*Right_col End*/}
+                        {/*Category products section Ends*/}
                     </Section>
+                    // Loading div
                     : productsLoading || categoryLoading ?
 
                     <div className={'flex flex-col mx-auto text-center items-center justify-center py-32'}>
@@ -191,6 +192,7 @@ export default function Index() {
                         </h3>
                     </div>
                     :
+                    // empty category products section
                     <div className={'flex flex-col mx-auto text-center items-center justify-center gap-y-6'}>
                         <h1 className={'text-heading3 lg:text-heading2 xl:text-heading1 2xl:text-display2 text-blue-300'}>
                             There is no products in this category.
