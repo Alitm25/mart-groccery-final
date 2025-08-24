@@ -7,6 +7,7 @@ import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 import {useDebounce} from "@/hooks/useDebounce";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 interface Props {
     inputClassName?: string;
@@ -27,7 +28,8 @@ interface FilterData {
 export function SearchForm({inputClassName = ''} :Props) {
 
     const [resultData, setResultData] = useState<Array<EntityType<ProductsType>>>()
-    const {register, handleSubmit, watch} = useForm<FromInput>();
+    const {register, handleSubmit, watch, reset} = useForm<FromInput>();
+    const router = useRouter()
     const inputMutationData = useMutation({mutationFn: (data :FilterData) => getAllProductsApiCall( {filters: data} ) })
 
     const searchText = watch('search_text');
@@ -41,6 +43,11 @@ export function SearchForm({inputClassName = ''} :Props) {
         }
     }, [searchText]);
 
+
+    const searchHandler = (id :number) => {
+        router.push(`/single-product/${id}`);
+        reset();
+    }
 
     const onSubmit = (data :FromInput) => {
         if (data.search_text.length <= 1) {
@@ -78,9 +85,7 @@ export function SearchForm({inputClassName = ''} :Props) {
                         {
                             resultData.map( (item :EntityType<ProductsType>, index :number) => {
                                 return (
-                                    <Link href={`/single-product/${item.id}`}>
-                                        <li className={'p-4 hover:bg-green-200 hover:text-white cursor-pointer'} key={index}>{item.attributes.title}</li>
-                                    </Link>
+                                    <li onClick={() => searchHandler(item.id)} className={'p-4 hover:bg-green-200 hover:text-white cursor-pointer'} key={index}>{item.attributes.title}</li>
                                 )
                             })
                         }
