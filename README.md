@@ -27,6 +27,6 @@ This is some features that you can see in the Homepage, This page is also has se
 - **About us and contact us**: On the footer section, you can go to the about us and contact us page.
 
 
-You can see the Website on the link below:
- [ the link ](https://mart-groccery-final.vercel.app/)
+
+ [ Click here to visit the website ](https://mart-groccery-final.vercel.app/)
 
