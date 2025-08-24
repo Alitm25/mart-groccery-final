@@ -6,6 +6,7 @@ import {getAllProductsApiCall} from "@/api/Products";
 import {EntityType} from "@/types";
 import {ProductsType} from "@/types/api/Products";
 import {useDebounce} from "@/hooks/useDebounce";
+import Link from "next/link";
 
 interface Props {
     inputClassName?: string;
@@ -77,7 +78,9 @@ export function SearchForm({inputClassName = ''} :Props) {
                         {
                             resultData.map( (item :EntityType<ProductsType>, index :number) => {
                                 return (
-                                    <li className={'p-4 hover:bg-green-200 hover:text-white cursor-pointer'} key={index}>{item.attributes.title}</li>
+                                    <Link href={`/single-product/${item.id}`}>
+                                        <li className={'p-4 hover:bg-green-200 hover:text-white cursor-pointer'} key={index}>{item.attributes.title}</li>
+                                    </Link>
                                 )
                             })
                         }
