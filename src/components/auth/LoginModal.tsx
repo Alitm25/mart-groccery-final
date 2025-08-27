@@ -4,10 +4,11 @@ import {createPortal} from "react-dom";
 import {useModal} from "@/stores/ModalContext";
 import {useForm} from "react-hook-form";
 import {useMutation} from "@tanstack/react-query";
-import {loginApiCall, registerApiCall} from "@/api/Register";
+import {loginApiCall} from "@/api/Register";
 import {useAuth} from "@/stores/AuthContext";
 import {toast} from "react-toastify";
 import {useBasketData} from "@/hooks/useBasketData";
+import {ApiAxiosError} from "@/types/api/Error";
 
 interface Props {
     onClose: () => void;
@@ -33,7 +34,8 @@ export function LoginModal({onClose}: Props) {
                 toast.success(`Welcome back ${data.identifier}`);
                 closeModal();
                 uuid2User();
-            }
+            },
+            onError: () => {}
         })
     }
 
