@@ -1,5 +1,6 @@
 import axios from "axios";
 import {toast} from "react-toastify";
+import {ApiAxiosError} from "@/types";
 
 const apiClient = axios.create({
     baseURL: 'https://nest.navaxcollege.com/api/',
@@ -23,12 +24,14 @@ export default apiClient;
 apiClient.interceptors.response.use(function (response) {
     return response.data;
 }, function (error) {
+    const err = error as ApiAxiosError;
+    const errorMessage = err.response?.data.error.message || 'Unknown error';
     if (error.response) {
         if (error.response.status === 404) {
             toast.error('The resource does not exist!');
         }
         else if (error.response.status === 400) {
-            toast.error('The sending parameters are not correct!');
+            toast.error(errorMessage);
         }
         else if (error.response.status === 401) {
             toast.error('Please sign in!');
