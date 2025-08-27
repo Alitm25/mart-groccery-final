@@ -70,7 +70,7 @@ export function SimpleProductCard({data, isSoldShown}: Props) {
                         <div className={`flex items-center justify-between ${basketItems ? 'mt-0' : 'mt-3'} h-[34px]`}>
                             {
                                 data?.attributes?.sell_price ?
-                                    <div>
+                                    <div className={'flex items-center justify-center sm:flex-row flex-col'}>
                                         <span className="text-heading6 md:text-heading5 text-green-200">${data?.attributes?.sell_price}</span>
                                         <span className="text-xs md:text-heading-sm line-through text-gray-500">${data?.attributes?.price}</span>
                                     </div>
