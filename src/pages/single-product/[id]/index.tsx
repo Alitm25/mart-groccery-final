@@ -152,17 +152,17 @@ export default function Index() {
 
                         <Swiper
                             spaceBetween={16}
-                            slidesPerView={2}
-                            autoplay={true}
+                            slidesPerView={1}
+                            autoplay={false}
                             modules={[Autoplay, Navigation]}
                             breakpoints={
                                 {
                                     768: {
-                                        slidesPerView: 3,
+                                        slidesPerView: 2,
                                         spaceBetween: 18
                                     },
                                     1024: {
-                                        slidesPerView: 4,
+                                        slidesPerView: 3,
                                         spaceBetween: 22
                                     },
                                     1280: {
