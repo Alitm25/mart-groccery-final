@@ -22,7 +22,7 @@ interface formData {
 export function RegisterModal({onClose}: Props) {
     const {register, handleSubmit, formState: {errors}} = useForm<formData>();
     const mutate = useMutation({mutationFn: registerApiCall});
-    const {login, isLogin} = useAuth();
+    const {login} = useAuth();
     const {closeModal, openModal} = useModal();
     const {uuid2User} = useBasketData();
 
@@ -30,12 +30,12 @@ export function RegisterModal({onClose}: Props) {
     const onSubmit = (data :formData) => {
         mutate.mutate(data, {
             onSuccess: (response) => {
-                console.log(data);
                 login(response.jwt, response.user);
                 toast.success(`You have been successfully registered!`);
                 closeModal();
                 uuid2User();
-            }
+            },
+            onError: () => {}
         })
     }
 
