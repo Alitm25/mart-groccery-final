@@ -12,7 +12,7 @@ interface Props {
 }
 
 export function SimpleProductCard({data, isSoldShown}: Props) {
-    const {basketItems} = useBasketData();
+    const {basketItems, addItem, updateProduct} = useBasketData();
 
 
     return (
@@ -61,10 +61,7 @@ export function SimpleProductCard({data, isSoldShown}: Props) {
                             </div>
                             <div className="mt-2.5 font-lato text-blue-300 text-xsmall">Sold: {data?.attributes?.sold}/{data?.attributes?.total}</div>
                             <div className="mt-[23px]">
-                                <button className="flex justify-center items-center gap-2 xl:text-heading-sm text-white border-[1px] w-full rounded-[4px] bg-green-200 hover:bg-yellow-100 transition-[background-color] px-2 py-2 lg:py-[14px]">
-                                    <i className="icon-shopping-cart text-[22px]"></i>
-                                    <span className="text-heading-sm">Add To Card</span>
-                                </button>
+                                <ProductCardButton specialBtn={true} productData={data} />
                             </div>
                         </> :
                         <div className={`flex items-center justify-between ${basketItems ? 'mt-0' : 'mt-3'} h-[34px]`}>
@@ -76,7 +73,7 @@ export function SimpleProductCard({data, isSoldShown}: Props) {
                                     </div>
                                     : <span className="text-heading5 text-green-200">${data?.attributes?.price}</span>
                             }
-                            <ProductCardButton productData={data} />
+                            <ProductCardButton specialBtn={false} productData={data} />
                         </div>
                 }
 
