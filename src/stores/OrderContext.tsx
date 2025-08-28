@@ -1,4 +1,4 @@
-import {createContext, ReactNode, SetStateAction, useContext, useState} from "react";
+import {createContext, ReactNode, SetStateAction, useContext, useEffect, useState} from "react";
 import {basketItems} from "@/types/api/Basket";
 
 interface Props {
@@ -28,13 +28,21 @@ const OrderContext = createContext<OrderContextType>(
 export const useOrder = () => useContext(OrderContext);
 
 export function OrderContextProvider({children}: Props) {
-    const [order, setOrder] = useState<Order[]>( () => {
+    const [order, setOrder] = useState<Order[]>([]);
+
+    useEffect(() => {
         if (typeof window !== "undefined") {
-            const order= localStorage.getItem('orders');
-            return order ? JSON.parse(order) : [];
+            const stored = localStorage.getItem("orders");
+            if (stored) {
+                setOrder(JSON.parse(stored));
+            }
         }
-        return [];
-    });
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('orders', JSON.stringify(order));
+    }, [order]);
+
 
     const addOrderHandler = (order :Order) => {
         setOrder( (prevState) => {
