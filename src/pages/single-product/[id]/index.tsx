@@ -33,21 +33,21 @@ export default function Index() {
         setShowInfo(info);
     }
 
-    const Swiper = dynamic(
-        async () => {
-            const { Swiper } = await import("swiper/react");
-            return Swiper;
-        },
-        { ssr: false }
-    );
-
-    const SwiperSlide = dynamic(
-        async () => {
-            const { SwiperSlide } = await import("swiper/react");
-            return SwiperSlide;
-        },
-        { ssr: false }
-    );
+    // const Swiper = dynamic(
+    //     async () => {
+    //         const { Swiper } = await import("swiper/react");
+    //         return Swiper;
+    //     },
+    //     { ssr: false }
+    // );
+    //
+    // const SwiperSlide = dynamic(
+    //     async () => {
+    //         const { SwiperSlide } = await import("swiper/react");
+    //         return SwiperSlide;
+    //     },
+    //     { ssr: false }
+    // );
 
 
     return (
@@ -169,7 +169,7 @@ export default function Index() {
 
                         <Swiper
                             spaceBetween={16}
-                            slidesPerView={1}
+                            slidesPerView={5}
                             autoplay={false}
                             modules={[Autoplay, Navigation]}
                             breakpoints={
