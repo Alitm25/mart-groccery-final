@@ -1,13 +1,14 @@
 import {Section} from "@/components/section/Section";
 import {IconBox, ImageView, InfoBody, InfoBodyBlock, Rating, SimpleProductCard} from "@/components";
-import {useQuery, useQueryClient} from "@tanstack/react-query";
-import {getSingleProduct} from "@/api/Products";
+import {dehydrate, QueryClient, useQuery, useQueryClient} from "@tanstack/react-query";
+import {getAllProductsApiCall, getSingleProduct} from "@/api/Products";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import {getSingleCategories} from "@/api/Categories";
 import SingleProductButton from "@/components/common/product/product-card/SingleProductButton";
 import {Autoplay, Navigation} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
+import dynamic from "next/dynamic";
 
 
 export default function Index() {
@@ -16,7 +17,7 @@ export default function Index() {
     const {id} = router.query;
 
     const [showInfo, setShowInfo] = useState('description');
-    const {data: singleData, isLoading} = useQuery({queryKey: ['single-product'], queryFn: () => getSingleProduct(Number(id)), enabled: !!id});
+    const {data: singleData, isLoading} = useQuery({queryKey: ['single-product', id], queryFn: () => getSingleProduct(Number(id)), enabled: !!id});
 
     const categoryId = singleData?.data?.attributes?.categories?.data?.[0]?.id;
 
@@ -31,6 +32,22 @@ export default function Index() {
     const showInfoHandler = (info :string) => {
         setShowInfo(info);
     }
+
+    const Swiper = dynamic(
+        async () => {
+            const { Swiper } = await import("swiper/react");
+            return Swiper;
+        },
+        { ssr: false }
+    );
+
+    const SwiperSlide = dynamic(
+        async () => {
+            const { SwiperSlide } = await import("swiper/react");
+            return SwiperSlide;
+        },
+        { ssr: false }
+    );
 
 
     return (
@@ -190,3 +207,42 @@ export default function Index() {
 
     );
 };
+
+// get the path of ISR rendering
+// export async function getStaticPaths() {
+//     const product = await getAllProductsApiCall({});
+//
+//     const paths = product.data.map( (item) => {
+//         return {
+//             params: { id: item.id.toString() }
+//         }
+//     });
+//
+//     return {
+//         paths,
+//         fallback: 'blocking',
+//     }
+// }
+
+
+// // make single-product page ISR
+// export async function getStaticProps(context :any) {
+//     const queryClient = new QueryClient();
+//     const { id } = context.params;
+//
+//     // single-product ISR
+//     await queryClient.prefetchQuery({
+//         queryKey: ['single-product', id],
+//         queryFn: () => getSingleProduct(Number(id))
+//     })
+//
+//
+//
+//
+//     return {
+//         props: {
+//             dehydratedState: dehydrate(queryClient),
+//         },
+//         revalidate: 60, // ISR every 60s
+//     };
+// }
