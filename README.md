@@ -50,7 +50,7 @@ It was developed as part of the **NAVAX College Bootcamp Final Project** (July �
 ---
 
 ## 📂 Project Structure
-
+```bash
 mart-grocery-final/
 ├── components/ # Reusable UI components
 ├── context/ # React Context providers
@@ -58,7 +58,7 @@ mart-grocery-final/
 ├── pages/ # Next.js pages
 ├── public/ # Static assets
 └── styles/ # Global styles
-
+```
 
 ---
 
