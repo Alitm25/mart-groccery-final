@@ -88,3 +88,7 @@ yarn dev
 Deployed on [vercel](https://vercel.com)
 [Live website](https://vercel.com/alitm25s-projects/mart-groccery-final/8ggfn7EGu653Diwb32Br1nCbLqnV)
 
+### 🤝 Contributing
+Contributions are welcome!
+Feel free to fork this repo, create a new branch, and submit a pull request.
+
