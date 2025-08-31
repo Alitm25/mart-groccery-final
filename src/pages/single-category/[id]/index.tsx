@@ -22,6 +22,8 @@ export default function Index() {
 
     // range slider price range variables
     const [priceRange, setPriceRange] = React.useState<number[]>([0, 8888]);
+    const [debounceRange, setdebounceRange] = React.useState<number[]>();
+
 
     // CATEGORIES api data fetching
     const {data: categories, isLoading: categoryLoading} = useQuery({
@@ -33,7 +35,7 @@ export default function Index() {
 
     /// CATEGORY-PRODUCTS api data fetching
     const {data: categoryProducts, isLoading: productsLoading} = useQuery({
-        queryKey: ['category-products', categoryID, page],
+        queryKey: ['category-products', categoryID, page, debounceRange],
         queryFn: () => getAllProductsApiCall({
             filters: {
                 categories: {
@@ -50,7 +52,8 @@ export default function Index() {
                 pageSize:  15,
             },
             sort: ['price:asc']
-        })
+        }),
+
     })
 
     // invalidating data based on url ID
@@ -75,9 +78,7 @@ export default function Index() {
     const MAX = categoryProducts?.data[categoryProducts?.data.length - 1].attributes.price;
 
     const sliderDebounce = useDebounce( () => {
-        queryClient.invalidateQueries({
-            queryKey: ['category-products', categoryID, page]
-        })
+        setdebounceRange(priceRange);
     }, 1000);
 
     const handleChange = (event: Event, newValue: number[]) => {
@@ -125,7 +126,6 @@ export default function Index() {
                                         <Slider
                                             min={MIN}
                                             max={MAX}
-                                            getAriaLabel={() => 'Temperature range'}
                                             value={priceRange}
                                             onChange={handleChange}
                                             valueLabelDisplay="auto"
