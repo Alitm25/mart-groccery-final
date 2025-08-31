@@ -6,6 +6,9 @@ import {IconBox, ProductVerticalList, SimpleProductCard} from "@/components";
 import Link from "next/link";
 import React, {useEffect, useState} from "react";
 import {getAllProductsApiCall} from "@/api/Products";
+import {Box, Slider} from "@mui/material";
+import {useDebounce} from "@/hooks/useDebounce";
+
 
 export default function Index() {
     // declaring query
@@ -17,22 +20,27 @@ export default function Index() {
     const router = useRouter();
     const {id} = router.query;
 
+    // range slider price range variables
+    const [priceRange, setPriceRange] = React.useState<number[]>([0, 8888]);
+
     // CATEGORIES api data fetching
-    const {data: categories, isLoading: productsLoading} = useQuery({
+    const {data: categories, isLoading: categoryLoading} = useQuery({
         queryKey: [getSingleCategories.name, id],
         queryFn: () => getSingleCategories(Number(id)),
         enabled: !!id
     });
-
     const categoryID = categories?.data.id;
 
     /// CATEGORY-PRODUCTS api data fetching
-    const {data: categoryProducts, isLoading: categoryLoading} = useQuery({
+    const {data: categoryProducts, isLoading: productsLoading} = useQuery({
         queryKey: ['category-products', categoryID, page],
         queryFn: () => getAllProductsApiCall({
             filters: {
                 categories: {
                     id: { $eq: categoryID },
+                },
+                price: {
+                    $gte: priceRange[0], $lte: priceRange[1]
                 }
             },
             populate: ['thumbnail'],
@@ -40,7 +48,8 @@ export default function Index() {
                 withCount: true,
                 page:      page,
                 pageSize:  15,
-            }
+            },
+            sort: ['price:asc']
         })
     })
 
@@ -59,6 +68,23 @@ export default function Index() {
             >{i}</li>
         )
     }
+
+
+    /// range sliders handler functions and other variables
+    const MIN = categoryProducts?.data[0].attributes.price;
+    const MAX = categoryProducts?.data[categoryProducts?.data.length - 1].attributes.price;
+
+    const sliderDebounce = useDebounce( () => {
+        queryClient.invalidateQueries({
+            queryKey: ['category-products', categoryID, page]
+        })
+    }, 1000);
+
+    const handleChange = (event: Event, newValue: number[]) => {
+        setPriceRange(newValue);
+        sliderDebounce()
+    };
+
 
     return (
         <div className={'container'}>
@@ -87,11 +113,26 @@ export default function Index() {
                                     <div className="flex">
                                         <p className="font-lato text-heading6 font-normal text-gray-400 mb-[31px] mr-[22px]">Price
                                             Range:</p>
-                                        <span className="font-quickSand text-heading5 text-green-200">$16 - $173</span>
+                                        <div className="font-quickSand text-heading5 text-green-200">
+                                            <span>${priceRange[0]}</span>
+                                            -
+                                            <span>${priceRange[1]}</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="mt-[15px] bg-gray-200 h-[4px] w-full rounded-[2px] mb-[35px]">
-                                    <div className="bg-green-200 h-[4px] w-3/4 rounded-[2px]"></div>
+                                <div className={'mt-5'}>
+                                    <Box sx={{ width: 300 }}>
+                                        <Slider
+                                            min={MIN}
+                                            max={MAX}
+                                            getAriaLabel={() => 'Temperature range'}
+                                            value={priceRange}
+                                            onChange={handleChange}
+                                            valueLabelDisplay="auto"
+                                            step={5}
+                                            style={{color: 'rgb(59, 183, 126)'}}
+                                        />
+                                    </Box>
                                 </div>
                                 <p className="font-lato text-heading6 font-normal text-gray-400 mb-[21px]">Used for:</p>
                                 <div className="flex flex-col items-start mb-[30px]">
