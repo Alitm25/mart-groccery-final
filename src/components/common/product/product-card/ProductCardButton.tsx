@@ -6,7 +6,7 @@ import {useBasketData} from "@/hooks/useBasketData";
 
 interface Props {
     productData: EntityType<ProductsType>;
-    specialBtn: boolean;
+    specialBtn?: boolean;
 };
 
 
