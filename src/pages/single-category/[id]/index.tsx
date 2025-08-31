@@ -13,16 +13,20 @@ import {useDebounce} from "@/hooks/useDebounce";
 export default function Index() {
     // declaring query
     const queryClient = new QueryClient();
+
+
     // declaring pagination page state
     const [page, setPage] = useState<number>(1);
+
 
     // declaring ROUTER variables
     const router = useRouter();
     const {id} = router.query;
 
+
     // range slider price range variables
     const [priceRange, setPriceRange] = React.useState<number[]>([0, 8888]);
-    const [debounceRange, setdebounceRange] = React.useState<number[]>();
+    const [debounceRange, setDebounceRange] = React.useState<number[]>();
 
 
     // CATEGORIES api data fetching
@@ -32,6 +36,7 @@ export default function Index() {
         enabled: !!id
     });
     const categoryID = categories?.data.id;
+
 
     /// CATEGORY-PRODUCTS api data fetching
     const {data: categoryProducts, isLoading: productsLoading} = useQuery({
@@ -56,6 +61,7 @@ export default function Index() {
 
     })
 
+
     // invalidating data based on url ID
     useEffect(() => {
         queryClient.invalidateQueries({queryKey: [getSingleCategories.name, id]});
@@ -74,11 +80,11 @@ export default function Index() {
 
 
     /// range sliders handler functions and other variables
-    const MIN = categoryProducts?.data[0].attributes.price;
-    const MAX = categoryProducts?.data[categoryProducts?.data.length - 1].attributes.price;
+    const MIN = 0;
+    const MAX = 10000;
 
     const sliderDebounce = useDebounce( () => {
-        setdebounceRange(priceRange);
+        setDebounceRange(priceRange);
     }, 1000);
 
     const handleChange = (event: Event, newValue: number[]) => {
@@ -117,12 +123,12 @@ export default function Index() {
                                         <div className="font-quickSand text-heading5 text-green-200">
                                             <span>${priceRange[0]}</span>
                                             -
-                                            <span>${priceRange[1]}</span>
+                                            <span className={'w-'}>${priceRange[1]}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className={'mt-5'}>
-                                    <Box sx={{ width: 300 }}>
+                                    <Box sx={{ width: '100%'}}>
                                         <Slider
                                             min={MIN}
                                             max={MAX}
