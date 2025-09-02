@@ -25,7 +25,7 @@ export default function Index() {
 
 
     // range slider price range variables
-    const [priceRange, setPriceRange] = React.useState<number[]>([0, 8888]);
+    const [priceRange, setPriceRange] = React.useState<number[]>([0, 10000]);
     const [debounceRange, setDebounceRange] = React.useState<number[]>();
 
 
