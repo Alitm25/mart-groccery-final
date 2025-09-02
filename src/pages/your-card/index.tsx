@@ -122,10 +122,10 @@ export default function Index({}) {
                                                     </div>
                                                     {/*quantity button*/}
                                                     <div className="flex justify-center items-center">
-                                                        <div className={`border-2 font-quicksand font-bold rounded-lg text-[#B6B6B6] border-[#B6B6B6] ${rowSelected && 'border-[#3BB77E] text-[#3BB77E]'} p-[7px] w-16 md:w-28 flex flex-row-reverse justify-evenly items-center transition-all`}>
+                                                        <div className={`border-2 font-quicksand font-bold rounded-lg text-[#B6B6B6] border-[#B6B6B6] ${rowSelected ? 'border-[#3BB77E] text-[#3BB77E]' : ''}  p-[7px] w-16 md:w-28 flex flex-row-reverse justify-evenly items-center transition-all`}>
                                                             <div className="flex flex-col justify-between items-center">
-                                                                <IconBox icon={'up icon-angle-small-up cursor-pointer'}     size={10} onClick={ () => rowSelected && updateProduct(product?.id, 'increase')}/>
-                                                                <IconBox icon={'down icon-angle-small-down cursor-pointer'} size={10} onClick={ () =>  rowSelected && updateProduct(product?.id, 'decrease')}/>
+                                                                <IconBox icon={`up icon-angle-small-up cursor-pointer ${rowSelected ? 'cursor-pointer' : 'cursor-not-allowed'}`}     size={10} onClick={ () => rowSelected && updateProduct(product?.id, 'increase')}/>
+                                                                <IconBox icon={`down icon-angle-small-down cursor-pointer ${rowSelected ? 'cursor-pointer' : 'cursor-not-allowed'}`} size={10} onClick={ () =>  rowSelected && updateProduct(product?.id, 'decrease')}/>
                                                             </div>
                                                             {item.quantity}
                                                         </div>
@@ -136,7 +136,7 @@ export default function Index({}) {
                                                         </div>
                                                     </div>
                                                     {/*remove button*/}
-                                                    <button type={'button'} className="flex justify-center items-center" onClick={ () => deleteItem(product?.id)}>
+                                                    <button type={'button'} className={`flex justify-center items-center ${rowSelected ? 'cursor-pointer' : 'cursor-not-allowed'}`} onClick={ () => rowSelected && deleteItem(product?.id)}>
                                                         <ImageView alt={'remove-item-icon'} width={25} height={25} src={'/assets/images/remove-item.svg'} />
                                                     </button>
                                                 </div>
