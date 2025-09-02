@@ -5,12 +5,18 @@ import React from "react";
 import {useQuery} from "@tanstack/react-query";
 import {getAllProductsApiCall} from "@/api/Products";
 import calculateTotal from "@/utils/calculateTotal";
+import {useForm} from "react-hook-form";
+
+type FormValues = {
+    selectedProducts: string[]
+}
 
 export default function Index({}) {
+    // basket Item variables
     const { updateProduct, basketItems, deleteItem, clearBasket } = useBasketData();
-
     const productIds = basketItems.map((item) => item.product.data.id);
 
+    /// basket item products api call
     const { data: basketProductsData } = useQuery({
         queryKey: ['basketProducts', productIds],
         queryFn: () =>
@@ -22,6 +28,16 @@ export default function Index({}) {
     });
     const basketProducts = basketProductsData?.data || [];
     const total = calculateTotal(basketItems);
+
+
+    // RHF dependencies
+    const {register, watch, setValue} = useForm<FormValues>({
+        defaultValues: { selectedProducts: [] }
+    })
+    const selectedProducts = watch('selectedProducts');
+    // selected row boolean variable
+    const rowSelected = selectedProducts.includes(String(productIds));
+
 
     return (
         basketItems.length < 1 ?
@@ -41,7 +57,9 @@ export default function Index({}) {
         <div className="container m-auto">
                 <h1 className="text-heading2 font-quickSand">Your Cart</h1>
                 <div className="text-heading6 text-gray-500 mt-4">There are <span className="text-green-200">{basketItems.length}</span> products in your cart</div>
-                <div className="flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12">
+                <div className={`flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12
+                ${selectedProducts.includes( String(productIds) ) ? "bg-green-50 border border-green-200" : ""}`}>
+                    {/*basket items form*/}
                     <div>
                         <div className="flex items-center justify-end pb-[20px]">
                             <button type={'button'} onClick={clearBasket} className="flex items-center gap-x-[2px] font-quickSand text-heading6 text-[#B6B6B6]">
@@ -52,11 +70,22 @@ export default function Index({}) {
                         <div className="w-full text-center">
                             <div className="max-h-[500px] overflow-auto">
                                 <div className="min-w-[500px] flex flex-col gap-[30px]">
-                                    <div
-                                        className="text-xsmall font-quickSand md:text-heading6 bg-gray-100 rounded-[15px] h-[58px] w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
+                                    <div className="text-xsmall font-quickSand md:text-heading6 bg-gray-100 rounded-[15px] h-[58px] w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
                                         <div className="flex justify-center items-center">
                                             <label htmlFor="all-checkbox" className="hidden"></label>
-                                            <input type="checkbox" name="all-checkbox" id="all-checkbox" className="accent-green-200 w-3 h-3 md:w-4 md:h-4"/>
+                                            <input type="checkbox" name="all-checkbox"  className="accent-green-200 w-3 h-3 md:w-4 md:h-4"
+                                            onChange={ (e) => {
+                                                if (e.target.checked) {
+                                                    setValue('selectedProducts', basketItems.map( (item) => String(item.product.data.id)));
+                                                } else {
+                                                    setValue('selectedProducts', []);
+                                                }
+                                            }}
+                                           checked={
+                                               basketItems.length > 0 &&
+                                               selectedProducts?.length === basketItems.length
+                                           }
+                                            />
                                         </div>
                                         <div className="flex justify-center items-center">Products</div>
                                         <div className="flex justify-center items-center">Unit Price</div>
@@ -74,19 +103,23 @@ export default function Index({}) {
                                             if (!product) return null;
 
                                             return (
-                                                <div className="font-quickSand text-xsmall md:text-heading6 w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]">
+                                                <div className={`font-quickSand text-xsmall md:text-heading6 w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]`}>
+                                                    {/*input box*/}
                                                     <div className="flex justify-center items-center">
                                                         <label htmlFor="chbox1" className="hidden"></label>
-                                                        <input type="checkbox" name="chbox1" id="chbox1"
+                                                        <input type="checkbox" {...register('selectedProducts')} value={item.product.data.id}
                                                                className="accent-green-200 w-3 h-3 md:w-4 md:h-4"/>
                                                     </div>
+                                                    {/*image box*/}
                                                     <div className="flex flex-col xl:flex-row items-center justify-between gap-4 text-center lg:text-left">
                                                         <ImageView alt={'products-image'} width={91} height={73} src={product.attributes.thumbnail?.data?.attributes.url} className={'border border-[#E5E5E5] rounded-lg p-5'}/>
                                                         <div className="font-quickSand text-heading-sm lg:text-heading6  text-[#253D4E]">{product.attributes.title}</div>
                                                     </div>
+                                                    {/*price box*/}
                                                     <div className="flex justify-center items-center">
                                                         <div className="font-quickSand text-xsmall md:text-heading4 text-gray-400">{product.attributes.sell_price ? product.attributes.sell_price :  product.attributes.price}$</div>
                                                     </div>
+                                                    {/*quantity button*/}
                                                     <div className="flex justify-center items-center">
                                                         <div className="border-2 font-quicksand font-bold rounded-lg text-[#B6B6B6] border-[#B6B6B6] hover:border-[#3BB77E] hover:text-[#3BB77E] p-[7px] w-16 md:w-28 flex flex-row-reverse justify-evenly items-center transition-all">
                                                             <div className="flex flex-col justify-between items-center">
@@ -96,10 +129,12 @@ export default function Index({}) {
                                                             {item.quantity}
                                                         </div>
                                                     </div>
+                                                    {/*subtotal price box*/}
                                                     <div className="flex justify-center items-center">
                                                         <div className="font-quickSand text-xsmall md:text-heading4 text-green-200">${product.attributes.sell_price ? (product.attributes.sell_price * item.quantity) : (product.attributes.price * item.quantity)}
                                                         </div>
                                                     </div>
+                                                    {/*remove button*/}
                                                     <button type={'button'} className="flex justify-center items-center" onClick={ () => deleteItem(product?.id)}>
                                                         <ImageView alt={'remove-item-icon'} width={25} height={25} src={'/assets/images/remove-item.svg'} />
                                                     </button>
@@ -176,6 +211,7 @@ export default function Index({}) {
                             </div>
                         </div>
                     </div>
+                    {/*total box*/}
                     <div className="flex flex-col gap-[70px]">
                         <div
                             className="bg-white flex flex-col gap-[30px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8 max-h-[560px] overflow-y-auto">
