@@ -101,7 +101,6 @@ export default function Index({}) {
 
                                             // selected row boolean variable
                                             const rowSelected :boolean = selectedProducts.includes(String(item.product.data.id));
-                                            console.log(`row selected`, rowSelected, 'selectedProducts', selectedProducts);
 
                                             return (
                                                 <div className={`font-quickSand text-xsmall md:text-heading6 w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]`}>
