@@ -6,8 +6,7 @@ import {IconBox, ProductVerticalList, SimpleProductCard} from "@/components";
 import Link from "next/link";
 import React, {useEffect, useState} from "react";
 import {getAllProductsApiCall} from "@/api/Products";
-import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
+import {Box, Slider} from "@mui/material";
 import {useDebounce} from "@/hooks/useDebounce";
 
 
