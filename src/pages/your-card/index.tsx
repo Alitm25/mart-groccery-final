@@ -6,6 +6,8 @@ import {useQuery} from "@tanstack/react-query";
 import {getAllProductsApiCall} from "@/api/Products";
 import calculateTotal from "@/utils/calculateTotal";
 import {useForm} from "react-hook-form";
+import {useModal} from "@/stores/ModalContext";
+import ClearCartConfirmation from "@/components/pages/your-card/ClearCartConfirmation";
 
 type FormValues = {
     selectedProducts: string[]
@@ -36,6 +38,9 @@ export default function Index({}) {
     })
     const selectedProducts = watch('selectedProducts');
 
+    // modal variables
+    const {currentModal, openModal, closeModal} = useModal();
+
 
     return (
         basketItems.length < 1 ?
@@ -58,8 +63,10 @@ export default function Index({}) {
                 <div className={`flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12`}>
                     {/*basket items form*/}
                     <div>
+                        {/*clear cart button*/}
+                        {currentModal === 'ClearCartConfirmation' && <ClearCartConfirmation onClose={closeModal}/>}
                         <div className="flex items-center justify-end pb-[20px]">
-                            <button type={'button'} onClick={clearBasket} className="flex items-center gap-x-[2px] font-quickSand text-heading6 text-[#B6B6B6]">
+                            <button type={'button'} onClick={() => openModal('ClearCartConfirmation')} className="flex items-center gap-x-[2px] font-quickSand text-heading6 text-[#B6B6B6]">
                                 <ImageView alt={'trash-bin-icon'} width={16} height={17} src={'/assets/images/trash-bin.svg'} />
                                 Clear Cart
                             </button>
