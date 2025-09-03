@@ -59,7 +59,6 @@ export function Header() {
 
             {currentModal === 'Login' && <LoginModal onClose={closeModal}/>}
             {currentModal === 'Register' && <RegisterModal onClose={closeModal} />}
-            {currentModal === 'ConfirmLogout' && <ConfirmLogoutModal />}
 
             <div className="container flex items-center justify-between py-4 md:py-6 xl:py-8 relative">
                 <Logo />
