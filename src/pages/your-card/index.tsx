@@ -55,8 +55,7 @@ export default function Index({}) {
         <div className="container m-auto">
                 <h1 className="text-heading2 font-quickSand">Your Cart</h1>
                 <div className="text-heading6 text-gray-500 mt-4">There are <span className="text-green-200">{basketItems.length}</span> products in your cart</div>
-                <div className={`flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12
-                ${selectedProducts.includes( String(productIds) ) ? "bg-green-50 border border-green-200" : ""}`}>
+                <div className={`flex flex-col lg:grid lg:grid-cols-[2fr_1.5fr] xl:grid-cols-[2fr_1fr] gap-6 mt-12`}>
                     {/*basket items form*/}
                     <div>
                         <div className="flex items-center justify-end pb-[20px]">
@@ -101,7 +100,8 @@ export default function Index({}) {
                                             if (!product) return null;
 
                                             // selected row boolean variable
-                                            const rowSelected = selectedProducts.includes(String(item.product.data.id));
+                                            const rowSelected :boolean = selectedProducts.includes(String(item.product.data.id));
+                                            console.log(`row selected`, rowSelected, 'selectedProducts', selectedProducts);
 
                                             return (
                                                 <div className={`font-quickSand text-xsmall md:text-heading6 w-full grid grid-cols-[minmax(0,_0.5fr)_minmax(0,_2fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)_minmax(0,_1fr)]`}>
@@ -122,10 +122,10 @@ export default function Index({}) {
                                                     </div>
                                                     {/*quantity button*/}
                                                     <div className="flex justify-center items-center">
-                                                        <div className={`border-2 font-quicksand font-bold rounded-lg text-[#B6B6B6] border-[#B6B6B6] ${rowSelected ? 'border-[#3BB77E] text-[#3BB77E]' : ''}  p-[7px] w-16 md:w-28 flex flex-row-reverse justify-evenly items-center transition-all`}>
+                                                        <div className={`border-2 font-quicksand font-bold rounded-lg ${rowSelected ? "border-[#3BB77E] text-[#3BB77E]" : "border-[#B6B6B6] text-[#B6B6B6]"} p-[7px] w-16 md:w-28 flex flex-row-reverse justify-evenly items-center transition-all`}>
                                                             <div className="flex flex-col justify-between items-center">
-                                                                <IconBox icon={`up icon-angle-small-up cursor-pointer ${rowSelected ? 'cursor-pointer' : 'cursor-not-allowed'}`}     size={10} onClick={ () => rowSelected && updateProduct(product?.id, 'increase')}/>
-                                                                <IconBox icon={`down icon-angle-small-down cursor-pointer ${rowSelected ? 'cursor-pointer' : 'cursor-not-allowed'}`} size={10} onClick={ () =>  rowSelected && updateProduct(product?.id, 'decrease')}/>
+                                                                <IconBox icon={`up icon-angle-small-up cursor-pointer`}  size={10} onClick={ () => rowSelected && updateProduct(product?.id, 'increase')}/>
+                                                                <IconBox icon={`down icon-angle-small-down cursor-pointer`} size={10} onClick={ () =>  rowSelected && updateProduct(product?.id, 'decrease')}/>
                                                             </div>
                                                             {item.quantity}
                                                         </div>
