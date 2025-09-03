@@ -8,7 +8,7 @@ import {loginApiCall} from "@/api/Register";
 import {useAuth} from "@/stores/AuthContext";
 import {toast} from "react-toastify";
 import {useBasketData} from "@/hooks/useBasketData";
-import {ApiAxiosError} from "@/types/api/Error";
+
 
 interface Props {
     onClose: () => void;
