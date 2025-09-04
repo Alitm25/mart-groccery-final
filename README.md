@@ -2,7 +2,7 @@
 Mart Grocery is a **sample online grocery shop** built with **React.js** and **Next.js**.  
 It was developed as part of the **NAVAX College Bootcamp Final Project** (July – August 2025).  
 
-👉 [**Live Demo**](https://vercel.com/alitm25s-projects/mart-groccery-final/8ggfn7EGu653Diwb32Br1nCbLqnV) 
+👉 [**Live Demo**](https://mart-groccery-final.vercel.app/) 
 
 ---
 
@@ -86,7 +86,7 @@ yarn dev
 
 ### 🌐 Deployment
 Deployed on [vercel](https://vercel.com)
-[Live website](https://vercel.com/alitm25s-projects/mart-groccery-final/8ggfn7EGu653Diwb32Br1nCbLqnV)
+[Live website](https://mart-groccery-final.vercel.app/)
 
 ### 🤝 Contributing
 Contributions are welcome!
