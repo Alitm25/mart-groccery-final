@@ -34,8 +34,8 @@ export function Menu() {
     return (
         <>
             <div className={'relative'}>
-                <div id="all_categories" onClick={showCategoryBtnHandler} className="flex cursor-pointer bg-green-200 gap-2.5 text-white px-4 py-3 rounded-[5px] items-center">
-                    <IconBox icon={'icon-apps'} size={24} link={'#'} title={'Browse All Categories'}/>
+                <div id="all_categories" onClick={showCategoryBtnHandler} className="flex cursor-pointer bg-green-200 gap-2.5 text-white px-4 py-3 rounded-[5px] items-center mb-5 md:mb-0">
+                    <IconBox icon={'icon-apps'} size={24} link={'#'} title={'Browse All Categories'} titleClassName={'text-heading-sm md:text-heading6 font-bold font-quicksand ml-2'}/>
                     <IconBox icon={'icon-angle-small-down'} size={24} />
                 </div>
                 <div id="all_categories_box" onClick={categoryMenuBodyHandler} className={`${showBrowseCategoryMenu ? 'flex' : 'hidden'} lg:absolute z-20 bg-white left-0 top-16 lg:w-[500px] rounded-[5px] lg:border-[1px] border-green-300 lg:p-[30px] hover:cursor-default`}>
@@ -45,7 +45,7 @@ export function Menu() {
                             browseCategoryItems &&
                             browseCategoryItems.data.map( (item :EntityType<MenuItemsType>, index :number) => {
                                 return (
-                                    <IconBox key={index} icon={item.attributes.icon_name} size={30} link={item.attributes.link} title={item.attributes.title} titleClassName={'text-heading-sm text-blue-300'} path={item.attributes.icon_path} linkClassName={'gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-[calc(50%-8px)] justify-start lg:pl-4 lg:hover:border-green-300 '}/>
+                                    <IconBox key={index} icon={item.attributes.icon_name} size={30} link={item.attributes.link} title={item.attributes.title} titleClassName={'text-heading-sm text-blue-300'} path={item.attributes.icon_path} linkClassName={'gap-3.5 rounded-[5px] lg:border-[1px] lg:border-gray-300 py-2.5 basis-[calc(50%-8px)] justify-start lg:pl-4 lg:hover:border-green-300 hover:scale-105 transition'}/>
                                 )
                             })
                         }
