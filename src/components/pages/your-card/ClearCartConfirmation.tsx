@@ -5,13 +5,7 @@ import {useRouter} from "next/router";
 import {toast} from "react-toastify";
 import {useQueryClient} from "@tanstack/react-query";
 
-
-interface Props {
-    onClose: () => void;
-}
-
-export default function ClearCartConfirmation({onClose} :Props) {
-    const queryClient = useQueryClient();
+export default function ClearCartConfirmation() {
     const {closeModal} = useModal()
     const {clearBasket} = useBasketData();
     const router = useRouter();
@@ -21,7 +15,6 @@ export default function ClearCartConfirmation({onClose} :Props) {
         toast.success('Your basket has been cleared successfully');
         closeModal();
         router.push('/');
-        queryClient.invalidateQueries({queryKey: ['get-basket']})
     }
 
     return (

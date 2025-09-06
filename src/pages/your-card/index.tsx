@@ -64,7 +64,7 @@ export default function Index({}) {
                     {/*basket items form*/}
                     <div>
                         {/*clear cart button*/}
-                        {currentModal === 'ClearCartConfirmation' && <ClearCartConfirmation onClose={closeModal}/>}
+                        {currentModal === 'ClearCartConfirmation' && <ClearCartConfirmation/>}
                         <div className="flex items-center justify-end pb-[20px]">
                             <button type={'button'} onClick={() => openModal('ClearCartConfirmation')} className="flex items-center gap-x-[2px] font-quickSand text-heading6 text-[#B6B6B6]">
                                 <ImageView alt={'trash-bin-icon'} width={16} height={17} src={'/assets/images/trash-bin.svg'} />

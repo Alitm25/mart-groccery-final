@@ -5,6 +5,9 @@ import {YourOrders} from "@/components/pages/account/YourOrders";
 import {AccountSectionBtn} from "@/components/pages/account/AccountSectionBtn";
 import {useState} from "react";
 import {AccountDetails} from "@/components/pages/account/AccountDetails";
+import {useQueryClient} from "@tanstack/react-query";
+import {useAuth} from "@/stores/AuthContext";
+import {toast} from "react-toastify";
 
 type AccountSection = 'dashboard' | 'order-list' | 'track-orders' | 'my-address' | 'account-detail'
 
@@ -12,6 +15,17 @@ export default function Index() {
     const {openModal}                         = useModal();
     const {order}                             = useOrder();
     const [accountSection, setAccountSection] = useState<AccountSection>('dashboard');
+
+    const queryClient = useQueryClient();
+    const {closeModal} = useModal();
+    const {logout} = useAuth();
+
+    const logoutHandler = () => {
+        logout();
+        toast.success('You have successfully logged out.');
+        closeModal();
+        queryClient.invalidateQueries({queryKey: ['get-basket']});
+    }
 
 
     return (
@@ -25,7 +39,7 @@ export default function Index() {
                         <AccountSectionBtn title={'Track your orders'} icon={'/shop-logo.svg'} onClick={ () => setAccountSection('track-orders')} isSelect={accountSection === 'track-orders'}/>
                         <AccountSectionBtn title={'My address'} icon={'/location-logo.svg'} onClick={ () => setAccountSection('my-address')} isSelect={accountSection === 'my-address'}/>
                         <AccountSectionBtn title={'Account details'} icon={'/account-logo.svg'} onClick={ () => setAccountSection('account-detail')} isSelect={accountSection === 'account-detail'}/>
-                        <AccountSectionBtn title={'Log out'} icon={'/order-logo.svg'} onClick={() => openModal('ConfirmLogout')}/>
+                        <AccountSectionBtn title={'Log out'} icon={'/order-logo.svg'} onClick={() => logoutHandler()}/>
                     </div>
                 </div>
                 <div className={'w-full lg:w-8/12'}>
