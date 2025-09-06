@@ -160,10 +160,6 @@ export default function Index({}) {
                                             <span className="font-quickSand text-heading6 text-white">Continue Shopping</span>
                                         </button>
                                     </Link>
-                                    <button type="submit" className="mt-6 px-[18px] py-4 bg-green-200 hover:bg-yellow-100 rounded cursor-pointer inline-flex max-w-max items-center gap-2.5 transition-all">
-                                        <ImageView alt={'refresh-icon'} width={17} height={17} src={'/assets/images/refresh-icon.svg'} />
-                                        <div className="font-quickSand text-heading6 text-white">Update Cart</div>
-                                    </button>
                                 </div>
                                 <div className="flex flex-col xl:grid xl:grid-cols-[minmax(0,_1.5fr)_minmax(0,_1fr)] gap-[45px] text-left">
                                     <div
