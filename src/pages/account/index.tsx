@@ -5,31 +5,20 @@ import {YourOrders} from "@/components/pages/account/YourOrders";
 import {AccountSectionBtn} from "@/components/pages/account/AccountSectionBtn";
 import {useState} from "react";
 import {AccountDetails} from "@/components/pages/account/AccountDetails";
-import {useQueryClient} from "@tanstack/react-query";
-import {useAuth} from "@/stores/AuthContext";
-import {toast} from "react-toastify";
+import {ConfirmLogoutModal} from "@/components/auth/ConfirmLogoutModal";
 
 type AccountSection = 'dashboard' | 'order-list' | 'track-orders' | 'my-address' | 'account-detail'
 
 export default function Index() {
-    const {openModal}                         = useModal();
+    const {openModal, currentModal}                         = useModal();
     const {order}                             = useOrder();
     const [accountSection, setAccountSection] = useState<AccountSection>('dashboard');
 
-    const queryClient = useQueryClient();
-    const {closeModal} = useModal();
-    const {logout} = useAuth();
-
-    const logoutHandler = () => {
-        logout();
-        toast.success('You have successfully logged out.');
-        closeModal();
-        queryClient.invalidateQueries({queryKey: ['get-basket']});
-    }
 
 
     return (
         <Section sectionClassName={"container lg:mt-[100px] sm:mt-4 font-lato mb-[239px]"}>
+            {currentModal === 'ConfirmLogout' && <ConfirmLogoutModal />}
             <div className={'flex flex-col lg:flex-row items-start justify-center gap-2.5'}>
                 <div className="flex flex-wrap w-full lg:w-auto justify-center items-start mb-16 mr-16">
                     {/*buttons*/}
@@ -39,7 +28,7 @@ export default function Index() {
                         <AccountSectionBtn title={'Track your orders'} icon={'/shop-logo.svg'} onClick={ () => setAccountSection('track-orders')} isSelect={accountSection === 'track-orders'}/>
                         <AccountSectionBtn title={'My address'} icon={'/location-logo.svg'} onClick={ () => setAccountSection('my-address')} isSelect={accountSection === 'my-address'}/>
                         <AccountSectionBtn title={'Account details'} icon={'/account-logo.svg'} onClick={ () => setAccountSection('account-detail')} isSelect={accountSection === 'account-detail'}/>
-                        <AccountSectionBtn title={'Log out'} icon={'/order-logo.svg'} onClick={() => logoutHandler()}/>
+                        <AccountSectionBtn title={'Log out'} icon={'/order-logo.svg'} onClick={() => openModal('ConfirmLogout')}/>
                     </div>
                 </div>
                 <div className={'w-full lg:w-8/12'}>
