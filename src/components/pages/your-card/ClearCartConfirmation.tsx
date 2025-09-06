@@ -3,7 +3,6 @@ import {useModal} from "@/stores/ModalContext";
 import {useBasketData} from "@/hooks/useBasketData";
 import {useRouter} from "next/router";
 import {toast} from "react-toastify";
-import {useQueryClient} from "@tanstack/react-query";
 
 export default function ClearCartConfirmation() {
     const {closeModal} = useModal()
