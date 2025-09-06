@@ -1,5 +1,6 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {FreeMode, Navigation, Thumbs} from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
 import {IconBox, ImageView} from "@/components";
 import {useState} from "react";
 import {Section} from "@/components/section/Section";
@@ -9,7 +10,8 @@ import {TeamMemberCard} from "@/components/pages/aboutUsPage/team-member-card/Te
 
 
 export default function Index() {
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+    const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+    const safeThumbs = thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null;
 
     const sliderImages = [
         '/assets/images/about-us/about-3.jpg',
@@ -41,11 +43,10 @@ export default function Index() {
                                 nextEl: '.swiper-nav-right',
                                 prevEl: '.swiper-nav-left',
                             }}
-                            thumbs={{ swiper: thumbsSwiper }}
+                            thumbs={{ swiper: safeThumbs }}
                             modules={[FreeMode, Navigation, Thumbs]}
                             className="mySwiper2"
                         >
-                            <div className={'hidden lg:block'}>
                                 <SwiperSlide>
                                     <ImageView alt={'slider 1'} width={615} height={239} src={'/assets/images/about-us/about-3.jpg'} />
                                 </SwiperSlide>
@@ -61,7 +62,6 @@ export default function Index() {
                                 <SwiperSlide>
                                     <ImageView alt={'slider 4'} width={615} height={239} src={'/assets/images/about-us/about-4.jpg'} />
                                 </SwiperSlide>
-                            </div>
                         </Swiper>
                     <div className={'grid grid-cols-1'}>
                         <div className={'flex flex-col items-center md:items-start justify-center w-full lg:w-8/12 order-2 lg:order-1'}>
@@ -76,14 +76,9 @@ export default function Index() {
                         </div>
                         <div className={'flex items-center justify-center relative order-1 lg:order-2 mb-7'}>
 
-                            <div className={'flex items-center justify-between absolute top-0 bottom-0 right-[-3%] left-[-3%] z-10'}>
-                                <IconBox icon={'swiper-nav-left icon-angle-small-left cursor-pointer bg-gray-100 p-2 md:p-4 rounded-full text-gray-500 hover:bg-green-200 hover:text-white transition-all'} size={24}/>
-                                <IconBox icon={'swiper-nav-right icon-angle-small-right cursor-pointer bg-gray-100 p-2 md:p-4 rounded-full text-gray-500 hover:bg-green-200 hover:text-white transition-all'} size={24}/>
-                            </div>
-
                             <Swiper
-                                onSwiper={() => setThumbsSwiper}
-                                loop={true}
+                                onSwiper={(s) => {setThumbsSwiper(s)}}
+                                loop={false}
                                 spaceBetween={10}
                                 slidesPerView={4}
                                 freeMode={true}
