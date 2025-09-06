@@ -39,10 +39,6 @@ export default function Index() {
                         <Swiper
                             loop={true}
                             spaceBetween={10}
-                            navigation={{
-                                nextEl: '.swiper-nav-right',
-                                prevEl: '.swiper-nav-left',
-                            }}
                             thumbs={{ swiper: safeThumbs }}
                             modules={[FreeMode, Navigation, Thumbs]}
                             className="mySwiper2"
