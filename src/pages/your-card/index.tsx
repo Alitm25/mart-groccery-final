@@ -153,63 +153,13 @@ export default function Index({}) {
                             </div>
                             <div className="flex flex-col gap-[30px] mt-[26px]">
                                 <div className="h-[1px] w-full bg-gray-200"></div>
-                                <div className="flex flex-col lg:flex-row justify-between items-center">
+                                <div className="flex flex-col lg:flex-row justify-between items-center mb-16">
                                     <Link href={'/'}>
                                         <button type="submit" className="mt-6 px-[18px] py-4 bg-yellow-100 hover:bg-yellow-100 rounded-[3px] cursor-pointer inline-flex max-w-max items-center gap-2.5">
                                             <IconBox icon={'icon-arrow-small-right rotate-180'} size={24}/>
                                             <span className="font-quickSand text-heading6 text-white">Continue Shopping</span>
                                         </button>
                                     </Link>
-                                </div>
-                                <div className="flex flex-col xl:grid xl:grid-cols-[minmax(0,_1.5fr)_minmax(0,_1fr)] gap-[45px] text-left">
-                                    <div
-                                        className="bg-white flex flex-col gap-[30px] md:gap-[14px] items-start justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8 max-h-[560px] overflow-y-auto">
-                                        <div className="font-quickSand text-heading4">Calculate Shipping</div>
-                                        <div className="flex justify-start items-center gap-4">
-                                            <span className="font-lato text-medium text-gray-400">Flat rate:</span>
-                                            <span className="font-quickSand text-heading6 text-green-200">5%</span>
-                                        </div>
-                                        <div className="w-full focus-within:border-green-200 bg-white flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8">
-                                            <label htmlFor="country" className="hidden"></label>
-                                            {/*when index 0 is select bg-gray-400 must be set*/}
-                                            <select name="country" id="country" className="w-full bg-transparent placeholder-gray-400 focus:outline-none text-gray-500 text-medium border-none">
-                                                <option>State / Country</option>
-                                                <option>Iran</option>
-                                                <option>United State</option>
-                                            </select>
-                                        </div>
-                                        <div className="flex flex-col md:flex-row justify-between items-center w-full gap-[30px]">
-                                            <div
-                                                className="w-full md:w-auto focus-within:border-green-200 bg-white flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8">
-                                                <label htmlFor="city" className="hidden"></label>
-                                                <input name="city" id="city" type="text" placeholder="City / Town"
-                                                       className="w-full bg-transparent placeholder-gray-400 focus:outline-none text-gray-500 text-medium"/>
-                                            </div>
-                                            <div
-                                                className="focus-within:border-green-200 bg-white flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 py-4 px-8 w-full">
-                                                <label htmlFor="postal-zip" className="hidden"></label>
-                                                <input name="postal-zip" id="postal-zip" type="text"
-                                                       placeholder="Postcode / Zip"
-                                                       className="w-full bg-transparent placeholder-gray-400 focus:outline-none text-gray-500 text-medium"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col gap-[30px] items-start justify-center">
-                                        <div className="font-quickSand text-heading4">Apply Coupon</div>
-                                        <div className="font-lato text-medium text-gray-400">Using A Promo Code?</div>
-                                        <div
-                                            className="lg:col-span-2 2xl:col-span-1 focus-within:border-green-200 bg-white text-medium text-gray-500 flex gap-[7px] items-center justify-between shadow-c rounded-[10px] border-[1px] border-gray-200 w-full">
-                                            <div className="flex gap-[7px] ml-[22px] flex-1 w-full">
-                                                <ImageView alt={'coupon-icon'} width={16} height={16} src={'/assets/images/coupon-icon.svg'}/>
-                                                <label htmlFor="coupon-code" className="hidden"></label>
-                                                <input name="coupon-code" id="coupon-code" type="text"
-                                                       placeholder="Coupon Code"
-                                                       className="w-full placeholder-gray-400 focus:outline-none text-gray-500 text-medium"/>
-                                            </div>
-                                            <button className="font-quickSand text-heading6 bg-green-200 hover:bg-yellow-100 h-full min-h-[52px] rounded-r-[10px] text-white px-7 transition-all">Apply
-                                            </button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
