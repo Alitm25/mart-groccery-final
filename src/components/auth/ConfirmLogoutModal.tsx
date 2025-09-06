@@ -6,7 +6,16 @@ import {useQueryClient} from "@tanstack/react-query";
 
 
 export function ConfirmLogoutModal({}) {
+    const queryClient = useQueryClient();
+    const {closeModal} = useModal()
+    const {logout} = useAuth()
 
+    const logoutHandler = () => {
+        logout();
+        toast.success('You have logged out successfully !');
+        closeModal();
+        queryClient.invalidateQueries({queryKey: ['get-basket']});
+    }
 
     return (
         <Modal closeModal={closeModal} title={'Confirm Logout'}>
