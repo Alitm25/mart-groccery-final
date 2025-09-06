@@ -44,7 +44,6 @@ export function Header() {
     })
 
 
-
     return (
         <header className="mb-[33px]">
 
@@ -57,9 +56,16 @@ export function Header() {
                     <SearchForm inputClassName={'py-[15px]'}/>
                 </div>
                 <ul className="hidden lg:flex gap-5">
-                    <li className="flex gap-2 cursor-pointer">
-                        <IconBox icon={'icon-user'} size={24} link={'/account'} title={`${isLogin ? user?.username : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
-                    </li>
+                    {
+                        isLogin ?
+                            <li className="flex gap-2 cursor-pointer">
+                                <IconBox icon={'icon-user'} size={24} link={'/account'} title={`${isLogin ? user?.username : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
+                            </li>
+                            :
+                            <li className="flex gap-2 cursor-pointer" onClick={() => openModal('Login')}>
+                                <IconBox icon={'icon-user'} size={24} link={'#'} title={`${isLogin ? user?.username : 'Login/Register'}`} hideTitleOnMobile={true} titleClassName={'text-medium text-gray-500 font-lato'}/>
+                            </li>
+                    }
                     <div className={'group'}>
                         <li className={`flex gap-2 cursor-pointer`}>
                             <IconBox icon={'icon-shopping-cart'} size={24} link={'/your-card'} title={'Card'}  hideTitleOnMobile={true} badge={basketItems.length} titleClassName={'text-medium text-gray-500 font-lato'}/>
